@@ -1,15 +1,16 @@
 @include("header")
 
 
-<h2> Палитра</h2>
-<div>
-Первичный цвет:<input type="color" id="color1" class="rounded selectColor" value="{{$color}}">
-Вторичный цвет:<input type="color" id="color2" class="rounded " >
-Третичный цвет <input type="color" id="color3" class="rounded" >
-Акценты:       <input type="color" id="color4" class="rounded" >
-Удалить эллемент <button id="btndelete" >❌</button>
+<div class="card">
+<h2 class="card-card-header"> Палитра</h2>
+    <div class="card-body">
+    Первичный цвет:<input type="color" id="color1" class="rounded selectColor" value="{{$color}}">
+    Вторичный цвет:<input type="color" id="color2" class="rounded " >
+    Третичный цвет <input type="color" id="color3" class="rounded" >
+    Акценты:       <input type="color" id="color4" class="rounded" >
+    Удалить эллемент <button id="btndelete" >❌</button>
+    </div>
 </div>
-<hr>
 <table class="table-borderless   table-responsive ">
     <thead>
     <tr>
