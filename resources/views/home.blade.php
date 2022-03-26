@@ -11,6 +11,7 @@
     Удалить эллемент <button id="btndelete" >❌</button>
     </div>
 </div>
+<div class="table-responsive">
 <table class="table-borderless   table-responsive ">
     <thead>
     <tr>
@@ -47,6 +48,7 @@
     </tr>
     </tbody>
 </table>
+</div>
 </body>
 <script>
     //покраска эллемента
