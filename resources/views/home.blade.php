@@ -1,14 +1,18 @@
 @include("header")
 
 
-<div class="card">
-<h2 class="card-card-header"> Палитра</h2>
-    <div class="card-body">
-    Первичный цвет:<input type="color" id="color1" class="rounded selectColor" value="{{$color}}">
-    Вторичный цвет:<input type="color" id="color2" class="rounded " >
-    Третичный цвет <input type="color" id="color3" class="rounded" >
-    Акценты:       <input type="color" id="color4" class="rounded" >
-    Удалить эллемент <button id="btndelete" >❌</button>
+<div class=" shadow bottom-0 start-0 h-50  card position-fixed ">
+<h5 class="card-card-header"> Палитра</h5>
+    <div class="card-body overflow-auto " id="divPalitra">
+        Добавить новый цвет <button onclick="addColor()">➕</button>
+        <br>
+        Удалить эллемент <button id="btndelete"  >❌</button>
+        <hr>
+        Первичный цвет:<input type="color" id="color1" class="rounded selectColor" value="{{$color}}" onclick="selectPalitra(1)" onchange="changeColor(1)">
+{{--    Вторичный цвет:<input type="color" id="color2" class="rounded " >--}}
+{{--    Третичный цвет <input type="color" id="color3" class="rounded" >--}}
+{{--    Акценты:       <input type="color" id="color4" class="rounded" >--}}
+
     </div>
 </div>
 <div class="table-responsive">
@@ -51,6 +55,7 @@
 </div>
 </body>
 <script>
+
     //покраска эллемента
     $( ".ovalHoriz,.ovalVert" ).click(
         function( event )
@@ -61,7 +66,6 @@
             }
             else
             {
-               // let color = $(".selectColor").val();
                 let color = $(".selectColor").prop("id");
                 console.log(color);
 
@@ -82,48 +86,21 @@
         }
     );
     //выбор палитры
-    $( "[type='color'],#btndelete" ).click(
-        function( event )
+    $( "#btndelete" ).click(
+        function selectPalitra ( event )
         {
+            console.log("select")
             $( "[type='color'],#btndelete").removeClass('selectColor')
-            // console.log( $(this).prop('className'));
+            console.log( $(this));
              $(this).addClass('selectColor');
             // console.log( $(this).prop('className'));
             // console.log( $(this).val());
         }
     );
     //изменение цвета в зависимости от выбранной палтры
-    $( "[type='color']").change(
-        function( event )
-        {
-            let idpalitra = this.id;
-            let newcolor =$(".selectColor").val();
-            //console.log(this.id);
-            console.log(newcolor);
-
-
-            let htmlstyle ="<style id="+idpalitra+">."+idpalitra+"{background-color:"+newcolor+";} </style>";
-           $('#css'+idpalitra).empty();
-           $('body').append(htmlstyle);
-
-       // $('#css'+idpalitra).replaceWith(temp);
-            console.log('#css'+idpalitra);
-
-        }
-    )
 </script>
 
 <style id="csscolor1">
     .color1{background-color: {{$color}};}
 </style>
-<style id="csscolor2">
-    .color2{background-color:black;}
-</style>
-<style id="csscolor3">
-    .color3{background-color:black;}
-</style>
-<style id="csscolor4">
-    .color4{background-color:black;}
-</style>
-
 </html>

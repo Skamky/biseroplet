@@ -8,13 +8,12 @@
     <link rel="shortcut icon" href="/img/catico.gif" type="image/gif">
     <!--    jqury-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
-
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!--мой CSS-->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-    <title></title>
+    <!--мой JS-->
+    <script src="{{ asset('js/script.js') }}"></script>
 </head>
 <body  >
 <!-- Вариант 1: пакет Bootstrap с Popper должно быть в конце -->
