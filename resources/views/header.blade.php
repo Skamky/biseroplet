@@ -5,7 +5,6 @@
 <!--    <link rel="icon" type="image/png" href="img/logo2.png">-->
 <!--    <link rel="stylesheet" type="text/css" href="style.css">-->
 <!--    <script  src="script.js" async defer></script>-->
-    <link rel="shortcut icon" href="/img/catico.gif" type="image/gif">
     <!--    jqury-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
     <!-- Bootstrap CSS -->
@@ -14,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!--мой JS-->
     <script src="{{ asset('js/script.js') }}"></script>
+    <link rel="shortcut icon"  type="image/x-icon">
 </head>
 <body  >
 <!-- Вариант 1: пакет Bootstrap с Popper должно быть в конце -->
@@ -28,25 +28,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-{{--                <a class="nav-link " aria-current="page" href="welcome">welcome</a>--}}
+                <a class="nav-link " aria-current="page" href="welcome">welcome</a>
                 <a class="nav-link" href="/">home </a>
                 <a class="nav-link" href="https://forms.gle/HM8v4NR4kS5DLiWw5">Оставить отзыв</a>
-{{--                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--}}
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </div>
         </div>
     </div>
 </nav>
-<div class="alert alert-warning" role="alert">
+
+
+
+
+
+<div class="alert alert-warning alert-dismissible " role="alert">
     Сайт находиться в активной стадии разработки, возможны ошибки и изменения, для мобильных устройств рекомендуеться планшетный режим
+    <button class="close" type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 
-<script>
-    $( "nav" ).click(
-        function( event )
-        {
-            console.log( $(this).prop('className'));
-            $(this).addClass('active');
-            console.log( $(this).prop('className'));
-        }
-    );
-</script>
+

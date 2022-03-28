@@ -1,8 +1,14 @@
 @include("header")
 
 
-<div class=" shadow bottom-0 start-0 h-50  card position-fixed ">
+<div id="div Tools" class="btn-group" role="group">
+    <h5>Инструменты</h5>
+    <button class="btn btn-outline-secondary" onclick="scale(1)">+</button>
+    <button class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
+</div>
+<div class="rounted shadow bottom-0 end-0 h-50  card position-fixed ">
 <h5 class="card-card-header"> Палитра</h5>
+
     <div class="card-body overflow-auto " id="divPalitra">
         Добавить новый цвет <button onclick="addColor()">➕</button>
         <br>
@@ -15,6 +21,7 @@
 
     </div>
 </div>
+{{--табличка--}}
 <div class="table-responsive">
 <table class="table-borderless   table-responsive ">
     <thead>
@@ -31,14 +38,14 @@
         <th scope="row"></th>
         @for ($i = 0; $i < $w; $i++)
         <td></td>
-        <td><div class="ovalVert color1"></div> </td>
+        <td><div class="ovalVert transformScale color1"></div> </td>
         @endfor
     </tr>
     @for ($s = 1; $s <= $h; $s++)
     <tr>
         <th scope="row">{{$s}}&nbsp</th>
         @for ($i = 1; $i <= $w+1; $i++)
-        <td><div class="ovalHoriz color1"></div> </td>
+        <td><div class="ovalHoriz  color1"></div> </td>
         <td></td>
         @endfor
     </tr>
@@ -100,7 +107,8 @@
     //изменение цвета в зависимости от выбранной палтры
 </script>
 
-<style id="csscolor1">
+<style id="stPalitra">
     .color1{background-color: {{$color}};}
 </style>
+<style id="stTransform"> </style>
 </html>

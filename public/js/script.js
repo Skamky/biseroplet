@@ -1,5 +1,6 @@
 // доабавление цвета на палитру
 let CountColor = 1;
+let ScaleValue =1;
 function addColor()
 {
     CountColor++;
@@ -15,9 +16,9 @@ function changeColor( num )
     //console.log(this.id);
     console.log(newcolor);
 
-    let htmlstyle ="<style id="+idpalitra+">."+idpalitra+"{background-color:"+newcolor+";} </style>";
-    $('#css'+idpalitra).empty();
-    $('body').append(htmlstyle);
+    let htmlstyle ="."+idpalitra+"{background-color:"+newcolor+";}";
+    // $('#css'+idpalitra).empty();
+    $('#stPalitra').append(htmlstyle);
 
     // $('#css'+idpalitra).replaceWith(temp);
     console.log('#css'+idpalitra);
@@ -33,3 +34,20 @@ function selectPalitra (num)
     // console.log( $(this).val());
 }
 
+
+function scale(increase)
+{
+
+    let w= $(".ovalHoriz").outerWidth();
+    let h= $(".ovalHoriz").outerHeight();
+    if(increase==1 ||(w>10 && h>10))
+    {
+        $(".ovalHoriz").outerWidth(w+(w/100*10*increase)).outerHeight(h+(h/100*10*increase));
+        console.log(w+"\t"+h);
+
+        w= $(".ovalVert").outerWidth();
+        h= $(".ovalVert").outerHeight();
+        $(".ovalVert").outerWidth(w+(w/100*10*increase)).outerHeight(h+(h/100*10*increase));
+        console.log(w+"\t"+h);
+    }
+}
