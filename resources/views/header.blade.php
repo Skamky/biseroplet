@@ -30,7 +30,7 @@
             <div class="navbar-nav">
 {{--                <a class="nav-link " aria-current="page" href="welcome">welcome</a>--}}
                 <a class="nav-link" href="/">home </a>
-                <a class="nav-link" href="https://forms.gle/HM8v4NR4kS5DLiWw5">Оставить отзыв</a>
+                <a class="nav-link" href="https://forms.gle/HM8v4NR4kS5DLiWw5"  target="_blank">Оставить отзыв</a>
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </div>
         </div>
