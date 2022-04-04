@@ -22,7 +22,7 @@ class IndexController extends Controller
         public function home($color,$w,$h)
     {
         $color= strtr($color,'Z','#');
-        return view('home',["w"=>$w,"h"=>$h,"color"=>$color]);
+        return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color]);
     }
 
 }

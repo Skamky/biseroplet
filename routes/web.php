@@ -17,3 +17,7 @@ Route::get('/','IndexController@start');
 Route::get('/generate/{color}/{w}/{h}','IndexController@home');
 
 Route::post('/generate','IndexController@generate');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
