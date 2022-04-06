@@ -21,3 +21,5 @@ Route::post('/generate','IndexController@generate');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile/{ProfileName}','IndexController@home');
+Route::get('/profile/{ProfileName}/{schemeId');

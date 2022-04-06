@@ -16,13 +16,10 @@ class IndexController extends Controller
        $color = $request->color_sc;
        $color= strtr($color,'#','Z');
         return redirect("/generate/{$color}/{$request->width_sc}/{$request->height_sc}");
-
     }
-
         public function home($color,$w,$h)
     {
         $color= strtr($color,'Z','#');
         return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color]);
     }
-
 }
