@@ -21,6 +21,7 @@
         <input name="description_scheme" placeholder="описание схемы">
         <input name="color_scheme" id="color_scheme" required placeholder="цвета используемые в схеме">
         <input name="code_scheme" id="code_scheme" type="hidden"  required placeholder="код схемы">
+
         <input type="submit">
     </form>
 </div>
@@ -40,6 +41,7 @@
 {{--табличка--}}
 <div class="table-responsive">
 <table class="table-borderless   table-responsive ">
+@if($newScheme)
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -74,9 +76,12 @@
         @endfor
     </tr>
     </tbody>
+    @else
+
+    @endif
 </table>
 </div>
-</body>
+
 <script>
     function ReadTable()
     {

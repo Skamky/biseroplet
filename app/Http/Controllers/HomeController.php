@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Scheme;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -26,12 +27,30 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
     public  function userProfile($ProfileName)
     {
-        return view('kabinet');
-    }
-    public function insertscheme(Request $request)
-    {
+        $schemes=Scheme::where('login',Auth::user()->name )->get();
+        //return var_export($scheme,true);
 
+         return view('kabinet',['schemes'=>$schemes]);
+    }
+
+    public function saveScheme(Request $request)
+    {
+        $scheme = new Scheme;
+        $scheme->login=Auth::user()->name;
+        $scheme->name_scheme=$request->name_scheme;
+        $scheme->description_scheme=$request->description_scheme;
+        $scheme->color_scheme=$request->color_scheme;
+        $scheme->code_scheme=$request->code_scheme;
+
+        $scheme->save();
+
+        return redirect('/');
+    }
+    public function loadScheme($ProfileName,$schemeId)
+    {
+        return view();
     }
 }
