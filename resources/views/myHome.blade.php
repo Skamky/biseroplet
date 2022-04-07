@@ -1,11 +1,31 @@
-@include("header")
+@extends('layouts.app')
 
+@section('content')
+{{--Панель инструментов--}}
+<div>
+<h5>Инструменты</h5>
+    <div id="div Tools" class="btn-group btn-group-lg" role="group">
+        <button class="btn btn-outline-secondary" onclick="scale(1)">+</button>
+        <button class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
 
-<div id="div Tools" class="btn-group" role="group">
-    <h5>Инструменты</h5>
-    <button class="btn btn-outline-secondary" onclick="scale(1)">+</button>
-    <button class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
+    </div>
 </div>
+@auth
+<div>
+    <h5>Сохранение схемы</h5>
+    <button onclick="ReadTable()"> Заполнить поля</button>
+
+    <form action="/save" method="post">
+
+        <input name="name_scheme" required placeholder="Название схемы">
+        <input name="description_scheme" placeholder="описание схемы">
+        <input name="color_scheme" id="color_scheme" required placeholder="цвета используемые в схеме">
+        <input name="code_scheme" id="code_scheme" type="hidden"  required placeholder="код схемы">
+        <input type="submit">
+    </form>
+</div>
+@endauth
+
 <div class="rounted shadow bottom-0 end-0 h-50  card position-fixed ">
 <h5 class="card-card-header"> Палитра</h5>
 
@@ -14,11 +34,7 @@
         <br>
         Удалить эллемент <button id="btndelete"  >❌</button>
         <hr>
-        Первичный цвет:<input type="color" id="color1" class="rounded selectColor" value="{{$color}}" onclick="selectPalitra(1)" onchange="changeColor(1)">
-{{--    Вторичный цвет:<input type="color" id="color2" class="rounded " >--}}
-{{--    Третичный цвет <input type="color" id="color3" class="rounded" >--}}
-{{--    Акценты:       <input type="color" id="color4" class="rounded" >--}}
-
+        Первичный цвет:<input type="color" id="color1" class="rounded inputColor selectColor" value="{{$color}}" onclick="selectPalitra(1)" onchange="changeColor(1)">
     </div>
 </div>
 {{--табличка--}}
@@ -62,7 +78,22 @@
 </div>
 </body>
 <script>
+    function ReadTable()
+    {
+        let colors="";
+        console.log($('table').html())
 
+        console.log("цвета");
+            $('.inputColor').each(function( index )
+            {
+                colors+=$( this ).val();
+            console.log( index + ": " + $( this ).val());
+
+            });
+            console.log(colors);
+            $('#code_scheme').val($('table').html());
+            $('#color_scheme').val(colors);
+    }
     //покраска эллемента
     $( ".ovalHoriz,.ovalVert" ).click(
         function( event )
@@ -108,7 +139,8 @@
 </script>
 
 <style id="stPalitra">
-    .color1{background-color: {{$color}};}
+    .color1{background-color:{{$color}};}
 </style>
 <style id="stTransform"> </style>
-</html>
+
+@endsection

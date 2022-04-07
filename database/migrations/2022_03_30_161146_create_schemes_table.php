@@ -18,7 +18,7 @@ class CreateSchemesTable extends Migration
             $table->id("id_scheme");
             $table -> string("login");
             $table -> string("name_scheme");
-            $table -> text("description_scheme");
+            $table -> text("description_scheme")->nullable();;
             $table -> string("color_scheme");
             $table ->longText("code_scheme");
             $table->  timestamps();

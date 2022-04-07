@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Scheme;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,5 +25,13 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+    public  function userProfile($ProfileName)
+    {
+        return view('kabinet');
+    }
+    public function insertscheme(Request $request)
+    {
+
     }
 }

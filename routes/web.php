@@ -20,6 +20,8 @@ Route::post('/generate','IndexController@generate');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/profile/{ProfileName}','IndexController@home');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile/{ProfileName}','HomeController@userProfile')->name('profile');
 Route::get('/profile/{ProfileName}/{schemeId');
+Route::post('/insertScheme', "HomeController@insertscheme");
+
