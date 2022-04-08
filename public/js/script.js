@@ -51,3 +51,19 @@ function scale(increase)
         console.log(w+"\t"+h);
     }
 }
+
+function ReadTable()
+{
+    let colors="";
+    console.log($('table').html())
+
+    console.log("цвета");
+    $('.inputColor').each(function( index )
+    {
+        colors+=$( this ).val();
+        console.log( index + ": " + $( this ).val());
+    });
+    console.log(colors);
+    $('#code_scheme').val($('table').html());
+    $('#color_scheme').val(colors.slice(1));
+}

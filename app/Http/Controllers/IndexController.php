@@ -21,6 +21,6 @@ class IndexController extends Controller
     {
         $color= strtr($color,'Z','#');
 
-        return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color, 'newScheme'=>true]);
+        return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color]);
     }
 }

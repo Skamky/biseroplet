@@ -38,19 +38,43 @@ class HomeController extends Controller
 
     public function saveScheme(Request $request)
     {
-        $scheme = new Scheme;
-        $scheme->login=Auth::user()->name;
-        $scheme->name_scheme=$request->name_scheme;
-        $scheme->description_scheme=$request->description_scheme;
-        $scheme->color_scheme=$request->color_scheme;
-        $scheme->code_scheme=$request->code_scheme;
+        $str= $request->code_scheme;
+        $str= preg_replace ('/\s{2,}|\n|\v|\f|\v/','',$str);
+        //if(array_key_exists('id_scheme',$request) &&)
+        if($request->newScheme)
+        {
+            $id_scheme= (int)$request->id_scheme;
+            $scheme=Scheme::where('login',Auth::user()->name)->where('id_scheme',$id_scheme)
+            ->update
+            (['name_scheme'=>$request->name_scheme,
+                'description_scheme'=>$request->description_scheme,
+                'color_scheme'=>$request->color_scheme,
+                'code_scheme'=>$str
+            ]);
+        }
+        else
+        {
+            $scheme = new Scheme;
+            $scheme->login=Auth::user()->name;
+            $scheme->name_scheme=$request->name_scheme;
+            $scheme->description_scheme=$request->description_scheme;
+            $scheme->color_scheme=$request->color_scheme;
+            $scheme->code_scheme=$str;
+            $scheme->save();
 
-        $scheme->save();
+        }
 
-        return redirect('/');
+
+
+
+        return redirect('/profile/'.Auth::user()->name);
     }
+
     public function loadScheme($ProfileName,$schemeId)
     {
-        return view();
+        $scheme= Scheme::where('login',$ProfileName)->where('id_scheme',$schemeId)->first();
+        $colors=explode('#',$scheme-> color_scheme) ;
+
+        return view('LoadScheme',['scheme'=>$scheme,'colors'=>$colors,'schemeId'=>$schemeId]);
     }
 }

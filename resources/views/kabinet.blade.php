@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{$scheme->name_scheme}}</h5>
                     <p class="card-text">{{$scheme->description_scheme }}</p>
-                    <a href="/{{Auth::user()->name}}/{{$scheme->id_scheme}}" class="btn btn-primary">Открыть схему</a>
+                    <a href="/profile/{{Auth::user()->name}}/{{$scheme->id_scheme}}" class="btn btn-primary">Открыть схему</a>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Обновлено: {{$scheme->updated_at}}</small>
