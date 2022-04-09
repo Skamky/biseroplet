@@ -89,7 +89,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 mx-3">
             @yield('content')
         </main>
         <!-- Вариант 1: Bootstrap в связке с Popper -->

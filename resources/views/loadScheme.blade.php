@@ -7,6 +7,8 @@
         <div id="div Tools" class="btn-group btn-group-lg" role="group">
             <button class="btn btn-outline-secondary" onclick="scale(1)">+</button>
             <button class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
+            <button class="btn btn-primary" onclick="printSchema()">Экспорт</button>
+
         </div>
     </div>
     @auth
@@ -44,9 +46,12 @@
         </div>
     </div>
     {{--табличка--}}
+    <div id="table_for_print">
+
     <div class="table-responsive">
         <table class="table-borderless   table-responsive ">
         </table>
+    </div>
     </div>
     <div id="temp" class="temp">
         {{$scheme->code_scheme}}
@@ -104,6 +109,7 @@
         //изменение цвета в зависимости от выбранной палтры
 
     </script>
+    <div id="divStyles">
 
     <style id="stPalitra">
         @foreach($colors as $color )
@@ -111,5 +117,6 @@
         @endforeach
     </style>
     <style id="stTransform"> </style>
+    </div>
 
 @endsection

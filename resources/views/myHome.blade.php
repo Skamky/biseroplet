@@ -7,6 +7,7 @@
     <div id="div Tools" class="btn-group btn-group-lg" role="group">
         <button class="btn btn-outline-secondary" onclick="scale(1)">+</button>
         <button class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
+        <button class="btn btn-primary" onclick="printSchema()">Экспорт</button>
 
     </div>
 </div>
@@ -41,8 +42,9 @@
     </div>
 </div>
 {{--табличка--}}
+<div id="table_for_print">
 <div class="table-responsive">
-<table class="table-borderless   table-responsive ">
+<table  class="table-borderless   table-responsive ">
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -78,10 +80,12 @@
     </tr>
     </tbody>
 
-</table>
+        </table>
+    </div>
 </div>
 
 <script>
+
 
     //покраска эллемента
     $( ".ovalHoriz,.ovalVert" ).click(
@@ -126,10 +130,10 @@
     );
     //изменение цвета в зависимости от выбранной палтры
 </script>
-
+<div id="divStyles">
 <style id="stPalitra">
     .color1{background-color:{{$color}};}
 </style>
 <style id="stTransform"> </style>
-
+</div>
 @endsection

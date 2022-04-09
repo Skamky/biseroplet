@@ -17,11 +17,11 @@ Route::get('/','IndexController@start');
 Route::get('/generate/{color}/{w}/{h}','IndexController@home');
 
 Route::post('/generate','IndexController@generate');
+Route::get('/profile/{ProfileName}/{schemeId}','HomeController@loadScheme')->name('loadScheme');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile/{ProfileName}','HomeController@userProfile')->name('profile');
-Route::get('/profile/{ProfileName}/{schemeId}','HomeController@loadScheme')->name('loadScheme');
 Route::post('/save', "HomeController@saveScheme")->name('save');
 
