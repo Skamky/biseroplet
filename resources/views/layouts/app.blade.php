@@ -42,11 +42,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/create">Создать схему</a>
+                        </li>
+
                         @auth
                         <li class="nav-item">
                         <a class="nav-link" href="/profile/{{ Auth::user()->name }}">Ваши схемы</a>
                         </li>
                         @endauth
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://forms.gle/HM8v4NR4kS5DLiWw5"  target="_blank">Оставить отзыв</a>
+                        </li>
                     </ul>
                     @end
 
@@ -88,7 +98,10 @@
                 </div>
             </div>
         </nav>
+        <div class="alert alert-warning alert-dismissible " role="alert">
+            Сайт находиться в активной стадии разработки, возможны ошибки и изменения, для мобильных устройств рекомендуеться планшетный режим
 
+        </div>
         <main class="py-4 mx-3">
             @yield('content')
         </main>

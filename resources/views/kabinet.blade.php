@@ -4,7 +4,7 @@
         @foreach($schemes as $scheme)
         <div class="col">
             <div class="card">
-                <img src="..." class="card-img-top" alt="*тут должна быть картинка ваше схемы*">
+                <img src="..." class="card-img-top" alt="*тут должна быть картинка вашей схемы*">
                 <div class="card-body">
                     <h5 class="card-title">{{$scheme->name_scheme}}</h5>
                     <p class="card-text">{{$scheme->description_scheme }}</p>

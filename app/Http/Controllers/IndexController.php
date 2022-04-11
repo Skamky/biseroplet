@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function start()
+    public function welcome()
+    {
+        return view('welcome');
+    }
+    public function createNewScheme()
     {
         return view('start');
     }
