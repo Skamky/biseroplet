@@ -76,6 +76,6 @@ class HomeController extends Controller
         $scheme= Scheme::where('login',$ProfileName)->where('id_scheme',$schemeId)->first();
         $colors=explode('#',$scheme-> color_scheme) ;
 
-        return view('LoadScheme',['scheme'=>$scheme,'colors'=>$colors,'schemeId'=>$schemeId]);
+        return view('loadScheme',['scheme'=>$scheme,'colors'=>$colors,'schemeId'=>$schemeId]);
     }
 }
