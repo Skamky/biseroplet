@@ -29,7 +29,8 @@ function selectPalitra (num)
     console.log("select")
     $( "[type='color'],#btndelete").removeClass('selectColor')
     console.log( $(this));
-    $("#color"+num).addClass('selectColor');
+    $("#color"+num).addClass('selectColor')
+    $(".stroke").removeClass().addClass("card-card-header p-2 stroke color"+num)
     // console.log( $(this).prop('className'));
     // console.log( $(this).val());
 }
@@ -86,4 +87,16 @@ function ReadTable()
     console.log(colors);
     $('#code_scheme').val($('table').html());
     $('#color_scheme').val(colors.slice(1));
+}
+function hideShowPalitra()
+{
+    if( $("#divPalitra").hasClass('collapse'))
+    {
+        $("#divPalitra").removeClass('collapse');
+        $("#divFullPalitra").addClass('h-50');
+    }
+    else {
+        $("#divPalitra").addClass('collapse');
+        $("#divFullPalitra").removeClass('h-50');
+    }
 }

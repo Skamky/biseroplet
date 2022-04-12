@@ -4,3 +4,6 @@
 
 .selectColor{ border:3px groove black;}
 
+.stroke{
+     text-shadow: white 0 0 2px;
+ }

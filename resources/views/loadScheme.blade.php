@@ -32,8 +32,8 @@
         </div>
     @endauth
 
-    <div class="rounted shadow bottom-0 end-0 h-50  card position-fixed ">
-        <h5 class="card-card-header"> Палитра</h5>
+    <div  id="divFullPalitra" class="rounted shadow bottom-0 end-0 mx-1 card position-fixed h-50">
+        <h5 class="card-card-header p-2 stroke" onclick="hideShowPalitra()">Палитра</h5>
 
         <div class="card-body overflow-auto " id="divPalitra">
             Добавить новый цвет <button onclick="addColor()">➕</button>
