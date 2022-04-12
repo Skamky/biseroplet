@@ -17,10 +17,10 @@
 {{--            <button onclick="ReadTable()"> Заполнить поля</button>--}}
 
             <form action="/save" method="post">
-                <input name="id_scheme" value="{{$schemeId}}">
+                <input name="id_scheme" type="hidden" value="{{$schemeId}}">
                 <input name="name_scheme" value="{{$scheme->name_scheme}}" required placeholder="Название схемы">
                 <input name="description_scheme" value="{{$scheme->description_scheme}}" placeholder="описание схемы">
-                <input name="color_scheme"  id="color_scheme" required placeholder="цвета используемые в схеме">
+                <input name="color_scheme" type="hidden" id="color_scheme" required placeholder="цвета используемые в схеме">
                 <input name="code_scheme"   id="code_scheme" type="hidden"  required placeholder="код схемы">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" name="newScheme" id="flexSwitchCheckChecked" checked>
@@ -64,6 +64,22 @@
     $('.temp').remove()
 </script>
     <script>
+        function ReadTable()
+        {
+            let colors="";
+            console.log($('table').html())
+
+            console.log("цвета");
+            $('.inputColor').each(function( index )
+            {
+                colors+=$( this ).val();
+                console.log( index + ": " + $( this ).val());
+            });
+            console.log(colors);
+
+            $('#code_scheme').val($('table').html());
+            $('#color_scheme').val(colors.slice(1));
+        }
 
         //покраска эллемента
         $( ".ovalHoriz,.ovalVert" ).click(

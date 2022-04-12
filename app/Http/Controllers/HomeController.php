@@ -39,6 +39,7 @@ class HomeController extends Controller
     public function saveScheme(Request $request)
     {
         $str= $request->code_scheme;
+        $str= preg_replace ('/(width.*?; )|(height.*?;)/','',$str);
         $str= preg_replace ('/\s{2,}|\n|\v|\f|\v/','',$str);
         //if(array_key_exists('id_scheme',$request) &&)
         if($request->newScheme)
