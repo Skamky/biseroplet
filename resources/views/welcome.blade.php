@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="alert alert-info alert-dismissible " role="alert">
-Стрвница в разработке...
+Здесь будут представлены примеры схемы созданные в генераторы..
     </div>
 
 @endsection
