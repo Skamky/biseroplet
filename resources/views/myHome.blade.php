@@ -124,11 +124,9 @@
             $( "[type='color'],#btndelete").removeClass('selectColor')
             console.log( $(this));
              $(this).addClass('selectColor');
-            // console.log( $(this).prop('className'));
-            // console.log( $(this).val());
+
         }
     );
-    //изменение цвета в зависимости от выбранной палтры
 </script>
 <div id="divStyles">
 <style id="stPalitra">

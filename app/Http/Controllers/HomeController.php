@@ -64,10 +64,6 @@ class HomeController extends Controller
             $scheme->save();
 
         }
-
-
-
-
         return redirect('/profile/'.Auth::user()->name);
     }
 
