@@ -4,7 +4,7 @@ let ScaleValue =1;
 function addColor()
 {
     CountColor++;
-    let html= '<hr>Цвет '+CountColor+':<input type="color" id="color'+CountColor+'" class="rounded inputColor" value="#ffffff" onchange="changeColor('+CountColor+')" onclick="selectPalitra('+CountColor+')" >';
+    let html= '<hr>Цвет '+CountColor+':<input type="color" id="color'+CountColor+'" class="form-control form-control-color inputColor" value="#ffffff" onchange="changeColor('+CountColor+')" onclick="selectPalitra('+CountColor+')" >';
     $("#divPalitra").append(html);
 }
 
