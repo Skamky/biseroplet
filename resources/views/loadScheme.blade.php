@@ -38,7 +38,7 @@
         <div class="card-body overflow-auto " id="divPalitra">
             Добавить новый цвет <button onclick="addColor()">➕</button>
             <br>
-            Удалить эллемент <button id="btndelete"  >❌</button>
+            Удалить элемент <button id="btndelete"  >❌</button>
             @foreach($colors as $color)
             <hr>
              Цвет {{$loop->iteration}}:<input type="color" id="color{{$loop->iteration}}" class="inputColor form-control form-control-color selectColor" value="#{{$color}}" onclick="selectPalitra({{$loop->iteration}})" onchange="changeColor({{$loop->iteration}})">

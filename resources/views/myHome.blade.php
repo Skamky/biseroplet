@@ -34,7 +34,7 @@
     <div class="card-body overflow-auto " id="divPalitra">
         Добавить новый цвет <button onclick="addColor()">➕</button>
         <br>
-        Удалить эллемент <button id="btndelete"  >❌</button>
+        Удалить элемент <button id="btndelete"  >❌</button>
 
         <hr>
         цвет 1:<input type="color" id="color1" class="inputColor form-control form-control-color selectColor" value="{{$color}}" onclick="selectPalitra(1)" onchange="changeColor(1)">
