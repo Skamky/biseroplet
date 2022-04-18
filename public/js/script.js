@@ -41,16 +41,15 @@ function printSchema()
     var printCSSbotrap ='<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">'   // var printTitle = document.getElementById('print-title').innerHTML;
     var printCSS2 = '<style media="print" type="text/css">.ovalHoriz{width: 100px;height: 50px; border-radius: 50%; border:3px solid black;color: red;} .ovalVert{width: 50px;height: 100px; border-radius: 50%; border:3px solid black;}</style>';
     var printPalitra=document.getElementById('divStyles').innerHTML;
-    //  var printImg = document.getElementById('print-img').innerHTML;
     var printText = document.getElementById('table_for_print').innerHTML;
     var windowPrint = window.open('','','left=50,top=50,width=800,height=640,toolbar=0,scrollbars=1,status=0');
+
     windowPrint.document.write(printCSSbotrap);
     windowPrint.document.write(printCSS2);
     windowPrint.document.write(printPalitra);
-    //   windowPrint.document.write(printTitle);
-    //   windowPrint.document.write(printImg);
     windowPrint.document.write(printText);
     windowPrint.document.close();
+
     windowPrint.focus();
     windowPrint.print();
     windowPrint.close();
