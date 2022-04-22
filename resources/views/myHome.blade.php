@@ -18,12 +18,13 @@
 
     <form action="/save" method="post">
 
-        <input name="name_scheme" required placeholder="Название схемы">
-        <input name="description_scheme" placeholder="описание схемы">
-        <input name="color_scheme" required  id="color_scheme"  required placeholder="цвета используемые в схеме">
+        <input name="name_scheme" maxlength="250" required placeholder="Название схемы">
+        <input name="description_scheme" maxlength="2500" placeholder="описание схемы">
+        <input name="color_scheme" required  id="color_scheme" type="hidden"  required placeholder="цвета используемые в схеме">
         <input name="code_scheme" required  id="code_scheme" type="hidden"   placeholder="код схемы">
 
         <input type="submit"  onmousedown="ReadTable()">
+        @csrf
     </form>
 </div>
 @endauth

@@ -18,8 +18,8 @@
 
             <form action="/save" method="post">
                 <input name="id_scheme" type="hidden" value="{{$schemeId}}">
-                <input name="name_scheme" value="{{$scheme->name_scheme}}" required placeholder="Название схемы">
-                <input name="description_scheme" value="{{$scheme->description_scheme}}" placeholder="описание схемы">
+                <input name="name_scheme" maxlength="250" value="{{$scheme->name_scheme}}" required placeholder="Название схемы">
+                <input name="description_scheme" maxlength="2500" value="{{$scheme->description_scheme}}" placeholder="описание схемы">
                 <input name="color_scheme" type="hidden" id="color_scheme" required placeholder="цвета используемые в схеме">
                 <input name="code_scheme"   id="code_scheme" type="hidden"  required placeholder="код схемы">
                 <div class="form-check form-switch">
@@ -28,6 +28,7 @@
                 </div>
 
                 <input type="submit" onmouseover="ReadTable()">
+                @csrf
             </form>
         </div>
     @endauth
