@@ -39,10 +39,15 @@
         <div class="card-body overflow-auto " id="divPalitra">
             Добавить новый цвет <button onclick="addColor()">➕</button>
             <br>
-            Удалить элемент <button id="btndelete"  >❌</button>
+            Удалить элемент <button id="btndelete" class="selectColor" >❌</button>
             @foreach($colors as $color)
             <hr>
-             Цвет {{$loop->iteration}}:<input type="color" id="color{{$loop->iteration}}" class="inputColor form-control form-control-color selectColor" value="#{{$color}}" onclick="selectPalitra({{$loop->iteration}})" onchange="changeColor({{$loop->iteration}})">
+{{--             Цвет {{$loop->iteration}}:<input type="color" id="color{{$loop->iteration}}" class="inputColor form-control form-control-color selectColor" value="#{{$color}}" onclick="selectPalitra({{$loop->iteration}})" onchange="changeColor({{$loop->iteration}})">--}}
+                <article id="color{{$loop->iteration}}" class=" d-flex justify-content-between align-items-center">
+                    Цвет {{$loop->iteration}}:
+                    <button type="button" onclick="selectPalitra({{$loop->iteration}})" class="btn btn-outline-secondary">Выбрать</button>
+                    <input type="color"  class=" inputColor form-control form-control-color " value="#{{$color}}"  onchange="changeColor({{$loop->iteration}})">
+                </article>
             @endforeach
         </div>
     </div>
@@ -65,22 +70,7 @@
     $('.temp').remove()
 </script>
     <script>
-        function ReadTable()
-        {
-            let colors="";
-            console.log($('table').html())
 
-            console.log("цвета");
-            $('.inputColor').each(function( index )
-            {
-                colors+=$( this ).val();
-                console.log( index + ": " + $( this ).val());
-            });
-            console.log(colors);
-
-            $('#code_scheme').val($('table').html());
-            $('#color_scheme').val(colors.slice(1));
-        }
 
         //покраска эллемента
         $( ".ovalHoriz,.ovalVert" ).click(
@@ -116,14 +106,14 @@
             function selectPalitra ( event )
             {
                 console.log("select")
-                $( "[type='color'],#btndelete").removeClass('selectColor')
+                $( "article,#btndelete").removeClass('selectColor')
+                $("article>button").removeClass('active').text('Выбрать')
+
                 console.log( $(this));
                 $(this).addClass('selectColor');
-                // console.log( $(this).prop('className'));
-                // console.log( $(this).val());
+                $(".stroke").removeClass().addClass("card-card-header p-2 stroke")
             }
         );
-        //изменение цвета в зависимости от выбранной палтры
 
     </script>
     <div id="divStyles">

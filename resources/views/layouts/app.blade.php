@@ -98,10 +98,10 @@
                 </div>
             </div>
         </nav>
-        <div class="alert alert-warning alert-dismissible " role="alert">
-            Сайт находиться в активной стадии разработки, возможны ошибки и изменения, для мобильных устройств рекомендуеться планшетный режим
+{{--        <div class="alert alert-warning alert-dismissible " role="alert">--}}
+{{--            Сайт находиться в активной стадии разработки, возможны ошибки и изменения, для мобильных устройств рекомендуеться планшетный режим--}}
 
-        </div>
+{{--        </div>--}}
         <main class="py-4 mx-3">
             @yield('content')
         </main>

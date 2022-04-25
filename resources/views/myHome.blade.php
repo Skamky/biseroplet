@@ -37,10 +37,13 @@
         <br>
         Удалить элемент <button id="btndelete"  >❌</button>
 
-        <article>
-        <button type="button" id="color1" class="btn btn-outline-secondary selectColor" name="radioColor"> Цвет 1</button>
-        <input type="color"  class="inputColor form-control form-control-color selectColor" value="{{$color}}" onclick="selectPalitra(1)" onchange="changeColor(1)">
+        <hr>
+        <article id="color1" class="selectColor d-flex justify-content-between align-items-center">
+            Цвет 1:
+            <button type="button" onclick="selectPalitra(1)" class="btn btn-outline-secondary active">Выбран</button>
+            <input type="color"  class=" inputColor form-control form-control-color " value="{{$color}}"  onchange="changeColor(1)">
         </article>
+
     </div>
 </div>
 {{--табличка--}}
@@ -118,18 +121,22 @@
             // console.log( $(this).prop('className'));
         }
     );
-    //выбор палитры
+
     $( "#btndelete" ).click(
         function selectPalitra ( event )
         {
             console.log("select")
-            $( "[type='color'],#btndelete").removeClass('selectColor')
+            $( "article,#btndelete").removeClass('selectColor')
+            $("article>button").removeClass('active').text('Выбрать')
+
             console.log( $(this));
              $(this).addClass('selectColor');
-
+            $(".stroke").removeClass().addClass("card-card-header p-2 stroke")
         }
     );
+
 </script>
+
 <div id="divStyles">
 <style id="stPalitra">
     .color1{background-color:{{$color}};}

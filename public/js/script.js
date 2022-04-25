@@ -4,10 +4,11 @@ let ScaleValue =1;
 function addColor()
 {
     CountColor++;
-    let html0='<hr>Цвет '+CountColor+':';
-    let html1= '<button type="button" id="color'+CountColor+'" class="btn btn-outline-secondary " name="radioColor" onclick="selectPalitra('+CountColor+')"> Цвет '+CountColor+'</button>';
-    let html2='<input type="color"  class="form-control form-control-color inputColor" value="#ffffff" onchange="changeColor('+CountColor+')"  >';
-    let html = html0+html1+html2;
+    let html='<hr>';
+    html+='<article  id="color'+CountColor+'" class=" d-flex justify-content-between align-items-center">Цвет '+CountColor+':';
+     html+= '<button type="button" class="btn btn-outline-secondary " onclick="selectPalitra('+CountColor+')">Выбрать</button>';
+     html+='<input type="color"  class="form-control form-control-color inputColor" value="#ffffff" onchange="changeColor('+CountColor+')"  >';
+     html+='</article>'
     $("#divPalitra").append(html);
 }
 
@@ -15,8 +16,10 @@ function addColor()
 function changeColor( num )
 {
     let idpalitra = "color"+num;
-    let newcolor =$(".selectColor").val();
-    //console.log(this.id);
+    let newcolor =$('#'+idpalitra+">input").val();
+
+    // console.log('#'+idpalitra+">input")
+    // console.log(this.id);
     console.log(newcolor);
 
     let htmlstyle ="."+idpalitra+"{background-color:"+newcolor+";}";
@@ -30,9 +33,11 @@ function changeColor( num )
 function selectPalitra (num)
 {
     console.log("select")
-    $( "[type='color'],#btndelete").removeClass('selectColor')
-    console.log( $(this));
+    $( "article,#btndelete").removeClass('selectColor')
+    $("article>button").removeClass('active').text('Выбрать')
+
     $("#color"+num).addClass('selectColor')
+    $('.selectColor>button').addClass('active').text("Выбран")
     $(".stroke").removeClass().addClass("card-card-header p-2 stroke color"+num)
     // console.log( $(this).prop('className'));
     // console.log( $(this).val());
