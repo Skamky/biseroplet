@@ -37,9 +37,10 @@
         <br>
         Удалить элемент <button id="btndelete"  >❌</button>
 
-        <hr>
-        цвет 1:<input type="color" id="color1" class="inputColor form-control form-control-color selectColor" value="{{$color}}" onclick="selectPalitra(1)" onchange="changeColor(1)">
-
+        <article>
+        <button type="button" id="color1" class="btn btn-outline-secondary selectColor" name="radioColor"> Цвет 1</button>
+        <input type="color"  class="inputColor form-control form-control-color selectColor" value="{{$color}}" onclick="selectPalitra(1)" onchange="changeColor(1)">
+        </article>
     </div>
 </div>
 {{--табличка--}}

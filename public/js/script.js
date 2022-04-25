@@ -4,7 +4,10 @@ let ScaleValue =1;
 function addColor()
 {
     CountColor++;
-    let html= '<hr>Цвет '+CountColor+':<input type="color" id="color'+CountColor+'" class="form-control form-control-color inputColor" value="#ffffff" onchange="changeColor('+CountColor+')" onclick="selectPalitra('+CountColor+')" >';
+    let html0='<hr>Цвет '+CountColor+':';
+    let html1= '<button type="button" id="color'+CountColor+'" class="btn btn-outline-secondary " name="radioColor" onclick="selectPalitra('+CountColor+')"> Цвет '+CountColor+'</button>';
+    let html2='<input type="color"  class="form-control form-control-color inputColor" value="#ffffff" onchange="changeColor('+CountColor+')"  >';
+    let html = html0+html1+html2;
     $("#divPalitra").append(html);
 }
 
