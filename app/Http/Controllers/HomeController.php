@@ -30,10 +30,10 @@ class HomeController extends Controller
 
     public  function userProfile($ProfileName)
     {
-        $schemes=Scheme::where('login',Auth::user()->name )->get();
+        $schemes=Scheme::where('login',$ProfileName )->get();
         //return var_export($scheme,true);
 
-         return view('kabinet',['schemes'=>$schemes]);
+         return view('kabinet',['schemes'=>$schemes,'ProfileName'=>$ProfileName]);
     }
 
     public function saveScheme(Request $request)
@@ -73,4 +73,11 @@ class HomeController extends Controller
 
         return view('loadScheme',['scheme'=>$scheme,'colors'=>$colors,'schemeId'=>$schemeId]);
     }
+    public function deleteScheme($id_scheme)
+    {
+        $scheme=Scheme::where('login',Auth::user()->name)->where('id_scheme',$id_scheme)->delete();
+        return redirect('/profile/'.Auth::user()->name);
+
+    }
 }
+

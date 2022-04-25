@@ -46,7 +46,7 @@
                 <article id="color{{$loop->iteration}}" class=" d-flex justify-content-between align-items-center">
                     Цвет {{$loop->iteration}}:
                     <button type="button" onclick="selectPalitra({{$loop->iteration}})" class="btn btn-outline-secondary">Выбрать</button>
-                    <input type="color"  class=" inputColor form-control form-control-color " value="#{{$color}}"  onchange="changeColor({{$loop->iteration}})">
+                    <input type="color"  class=" inputColor form-control form-control-color " value="#{{$color}}" title="Изменить этот цвет" onchange="changeColor({{$loop->iteration}})">
                 </article>
             @endforeach
         </div>

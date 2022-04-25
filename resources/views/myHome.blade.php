@@ -5,9 +5,9 @@
 <div>
 <h5>Инструменты</h5>
     <div id="div Tools" class="btn-group btn-group-lg" role="group">
-        <button class="btn btn-outline-secondary" onclick="scale(1)">+</button>
-        <button class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
-        <button class="btn btn-primary" onclick="printSchema()">Экспорт</button>
+        <button title="Увеличить схему" class="btn btn-outline-secondary" onclick="scale(1)">+</button>
+        <button title="Уменьшить схему" class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
+        <button class="btn btn-primary" onclick="printSchema()" title="Экмпорт в PDF или печать">Экспорт</button>
 
     </div>
 </div>
@@ -41,7 +41,7 @@
         <article id="color1" class="selectColor d-flex justify-content-between align-items-center">
             Цвет 1:
             <button type="button" onclick="selectPalitra(1)" class="btn btn-outline-secondary active">Выбран</button>
-            <input type="color"  class=" inputColor form-control form-control-color " value="{{$color}}"  onchange="changeColor(1)">
+            <input type="color" title="Изменить этот цвет" class=" inputColor form-control form-control-color " value="{{$color}}"  onchange="changeColor(1)">
         </article>
 
     </div>

@@ -25,6 +25,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile/{ProfileName}','HomeController@userProfile')->name('profile');
 Route::get('/profile/{ProfileName}/{schemeId}','HomeController@loadScheme')->name('loadScheme');
+Route::get('/delete/{schemeId}','HomeController@deleteScheme')->name('deleteScheme');
+
 
 Route::post('/save', "HomeController@saveScheme")->name('save');
 

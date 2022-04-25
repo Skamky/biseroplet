@@ -7,7 +7,7 @@ function addColor()
     let html='<hr>';
     html+='<article  id="color'+CountColor+'" class=" d-flex justify-content-between align-items-center">Цвет '+CountColor+':';
      html+= '<button type="button" class="btn btn-outline-secondary " onclick="selectPalitra('+CountColor+')">Выбрать</button>';
-     html+='<input type="color"  class="form-control form-control-color inputColor" value="#ffffff" onchange="changeColor('+CountColor+')"  >';
+     html+='<input type="color" title="Изменить этот цвет" class="form-control form-control-color inputColor" value="#ffffff" onchange="changeColor('+CountColor+')"  >';
      html+='</article>'
     $("#divPalitra").append(html);
 }
