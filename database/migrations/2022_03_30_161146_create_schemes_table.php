@@ -21,7 +21,7 @@ class CreateSchemesTable extends Migration
             $table -> text("description_scheme")->nullable();;
             $table -> string("color_scheme");
             $table ->longText("code_scheme");
-            $table ->boolean("private")->nullable();
+            $table ->boolean("public")->default(false);
             $table->  timestamps();
         });
     }

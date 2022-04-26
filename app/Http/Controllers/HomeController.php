@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+   // public  $alerts =array('type'=>array(),'message'=>array());
+
     /**
      * Create a new controller instance.
      *
@@ -30,10 +32,12 @@ class HomeController extends Controller
 
     public  function userProfile($ProfileName)
     {
+        $alerts['type']=session()->pull('type',null);
+        $alerts['message']=session()->pull('message',null);
+
         $schemes=Scheme::where('login',$ProfileName )->get();
         //return var_export($scheme,true);
-
-         return view('kabinet',['schemes'=>$schemes,'ProfileName'=>$ProfileName]);
+         return view('kabinet',['schemes'=>$schemes,'ProfileName'=>$ProfileName,'alerts'=>$alerts]);
     }
 
     public function saveScheme(Request $request)
@@ -51,6 +55,11 @@ class HomeController extends Controller
                 'color_scheme'=>$request->color_scheme,
                 'code_scheme'=>$str
             ]);
+            $request->session()->push('type', 'success');
+            $request->session()->push('message', 'Изменения успешно сохранены!');
+
+            //$this->alerts['type'][]='success';
+            //$this->alerts['message'][]="Изменения успешно сохранены!";
         }
         else
         {
@@ -61,6 +70,12 @@ class HomeController extends Controller
             $scheme->color_scheme=$request->color_scheme;
             $scheme->code_scheme=$str;
             $scheme->save();
+
+            $request->session()->push('type', 'success');
+            $request->session()->push('message', 'Новая схема успешно создана!');
+
+          //  $this->alerts['type'][]='success';
+          //  $this->alerts['message'][]="Новая схема успешно создана!";
 
         }
         return redirect('/profile/'.Auth::user()->name);
@@ -76,6 +91,11 @@ class HomeController extends Controller
     public function deleteScheme($id_scheme)
     {
         $scheme=Scheme::where('login',Auth::user()->name)->where('id_scheme',$id_scheme)->delete();
+
+      //  $this->alerts['type'][]='success';
+      //  $this->alerts['message'][]="Схема Успешно Удалена!";
+        session()->push('type', 'success');
+        session()->push('message', 'Схема Успешно Удалена!');
         return redirect('/profile/'.Auth::user()->name);
 
     }

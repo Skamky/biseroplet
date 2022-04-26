@@ -65,13 +65,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{-- __('Login') --}} Вход</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login')}} </a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{-- __('Register') --}}Регистрация</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register')}}</a>
                                 </li>
                             @endif
                         @else
@@ -84,7 +84,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{-- __('Logout') --}} Выход
+                                        {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -97,6 +97,25 @@
                 </div>
             </div>
         </nav>
+        @isset($alerts['message'])
+        @for($i=0;$i<count($alerts['message']);$i++ )
+            <div class="alert alert-{{$alerts['type'][$i]}} alert-dismissible fade show" role="alert">
+                {{$alerts['message'][$i]}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endfor
+        @endisset
+
+
+
+
+
+
+
+
+
+
+
 {{--        <div class="alert alert-warning alert-dismissible " role="alert">--}}
 {{--            Сайт находиться в активной стадии разработки, возможны ошибки и изменения, для мобильных устройств рекомендуеться планшетный режим--}}
 

@@ -3,9 +3,7 @@
     <div class="alert alert-info alert-dismissible " role="alert">
 Здесь будут представлены примеры схемы созданные в генераторе..
     </div>
-    <button type="button"  class="btn btn-secondary" onclick="showModal()">
-        Click to launch modal
-    </button>
+
 
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>Holy guacamole!</strong> You should check in on some of those fields below.

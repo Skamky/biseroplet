@@ -8,7 +8,14 @@ class IndexController extends Controller
 {
     public function welcome()
     {
-        return view('welcome');
+       // $request->session()->push('user.teams', 'developers');
+        $alerts['type'][]='warning';
+        $alerts['message'][]="Сообщение 1";
+
+        $alerts['type'][]='danger';
+        $alerts['message'][]="Сообщение 2";
+        return view('welcome',['alerts'=>$alerts]);
+      //  dd($alerts);
     }
     public function createNewScheme()
     {
