@@ -56,7 +56,7 @@ class HomeController extends Controller
                 'code_scheme'=>$str
             ]);
             $request->session()->push('type', 'success');
-            $request->session()->push('message', 'Изменения успешно сохранены!');
+            $request->session()->push('message', '✅ Изменения успешно сохранены!');
 
             //$this->alerts['type'][]='success';
             //$this->alerts['message'][]="Изменения успешно сохранены!";
@@ -72,7 +72,7 @@ class HomeController extends Controller
             $scheme->save();
 
             $request->session()->push('type', 'success');
-            $request->session()->push('message', 'Новая схема успешно создана!');
+            $request->session()->push('message', '✅  Новая схема успешно создана!');
 
           //  $this->alerts['type'][]='success';
           //  $this->alerts['message'][]="Новая схема успешно создана!";
@@ -95,7 +95,7 @@ class HomeController extends Controller
       //  $this->alerts['type'][]='success';
       //  $this->alerts['message'][]="Схема Успешно Удалена!";
         session()->push('type', 'success');
-        session()->push('message', 'Схема Успешно Удалена!');
+        session()->push('message', '💥 Схема успешно удалена!');
         return redirect('/profile/'.Auth::user()->name);
 
     }
