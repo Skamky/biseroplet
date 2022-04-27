@@ -60,15 +60,15 @@
     </div>
     {{--табличка--}}
     <div id="table_for_print">
-
-    <div class="table-responsive">
-        <table class="table-borderless   table-responsive ">
-        </table>
-    </div>
+        <div class="table-responsive">
+            <table class="table-borderless   table-responsive ">
+            </table>
+        </div>
     </div>
     <div id="temp" class="temp">
         {{$scheme->code_scheme}}
     </div>
+
 <script class="temp">
     let htmlcode =$('#temp').text();
     console.log('Проверка');
