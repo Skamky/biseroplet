@@ -6,9 +6,20 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function start()
+    public function welcome()
     {
-        return view('start');
+        $alerts['type']=session()->pull('type',null);
+        $alerts['message']=session()->pull('message',null);
+
+        return view('welcome',['alerts'=>$alerts]);
+      //  dd($alerts);
+    }
+    public function createNewScheme()
+    {
+        $alerts['type']=session()->pull('type',null);
+        $alerts['message']=session()->pull('message',null);
+
+        return view('start',['alerts'=>$alerts]);
     }
     public function generate(Request $request)
     {
@@ -16,13 +27,14 @@ class IndexController extends Controller
        $color = $request->color_sc;
        $color= strtr($color,'#','Z');
         return redirect("/generate/{$color}/{$request->width_sc}/{$request->height_sc}");
-
     }
-
         public function home($color,$w,$h)
     {
         $color= strtr($color,'Z','#');
-        return view('home',["w"=>$w,"h"=>$h,"color"=>$color]);
-    }
 
+        $alerts['type']=session()->pull('type',null);
+        $alerts['message']=session()->pull('message',null);
+
+        return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color,'alerts'=>$alerts]);
+    }
 }
