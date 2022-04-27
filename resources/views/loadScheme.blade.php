@@ -7,30 +7,37 @@
         <div id="div Tools" class="btn-group btn-group-lg" role="group">
             <button class="btn btn-outline-secondary" onclick="scale(1)">+</button>
             <button class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
-            <button class="btn btn-primary" onclick="printSchema()">Экспорт</button>
+            <button class="btn btn-outline-primary" onclick="printSchema()">Экспорт</button>
 
         </div>
     </div>
+    <hr>
     @auth
         <div>
             <h5>Сохранение схемы</h5>
 {{--            <button onclick="ReadTable()"> Заполнить поля</button>--}}
 
-            <form action="/save" method="post">
+            <form action="/save" method="post" class="row">
                 <input name="id_scheme" type="hidden" value="{{$schemeId}}">
-                <input name="name_scheme" maxlength="250" value="{{$scheme->name_scheme}}" required placeholder="Название схемы">
-                <input name="description_scheme" maxlength="2500" value="{{$scheme->description_scheme}}" placeholder="описание схемы">
                 <input name="color_scheme" type="hidden" id="color_scheme" required placeholder="цвета используемые в схеме">
                 <input name="code_scheme"   id="code_scheme" type="hidden"  required placeholder="код схемы">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" name="newScheme" id="flexSwitchCheckChecked" checked>
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Перезаписать эту схему</label>
+                <div class="col-auto">
+                    <input name="name_scheme" maxlength="250" class=" col-auto form-control " value="{{$scheme->name_scheme}}" required title="Название схемы" placeholder="Название схемы">
+                </div>
+                <div class="col-auto">
+                    <input name="description_scheme" maxlength="2500" class=" col-auto form-control " value="{{$scheme->description_scheme}}" title="Описание схемы" placeholder="Описание схемы">
                 </div>
 
-                <input type="submit" onmouseover="ReadTable()">
+                <div class=" d-flex align-items-center  form-check form-switch col-auto  ">
+                    <input class="form-check-input" type="checkbox" name="newScheme" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">&#160;Перезаписать эту схему</label>
+                </div>
+
+                <button type="submit" class="btn btn-outline-success col-auto"  onmousedown="ReadTable()">{{__('Save')}}</button>
                 @csrf
             </form>
         </div>
+        <hr>
     @endauth
 
     <div  id="divFullPalitra" class="rounted shadow bottom-0 end-0 mx-1 card position-fixed h-50">

@@ -7,26 +7,30 @@
     <div id="div Tools" class="btn-group btn-group-lg" role="group">
         <button title="Увеличить схему" class="btn btn-outline-secondary" onclick="scale(1)">+</button>
         <button title="Уменьшить схему" class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
-        <button class="btn btn-primary" onclick="printSchema()" title="Экмпорт в PDF или печать">Экспорт</button>
-
+        <button class="btn btn-outline-primary" onclick="printSchema()" title="Экмпорт в PDF или печать">Экспорт</button>
     </div>
 </div>
+<hr>
 @auth
 <div>
     <h5>Сохранение схемы</h5>
 {{--    <button onclick="ReadTable()"> Заполнить поля</button>--}}
 
-    <form action="/save" method="post">
-
-        <input name="name_scheme" maxlength="250" required placeholder="Название схемы">
-        <input name="description_scheme" maxlength="2500" placeholder="описание схемы">
+    <form action="/save" method="post" class="row">
         <input name="color_scheme" required  id="color_scheme" type="hidden"  required placeholder="цвета используемые в схеме">
         <input name="code_scheme" required  id="code_scheme" type="hidden"   placeholder="код схемы">
+        <div class="col-auto">
+        <input name="name_scheme" maxlength="250" class="form-control col-auto" required title="Название схемы" placeholder="Название схемы">
+        </div>
+        <div class="col-auto">
+        <input name="description_scheme" maxlength="2500" class="form-control col-auto" title="Описание схемы" placeholder="Описание схемы">
+        </div>
 
-        <input type="submit"  onmousedown="ReadTable()">
+        <button type="submit" class="btn btn-outline-success col-auto"  onmousedown="ReadTable()">{{__('Save')}}</button>
         @csrf
     </form>
 </div>
+    <hr>
 @endauth
 
 <div  id="divFullPalitra" class="rounted shadow bottom-0 end-0 mx-1 card position-fixed h-50">
