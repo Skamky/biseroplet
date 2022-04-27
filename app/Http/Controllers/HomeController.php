@@ -27,17 +27,45 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $alerts['type']=session()->pull('type',null);
+        $alerts['message']=session()->pull('message',null);
+
+        return view('home',['alerts'=>$alerts]);
     }
 
     public  function userProfile($ProfileName)
     {
         $alerts['type']=session()->pull('type',null);
         $alerts['message']=session()->pull('message',null);
-
-        $schemes=Scheme::where('login',$ProfileName )->get();
+        if($ProfileName==Auth::user()->name){
+            $schemes=Scheme::where('login',$ProfileName )->get();
+        }
+        else{
+            $schemes=Scheme::where('login',$ProfileName )->where('public',true)->get();
+        }
         //return var_export($scheme,true);
          return view('kabinet',['schemes'=>$schemes,'ProfileName'=>$ProfileName,'alerts'=>$alerts]);
+    }
+    public function redAccess(Request $request,$schemeId)
+    {
+        if ($request->public){
+            Scheme::where('login',Auth::user()->name)->where('id_scheme',$schemeId)
+                ->update
+                (['public'=>true]);
+            $request->session()->push('type', 'info');
+            $request->session()->push('message', 'ℹ  Схема доступна для других пользователй.');
+        }
+        else{
+            Scheme::where('login',Auth::user()->name)->where('id_scheme',$schemeId)
+                ->update
+                (['public'=>false]);
+            $request->session()->push('type', 'info');
+            $request->session()->push('message', 'ℹ  Схема изъята из общего доступа.');
+        }
+        //dd($schemeId,$request->check);
+
+        return redirect('/profile/'.Auth::user()->name);
+
     }
 
     public function saveScheme(Request $request)
@@ -48,7 +76,7 @@ class HomeController extends Controller
         if($request->newScheme)
         {
             $id_scheme= (int)$request->id_scheme;
-            $scheme=Scheme::where('login',Auth::user()->name)->where('id_scheme',$id_scheme)
+            Scheme::where('login',Auth::user()->name)->where('id_scheme',$id_scheme)
             ->update
             (['name_scheme'=>$request->name_scheme,
                 'description_scheme'=>$request->description_scheme,
@@ -78,15 +106,36 @@ class HomeController extends Controller
           //  $this->alerts['message'][]="Новая схема успешно создана!";
 
         }
-        return redirect('/profile/'.Auth::user()->name);
+        return redirect()->back();
     }
 
     public function loadScheme($ProfileName,$schemeId)
     {
         $scheme= Scheme::where('login',$ProfileName)->where('id_scheme',$schemeId)->first();
-        $colors=explode('#',$scheme-> color_scheme) ;
+        if ($scheme==null)
+        {
+            session()->push('type', 'danger');
+            session()->push('message', '💢 Ошибка - схема не найдена.');
+            return  redirect()->back();
+        }
+        if ($ProfileName==Auth::user()->name||$scheme->public)
+        {
+            $alerts['type']=session()->pull('type',null);
+            $alerts['message']=session()->pull('message',null);
+            $colors=explode('#',$scheme-> color_scheme) ;
+            return view('loadScheme',['scheme'=>$scheme,'colors'=>$colors,'schemeId'=>$schemeId,'alerts'=>$alerts]);
 
-        return view('loadScheme',['scheme'=>$scheme,'colors'=>$colors,'schemeId'=>$schemeId]);
+        }
+        else
+        {
+            session()->push('type', 'danger');
+            session()->push('message', '⛔ В доступе к схеме отказано!');
+            return redirect()->back();
+        }
+
+
+
+
     }
     public function deleteScheme($id_scheme)
     {

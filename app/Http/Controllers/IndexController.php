@@ -8,18 +8,18 @@ class IndexController extends Controller
 {
     public function welcome()
     {
-       // $request->session()->push('user.teams', 'developers');
-        $alerts['type'][]='warning';
-        $alerts['message'][]="Сообщение 1";
+        $alerts['type']=session()->pull('type',null);
+        $alerts['message']=session()->pull('message',null);
 
-        $alerts['type'][]='danger';
-        $alerts['message'][]="Сообщение 2";
         return view('welcome',['alerts'=>$alerts]);
       //  dd($alerts);
     }
     public function createNewScheme()
     {
-        return view('start');
+        $alerts['type']=session()->pull('type',null);
+        $alerts['message']=session()->pull('message',null);
+
+        return view('start',['alerts'=>$alerts]);
     }
     public function generate(Request $request)
     {
@@ -32,6 +32,9 @@ class IndexController extends Controller
     {
         $color= strtr($color,'Z','#');
 
-        return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color]);
+        $alerts['type']=session()->pull('type',null);
+        $alerts['message']=session()->pull('message',null);
+
+        return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color,'alerts'=>$alerts]);
     }
 }

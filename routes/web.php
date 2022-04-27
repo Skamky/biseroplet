@@ -29,4 +29,6 @@ Route::get('/delete/{schemeId}','HomeController@deleteScheme')->name('deleteSche
 
 
 Route::post('/save', "HomeController@saveScheme")->name('save');
+Route::post('/save/access/{schemeId}', "HomeController@redAccess");
+
 

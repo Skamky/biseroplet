@@ -31,6 +31,19 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$scheme->name_scheme}}</h5>
                             <p class="card-text">{{$scheme->description_scheme }}</p>
+                            <form action="/save/access/{{$scheme->id_scheme}}" method="post">
+                                @csrf
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                           @if($scheme->public==1)
+                                           checked
+                                           @endif
+                                           name="public"
+                                           id="flexSwitchCheckDefault{{$scheme->id_scheme}}">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault{{$scheme->id_scheme}}">Общедоступная схема</label>
+                                </div>
+                                <button type="submit" class="btn btn-outline-primary">Применить изменения</button>
+                            </form>
                             <div class="d-flex justify-content-between">
                                 <a href="/profile/{{$ProfileName}}/{{$scheme->id_scheme}}" class="btn btn-primary">Открыть схему</a>
 {{--                                <a href="/delete/{{$scheme->id_scheme}}" class="btn btn-outline-danger" title="Удалить схему">🗑</a>--}}
