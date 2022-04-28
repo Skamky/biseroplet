@@ -54,6 +54,9 @@
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">Обновлено: {{$scheme->updated_at}}</small>
+                            <br>
+                            <small class="text-muted">Создано: {{$scheme->created_at}}</small>
+
                         </div>
                     </div>
                 </div>
