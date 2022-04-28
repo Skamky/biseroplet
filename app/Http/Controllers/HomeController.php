@@ -35,7 +35,7 @@ class HomeController extends Controller
 
     public  function userProfile($ProfileName)
     {
-       if  ($schemes=Scheme::where('login',$ProfileName )->doesntExist())
+       if  (Scheme::where('login',$ProfileName )->doesntExist())
        {
            session()->push('type', 'danger');
            session()->push('message', '💢 Ошибка - профиль не найден.');
@@ -147,7 +147,7 @@ class HomeController extends Controller
     }
     public function deleteScheme($id_scheme)
     {
-        $scheme=Scheme::where('login',Auth::user()->name)->where('id_scheme',$id_scheme)->delete();
+        Scheme::where('login',Auth::user()->name)->where('id_scheme',$id_scheme)->delete();
 
       //  $this->alerts['type'][]='success';
       //  $this->alerts['message'][]="Схема Успешно Удалена!";
