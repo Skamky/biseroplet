@@ -35,15 +35,22 @@ class HomeController extends Controller
 
     public  function userProfile($ProfileName)
     {
+       if  ($schemes=Scheme::where('login',$ProfileName )->doesntExist())
+       {
+           session()->push('type', 'danger');
+           session()->push('message', '💢 Ошибка - профиль не найден.');
+
+           return redirect()->back();
+       }
+            if($ProfileName==Auth::user()->name){
+                $schemes=Scheme::where('login',$ProfileName )->get();
+            }
+            else{
+                $schemes=Scheme::where('login',$ProfileName )->where('public',true)->get();
+            }
+
         $alerts['type']=session()->pull('type',null);
         $alerts['message']=session()->pull('message',null);
-        if($ProfileName==Auth::user()->name){
-            $schemes=Scheme::where('login',$ProfileName )->get();
-        }
-        else{
-            $schemes=Scheme::where('login',$ProfileName )->where('public',true)->get();
-        }
-        //return var_export($scheme,true);
          return view('kabinet',['schemes'=>$schemes,'ProfileName'=>$ProfileName,'alerts'=>$alerts]);
     }
     public function redAccess(Request $request,$schemeId)
@@ -85,6 +92,7 @@ class HomeController extends Controller
             ]);
             $request->session()->push('type', 'success');
             $request->session()->push('message', '✅ Изменения успешно сохранены!');
+            return redirect()->back();
 
             //$this->alerts['type'][]='success';
             //$this->alerts['message'][]="Изменения успешно сохранены!";
@@ -101,12 +109,12 @@ class HomeController extends Controller
 
             $request->session()->push('type', 'success');
             $request->session()->push('message', '✅  Новая схема успешно создана!');
+            return redirect('/profile/'.Auth::user()->name);
 
-          //  $this->alerts['type'][]='success';
+            //  $this->alerts['type'][]='success';
           //  $this->alerts['message'][]="Новая схема успешно создана!";
 
         }
-        return redirect()->back();
     }
 
     public function loadScheme($ProfileName,$schemeId)
