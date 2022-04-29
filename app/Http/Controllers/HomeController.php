@@ -32,7 +32,10 @@ class HomeController extends Controller
 
         return view('home',['alerts'=>$alerts]);
     }
-
+    public  function userProfileRedirect()
+    {
+        return redirect('/profile/'.Auth::user()->name);
+    }
     public  function userProfile($ProfileName)
     {
        if  (Scheme::where('login',$ProfileName )->doesntExist())
