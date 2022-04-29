@@ -36,6 +36,7 @@ class HomeController extends Controller
     {
         return redirect('/profile/'.Auth::user()->name);
     }
+
     public  function userProfile($ProfileName)
     {
        if  (Scheme::where('login',$ProfileName )->doesntExist())
@@ -75,6 +76,11 @@ class HomeController extends Controller
         //dd($schemeId,$request->check);
 
         return redirect('/profile/'.Auth::user()->name);
+        //$alerts['type']=session()->pull('type',null);
+        //$alerts['message']=session()->pull('message',null);
+
+
+        //return view('components.alert' );
 
     }
 

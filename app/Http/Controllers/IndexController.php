@@ -13,12 +13,11 @@ class IndexController extends Controller
         $alerts['type']=session()->pull('type',null);
         $alerts['message']=session()->pull('message',null);
 
-if(Auth::user()!=null)
+        if(Auth::user()!=null)
             $schemes=Scheme::where('login','!=',Auth::user()->name)->where('public',true)->orwhere('login',Auth::user()->name )->latest()->limit(10)->get();
-else
-    $schemes=Scheme::where('public',true)->latest()->limit(10)->get();
+        else
+            $schemes=Scheme::where('public',true)->latest()->limit(10)->get();
 
-        // $schemes->lastet();
 
         return view('welcome',['schemes'=>$schemes,'alerts'=>$alerts]);
       //  dd($alerts);
