@@ -18,7 +18,12 @@ class IndexController extends Controller
         else
             $schemes=Scheme::where('public',true)->latest()->limit(10)->get();
 
-
+        foreach ($schemes as $scheme)
+        {
+            $scheme->code_scheme=preg_replace('/color/',"id".$scheme->id_scheme."color",$scheme->code_scheme);
+           //dd($scheme);
+            $scheme->color_scheme=explode('#',$scheme->color_scheme) ;
+        }
         return view('welcome',['schemes'=>$schemes,'alerts'=>$alerts]);
       //  dd($alerts);
     }

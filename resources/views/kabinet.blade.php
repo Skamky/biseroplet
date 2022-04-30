@@ -29,57 +29,67 @@
             <div class="mx-2 row row-cols-1 row-cols-md-2 g-4">
 
             @foreach($schemes as $scheme)
-                <div class="col">
-                    <div class="card">
-{{--                        <img src="..." class="card-img-top" alt="">--}}
-
-                        <div class="table-responsive">
-                            <table id="table{{$scheme->id_scheme}}" class="table-borderless   table-responsive ">
-                            </table>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{$scheme->name_scheme}}</h5>
-                            <p class="card-text">{{$scheme->description_scheme }}</p>
-                            <form action="/save/access/{{$scheme->id_scheme}}" method="post" class="card-body">
-                                @csrf
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch"
-                                           @if($scheme->public==1)
-                                           checked
-                                           @endif
-                                           name="public"
-                                           id="flexSwitchCheckDefault{{$scheme->id_scheme}}">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault{{$scheme->id_scheme}}">Общедоступная схема</label>
+                    <div class="col">
+                        <div class="card">
+                            {{--                <img src="..." class="card-img-top" alt="">--}}
+                            <div class="accordion accordion-flush" id="accordion{{$scheme->id_scheme}}">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo{{$scheme->id_scheme}}" aria-expanded="false" aria-controls="collapseTwo{{$scheme->id_scheme}}">
+                                            <h5 class="card-title">{{$scheme->name_scheme}}</h5>                            </button>
+                                    </h2>
+                                    <div id="collapseTwo{{$scheme->id_scheme}}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion{{$scheme->id_scheme}}">
+                                        <div class="accordion-body">
+                                            <div class="table-responsive">
+                                                <table id="table{{$scheme->id_scheme}}" class="table-borderless   table-responsive ">
+                                                </table>
+                                            </div>                            </div>
+                                    </div>
                                 </div>
-                                <button type="submit" class="btn btn-outline-primary">Применить изменения</button>
-                            </form>
-                            <div class="card-body d-flex justify-content-between">
-                                <a href="/profile/{{$ProfileName}}/{{$scheme->id_scheme}}" class="btn btn-primary">Открыть схему</a>
-{{--                                <a href="/delete/{{$scheme->id_scheme}}" class="btn btn-outline-danger" title="Удалить схему">🗑</a>--}}
-                                <button type="button" class="btn btn-outline-danger" onclick="pasteValue('{{$scheme->name_scheme}}',{{$scheme->id_scheme}},'{{$scheme->updated_at}}')" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    🗑
-                                </button>
+                            </div>
+                            <div id="temp{{$scheme->id_scheme}}" class="temp">
+                                {{$scheme->code_scheme}}
+                            </div>
+                            <script class="temp" >
+                                htmlcode =$('#temp{{$scheme->id_scheme}}').text();
+                                console.log('Проверка {{$scheme->id_scheme}}');
+                                // console.log(htmlcode);
+                                $('#table{{$scheme->id_scheme}}').append(htmlcode);
+                            </script>
+
+                            <div class="card-body">
+{{--                                <h5 class="card-title">{{$scheme->name_scheme}}</h5>--}}
+                                <p class="card-text">{{$scheme->description_scheme }}</p>
+                                <form action="/save/access/{{$scheme->id_scheme}}" method="post" class="card-body">
+                                    @csrf
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                               @if($scheme->public==1)
+                                               checked
+                                               @endif
+                                               name="public"
+                                               id="flexSwitchCheckDefault{{$scheme->id_scheme}}">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault{{$scheme->id_scheme}}">Общедоступная схема</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-primary">Применить изменения</button>
+                                </form>
+                                <div class="card-body d-flex justify-content-between">
+                                    <a href="/profile/{{$ProfileName}}/{{$scheme->id_scheme}}" class="btn btn-primary">Открыть схему</a>
+                                    {{--                                <a href="/delete/{{$scheme->id_scheme}}" class="btn btn-outline-danger" title="Удалить схему">🗑</a>--}}
+                                    <button type="button" class="btn btn-outline-danger" onclick="pasteValue('{{$scheme->name_scheme}}',{{$scheme->id_scheme}},'{{$scheme->updated_at}}')" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        🗑
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Обновлено: {{$scheme->updated_at}}</small>
+                                <br>
+                                <small class="text-muted">Создано: {{$scheme->created_at}}</small>
+
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Обновлено: {{$scheme->updated_at}}</small>
-                            <br>
-                            <small class="text-muted">Создано: {{$scheme->created_at}}</small>
-
-                        </div>
-                    </div>
-                </div>
-                    <div id="temp{{$scheme->id_scheme}}" class="temp">
-                        {{$scheme->code_scheme}}
                     </div>
 
-                    <script class="temp" >
-                         htmlcode =$('#temp{{$scheme->id_scheme}}').text();
-                        console.log('Проверка {{$scheme->id_scheme}}');
-                       // console.log(htmlcode);
-                        $('#table{{$scheme->id_scheme}}').append(htmlcode);
-
-                    </script>
     @endforeach
                 <script>
                     function pasteValue (label,id,updateDate)
@@ -142,24 +152,53 @@ r_handler - функция-обработчик ответа от сервера
                     <div class="alert alert-warning alert-dismissible " role="alert">
                         Вы просматриваете профиль {{$ProfileName}}
                     </div>
-                    < class="mx-2 row row-cols-1 row-cols-md-2 g-4">
+                    <div  class="mx-2 row row-cols-1 row-cols-md-2 g-4">
 
                     @foreach($schemes as $scheme)
-                <div class="col">
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">{{$scheme->name_scheme}}</h5>
-                            <p class="card-text">{{$scheme->description_scheme }}</p>
-                            <div class="d-flex justify-content-between">
-                                <a href="/profile/{{$ProfileName}}/{{$scheme->id_scheme}}" class="btn btn-primary">Открыть схему</a>
+                        <div class="col">
+                            <div class="card">
+                                {{--                <img src="..." class="card-img-top" alt="">--}}
+                                <div class="accordion accordion-flush" id="accordion{{$scheme->id_scheme}}">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo{{$scheme->id_scheme}}" aria-expanded="false" aria-controls="collapseTwo{{$scheme->id_scheme}}">
+                                                <h5 class="card-title">{{$scheme->name_scheme}}</h5>                            </button>
+                                        </h2>
+                                        <div id="collapseTwo{{$scheme->id_scheme}}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion{{$scheme->id_scheme}}">
+                                            <div class="accordion-body">
+                                                <div class="table-responsive">
+                                                    <table id="table{{$scheme->id_scheme}}" class="table-borderless   table-responsive ">
+                                                    </table>
+                                                </div>                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="temp{{$scheme->id_scheme}}" class="temp">
+                                    {{$scheme->code_scheme}}
+                                </div>
+                                <script class="temp" >
+                                    htmlcode =$('#temp{{$scheme->id_scheme}}').text();
+                                    console.log('Проверка {{$scheme->id_scheme}}');
+                                    // console.log(htmlcode);
+                                    $('#table{{$scheme->id_scheme}}').append(htmlcode);
+                                </script>
+                                <div class="card-body">
+                                    {{--                    <h5 class="card-title">{{$scheme->name_scheme}}</h5>--}}
+                                    <p class="card-text">{{$scheme->description_scheme }}</p>
+                                    <p class="card-text">Автор: {{$scheme->login }}</p>
+                                    <a href="/profile/{{$scheme->login}}/{{$scheme->id_scheme}}" class="btn btn-primary">Открыть схему</a>
+                                    {{--                                <a href="/delete/{{$scheme->id_scheme}}" class="btn btn-outline-danger" title="Удалить схему">🗑</a>--}}
+
+
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Обновлено: {{$scheme->updated_at}}</small>
+                                    <br>
+                                    <small class="text-muted">Создано: {{$scheme->created_at}}</small>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Обновлено: {{$scheme->updated_at}}</small>
-                        </div>
-                    </div>
-                </div>
     @endforeach
     @endif
 
@@ -168,6 +207,13 @@ r_handler - функция-обработчик ответа от сервера
 
                     $('.temp').remove()
                 </script>
+                <style>
+                    @foreach($schemes as $scheme)
+        @foreach($scheme->color_scheme as $color )
+            .id{{$scheme->id_scheme}}color{{$loop->iteration}}{background-color:#{{$color}};}
+                    @endforeach
+                    @endforeach
+                </style>
 
 
 

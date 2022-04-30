@@ -14,13 +14,13 @@
         <div class="col">
             <div class="card">
 {{--                <img src="..." class="card-img-top" alt="">--}}
-                <div class="accordion accordion-flush" id="accordionExample">
+                <div class="accordion accordion-flush" id="accordion{{$scheme->id_scheme}}">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo{{$scheme->id_scheme}}" aria-expanded="false" aria-controls="collapseTwo{{$scheme->id_scheme}}">
                                 <h5 class="card-title">{{$scheme->name_scheme}}</h5>                            </button>
                         </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div id="collapseTwo{{$scheme->id_scheme}}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion{{$scheme->id_scheme}}">
                             <div class="accordion-body">
                                 <div class="table-responsive">
                                     <table id="table{{$scheme->id_scheme}}" class="table-borderless   table-responsive ">
@@ -63,5 +63,11 @@
 
         $('.temp').remove()
     </script>
-
+<style>
+    @foreach($schemes as $scheme)
+        @foreach($scheme->color_scheme as $color )
+            .id{{$scheme->id_scheme}}color{{$loop->iteration}}{background-color:#{{$color}};}
+        @endforeach
+    @endforeach
+</style>
 @endsection

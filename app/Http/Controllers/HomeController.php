@@ -53,6 +53,13 @@ class HomeController extends Controller
                 $schemes=Scheme::where('login',$ProfileName )->where('public',true)->get();
             }
 
+        foreach ($schemes as $scheme)
+        {
+            $scheme->code_scheme=preg_replace('/color/',"id".$scheme->id_scheme."color",$scheme->code_scheme);
+            //dd($scheme);
+            $scheme->color_scheme=explode('#',$scheme->color_scheme) ;
+        }
+
         $alerts['type']=session()->pull('type',null);
         $alerts['message']=session()->pull('message',null);
          return view('kabinet',['schemes'=>$schemes,'ProfileName'=>$ProfileName,'alerts'=>$alerts]);
