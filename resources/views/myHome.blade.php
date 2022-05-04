@@ -8,6 +8,10 @@
         <button title="Увеличить схему" class="btn btn-outline-secondary" onclick="scale(1)">+</button>
         <button title="Уменьшить схему" class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
         <button class="btn btn-outline-primary" onclick="printSchema()" title="Экмпорт в PDF или печать">Экспорт</button>
+                    <button class="btn btn-outline-secondary" onclick="addRow()">🔼 Добавить строку сверху</button>
+                    <button class="btn btn-outline-secondary" onclick="addRow()">🔽 Добавить строку снизу</button>
+                    <button class="btn btn-outline-secondary">◀ Добавить солбец вначале</button>
+                    <button class="btn btn-outline-secondary" onclick="addColumn()">▶ Добавить стобец в конце</button>
     </div>
 </div>
 <hr>
@@ -53,7 +57,9 @@
 {{--табличка--}}
 <div id="table_for_print">
 <div class="table-responsive">
-<table  class="table-borderless   table-responsive ">
+{{--<table  class="table-borderless   table-responsive ">--}}
+    <table  class="table table-secondary table-bordered">
+
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -68,22 +74,23 @@
         <th scope="row"></th>
         @for ($i = 0; $i < $w; $i++)
         <td></td>
-        <td><div class="ovalVert transformScale color1"></div> </td>
+        <td><div class="ovalVert color1"></div></td>
         @endfor
     </tr>
     @for ($s = 1; $s <= $h; $s++)
     <tr>
         <th scope="row">{{$s}}</th>
-        @for ($i = 1; $i <= $w+1; $i++)
-        <td><div class="ovalHoriz color1"></div> </td>
-        <td></td>
+        <td><div class="ovalHoriz color1"></div></td>
+    @for ($i = 1; $i <= $w; $i++)
+            <td></td>
+            <td><div class="ovalHoriz color1"></div></td>
         @endfor
     </tr>
     <tr>
         <th scope="row"></th>
         @for ($i = 0; $i < $w; $i++)
             <td></td>
-            <td><div class="ovalVert color1"></div> </td>
+            <td><div class="ovalVert color1"></div></td>
         @endfor
         @endfor
     </tr>
@@ -94,7 +101,32 @@
 </div>
 
 <script>
+function addRow()
+{
+    console.log( $("th~td").length)
+}
+function addColumn()
+{
+    let countRows = $('tr').last().prev().find('th').html();
+    let countColumns =$('thead th').last().html();
+    countColumns=Number(countColumns)+1;
+    $('thead tr').append('<th scope="col"></th><th scope="col">'+countColumns+'</th>')
 
+    let color = $(".selectColor").prop("id");
+
+    let html1 ='<td></td><td><div class="ovalVert '+color+'"></div></td>';
+    let html2='<td></td><td><div class="ovalHoriz '+color+'"></div></td>'
+
+    let row = $("tbody tr").first();
+
+    for (let i=1;i<=countRows;i++) {
+       row.append(html1);
+       row.next().append(html2);
+       row = row.next().next();
+       console.log('столбец добавлен')
+   }
+  row.append(html1);
+}
 
     //покраска эллемента
     $( ".ovalHoriz,.ovalVert" ).click(
