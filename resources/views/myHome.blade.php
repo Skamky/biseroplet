@@ -8,10 +8,10 @@
         <button title="Увеличить схему" class="btn btn-outline-secondary" onclick="scale(1)">+</button>
         <button title="Уменьшить схему" class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
         <button class="btn btn-outline-primary" onclick="printSchema()" title="Экмпорт в PDF или печать">Экспорт</button>
-                    <button class="btn btn-outline-secondary" onclick="addRow()">🔼 Добавить строку сверху</button>
-                    <button class="btn btn-outline-secondary" onclick="addRow()">🔽 Добавить строку снизу</button>
-                    <button class="btn btn-outline-secondary">◀ Добавить солбец вначале</button>
-                    <button class="btn btn-outline-secondary" onclick="addColumn()">▶ Добавить стобец в конце</button>
+                    <button class="btn btn-outline-secondary" onclick="addRowToEnd()">🔼 Добавить строку сверху</button>
+                    <button class="btn btn-outline-secondary" onclick="addRowToEnd()">🔽 Добавить строку снизу</button>
+                    <button class="btn btn-outline-secondary" onclick="addColumnToStart()">◀ Добавить столбец вначале</button>
+                    <button class="btn btn-outline-secondary" onclick="addColumnToEnd()">▶ Добавить стобец в конце</button>
     </div>
 </div>
 <hr>
@@ -101,11 +101,56 @@
 </div>
 
 <script>
-function addRow()
+function addRowToEnd()
 {
-    console.log( $("th~td").length)
+    let countRows = $('tr').last().prev().find('th').html();
+    countRows=Number
+
+    let countColumns =$('thead th').last().html();
+
+    let color = $(".selectColor").prop("id");
+
+    let html1='<td></td><td><div class="ovalHoriz '+color+'"></div></td>'
+    let html2 ='<td></td><td><div class="ovalVert '+color+'"></div></td>';
+
+    let row1='<th scope="row"></th><td><div class="ovalHoriz '+color+'"></div></td>'
+    let row2='<th scope="row"></th>';
+
+    for (let i=1;i<=countColumns;i++) {
+        row1+=html1;
+        row2+=html2;
+    }
+    // row1 = '<tr>+row1+</tr>'
+    // row2 = '<tr>+row2+</tr>'
+    console.log(row1)
+    $('tbody').append('<tr>'+row1+'</tr>');
+    $('tbody').append('<tr>'+row2+'</tr>');
+    console.log('строка добавлена')
+
+
+    }
+function addColumnToStart()
+{
+    let countRows = $('tr').last().prev().find('th').html();
+
+    let countColumns =$('thead th').last().html();
+    countColumns=Number(countColumns)+1;
+    $('thead tr').append('<th scope="col"></th><th scope="col">'+countColumns+'</th>')
+
+    let color = $(".selectColor").prop("id");
+    let html1 ='<td></td><td><div class="ovalVert '+color+'"></div></td>';
+    let html2='<td><div class="ovalHoriz '+color+'"></div></td><td></td>'
+
+    let row = $("tbody tr").first();
+    for (let i=1;i<=countRows;i++) {
+        row.find('th').after(html1);
+        row.next().find('th').after(html2);
+        row = row.next().next();
+        console.log('столбец добавлен')
+    }
+    row.find('th').after(html1);
 }
-function addColumn()
+function addColumnToEnd()
 {
     let countRows = $('tr').last().prev().find('th').html();
     let countColumns =$('thead th').last().html();
