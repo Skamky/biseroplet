@@ -66,15 +66,29 @@ function printSchema()
 function scale(increase)
 {
 
-    let w= $(".ovalHoriz").outerWidth();
-    let h= $(".ovalHoriz").outerHeight();
+    let w= $(".ovalHoriz[style]").outerWidth();
+    let h= $(".ovalHoriz[style]").outerHeight();
+
+    console.log('scale')
+    console.log(w);
+    if (!w)
+    {
+         w= $(".ovalHoriz").outerWidth();
+         h= $(".ovalHoriz").outerHeight();
+    }
+
     if(increase==1 ||(w>10 && h>10))
     {
         $(".ovalHoriz").outerWidth(w+(w/100*10*increase)).outerHeight(h+(h/100*10*increase));
         console.log(w+"\t"+h);
 
-        w= $(".ovalVert").outerWidth();
-        h= $(".ovalVert").outerHeight();
+        w= $(".ovalVert[style]").outerWidth();
+        h= $(".ovalVert[style]").outerHeight();
+        if(!w)
+        {
+            w= $(".ovalVert").outerWidth();
+            h= $(".ovalVert").outerHeight();
+        }
         $(".ovalVert").outerWidth(w+(w/100*10*increase)).outerHeight(h+(h/100*10*increase));
         console.log(w+"\t"+h);
     }

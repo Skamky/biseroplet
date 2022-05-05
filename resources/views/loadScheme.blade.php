@@ -5,10 +5,13 @@
     <div>
         <h5>Инструменты</h5>
         <div id="div Tools" class="btn-group btn-group-lg" role="group">
-            <button class="btn btn-outline-secondary" onclick="scale(1)">+</button>
-            <button class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
-            <button class="btn btn-outline-primary" onclick="printSchema()">Экспорт</button>
-
+            <button title="Увеличить схему" class="btn btn-outline-secondary" onclick="scale(1)">+</button>
+            <button title="Уменьшить схему" class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
+            <button class="btn btn-outline-primary" onclick="printSchema()" title="Экспорт в PDF или печать">Экспорт</button>
+            <button class="btn btn-outline-secondary" onclick="addRowToStart()">🔼 Добавить строку сверху</button>
+            <button class="btn btn-outline-secondary" onclick="addRowToEnd()">🔽 Добавить строку снизу</button>
+            <button class="btn btn-outline-secondary" onclick="addColumnToStart()">◀ Добавить столбец вначале</button>
+            <button class="btn btn-outline-secondary" onclick="addColumnToEnd()">▶ Добавить стобец в конце</button>
         </div>
     </div>
     <hr>
@@ -51,11 +54,16 @@
             <hr>
 {{--             Цвет {{$loop->iteration}}:<input type="color" id="color{{$loop->iteration}}" class="inputColor form-control form-control-color selectColor" value="#{{$color}}" onclick="selectPalitra({{$loop->iteration}})" onchange="changeColor({{$loop->iteration}})">--}}
                 <article id="color{{$loop->iteration}}" class=" d-flex justify-content-between align-items-center">
-                    Цвет {{$loop->iteration}}:
+                    Цвет {{$colorsCount=$loop->iteration}}:
                     <button type="button" onclick="selectPalitra({{$loop->iteration}})" class="btn btn-outline-secondary">Выбрать</button>
                     <input type="color"  class=" inputColor form-control form-control-color " value="#{{$color}}" title="Изменить этот цвет" onchange="changeColor({{$loop->iteration}})">
                 </article>
             @endforeach
+            <script>
+                CountColor={{$colorsCount}};
+                console.log('Колличество цветов')
+                console.log(CountColor)
+            </script>
         </div>
     </div>
     {{--табличка--}}
