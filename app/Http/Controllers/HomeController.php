@@ -95,6 +95,7 @@ class HomeController extends Controller
     {
         $str= $request->code_scheme;
         $str= preg_replace ('/(width.*?; )|(height.*?;)/','',$str);
+        $str= preg_replace ('/style=""/',' ',$str);
         $str= preg_replace ('/\s{2,}|\n|\f|\v/','',$str);
         if($request->newScheme)
         {
