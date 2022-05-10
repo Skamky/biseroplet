@@ -38,9 +38,6 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        session()->push('type', 'light');
-        session()->push('message', __('You are logged in!'));
-
         $this->middleware('guest');
     }
 
@@ -53,7 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255','unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -67,6 +64,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        session()->push('type', 'light');
+        session()->push('message', '🥰 Вы успешно прошли регистрацию!');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

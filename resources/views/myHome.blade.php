@@ -8,10 +8,10 @@
         <button title="Увеличить схему" class="btn btn-outline-secondary" onclick="scale(1)">+</button>
         <button title="Уменьшить схему" class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
         <button class="btn btn-outline-primary" onclick="printSchema()" title="Экспорт в PDF или печать">Экспорт</button>
-                    <button class="btn btn-outline-secondary" onclick="addRowToStart()">🔼 Добавить строку сверху</button>
-                    <button class="btn btn-outline-secondary" onclick="addRowToEnd()">🔽 Добавить строку снизу</button>
-                    <button class="btn btn-outline-secondary" onclick="addColumnToStart()">◀ Добавить столбец вначале</button>
-                    <button class="btn btn-outline-secondary" onclick="addColumnToEnd()">▶ Добавить стобец в конце</button>
+                    <button class="btn btn-outline-secondary" onclick="addRowToStart()" title="Добавить строку сверху">🔼</button>
+                    <button class="btn btn-outline-secondary" onclick="addRowToEnd()" title="Добавить строку снизу">🔽</button>
+                    <button class="btn btn-outline-secondary" onclick="addColumnToStart()" title="Добавить столбец в начале">◀</button>
+                    <button class="btn btn-outline-secondary" onclick="addColumnToEnd()" title="Добавить стобец в конце">▶</button>
     </div>
 </div>
 <hr>

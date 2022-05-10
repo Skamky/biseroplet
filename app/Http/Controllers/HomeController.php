@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Scheme;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,15 +40,21 @@ class HomeController extends Controller
 
     public  function userProfile($ProfileName)
     {
-       if  (Scheme::where('login',$ProfileName )->doesntExist())
+       if  (User::where('name',$ProfileName )->doesntExist())
        {
            session()->push('type', 'danger');
-           session()->push('message', '💢 Ошибка - профиль не найден.');
+           session()->push('message', '💢 Ошибка userProfile - профиль не найден.');
 
            return redirect()->back();
        }
             if($ProfileName==Auth::user()->name){
                 $schemes=Scheme::where('login',$ProfileName )->get();
+                if  (Scheme::where('login',$ProfileName )->doesntExist()) {
+                    session()->push('type', 'warning');
+                    session()->push('message', '🤔 Это ваш профиль и он пуст.');
+                    session()->push('type', 'info');
+                    session()->push('message', 'ℹ Подсказка - создать схему можно сохранив к себе чужую публичную схему или выбрав в навигации пункт "Создать схему". ');
+                }
             }
             else{
                 $schemes=Scheme::where('login',$ProfileName )->where('public',true)->get();
