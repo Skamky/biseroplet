@@ -8,6 +8,8 @@
             <button title="Увеличить схему" class="btn btn-outline-secondary" onclick="scale(1)">+</button>
             <button title="Уменьшить схему" class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
             <button class="btn btn-outline-primary" onclick="printSchema()" title="Экспорт в PDF или печать">Экспорт</button>
+        </div>
+        <div  class="btn-group btn-group-lg" role="group">
             <button class="btn btn-outline-secondary" onclick="addRowToStart()" title="Добавить строку сверху">🔼</button>
             <button class="btn btn-outline-secondary" onclick="addRowToEnd()" title="Добавить строку снизу">🔽</button>
             <button class="btn btn-outline-secondary" onclick="addColumnToStart()" title="Добавить столбец в начале">◀</button>
