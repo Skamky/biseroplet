@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="card">
 <form action="/generate" method="post">
     <div class="m-3">
         <label> Ширина</label>
@@ -15,5 +15,6 @@
     </div>
     @csrf
 </form>
+</div>
 
 @endsection
