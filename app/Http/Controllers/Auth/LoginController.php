@@ -35,9 +35,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        session()->push('type', 'light');
-        session()->push('message', __('You are logged in!'));
-
         $this->middleware('guest')->except('logout');
     }
 }
