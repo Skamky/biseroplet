@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Scheme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,8 @@ class IndexController extends Controller
             $scheme->code_scheme=preg_replace('/color/',"id".$scheme->id_scheme."color",$scheme->code_scheme);
            //dd($scheme);
             $scheme->color_scheme=explode('#',$scheme->color_scheme) ;
+            //тут название категории
+            $scheme->category=Category::find($scheme->category)->value('title');
         }
         return view('welcome',['schemes'=>$schemes,'alerts'=>$alerts]);
       //  dd($alerts);
