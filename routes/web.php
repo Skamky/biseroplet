@@ -27,7 +27,7 @@ Route::get('/profile','HomeController@userProfileRedirect');
 Route::get('/profile/{ProfileName}','HomeController@userProfile')->name('profile');
 Route::get('/profile/{ProfileName}/{schemeId}','HomeController@loadScheme')->name('loadScheme');
 Route::get('/delete/{schemeId}','HomeController@deleteScheme')->name('deleteScheme');
-
+Route::get('/search','IndexController@searchView');
 
 Route::post('/save', "HomeController@saveScheme")->name('save');
 Route::post('/save/access/{schemeId}', "HomeController@redAccess");

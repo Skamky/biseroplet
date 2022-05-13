@@ -57,6 +57,7 @@
         </div>
     @endforeach
     </div>
+    <a href="/search">Больше схем</a>
 
     <script class="temp" defer>
         scale(-5)

@@ -50,4 +50,12 @@ class IndexController extends Controller
 
         return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color,'alerts'=>$alerts]);
     }
+    public function searchView()
+    {
+        return view('AllSchemes');
+    }
+    public  function search()
+    {
+
+    }
 }
