@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Scheme;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -65,6 +66,8 @@ class HomeController extends Controller
             $scheme->code_scheme=preg_replace('/color/',"id".$scheme->id_scheme."color",$scheme->code_scheme);
             //dd($scheme);
             $scheme->color_scheme=explode('#',$scheme->color_scheme) ;
+            $scheme->category=Category::where('id',$scheme->category)->value('title');
+
         }
 
         $alerts['type']=session()->pull('type',null);
@@ -104,6 +107,7 @@ class HomeController extends Controller
         $str= preg_replace ('/(width.*?; )|(height.*?;)/','',$str);
         $str= preg_replace ('/style=""/',' ',$str);
         $str= preg_replace ('/\s{2,}|\n|\f|\v/','',$str);
+
         if($request->newScheme)
         {
             $id_scheme= (int)$request->id_scheme;
@@ -111,7 +115,8 @@ class HomeController extends Controller
             ->update
             (['name_scheme'=>$request->name_scheme,
                 'description_scheme'=>$request->description_scheme,
-                'color_scheme'=>$request->color_scheme,
+                'category'=>$request->category,
+            'color_scheme'=>$request->color_scheme,
                 'code_scheme'=>$str
             ]);
             $request->session()->push('type', 'success');
@@ -127,6 +132,7 @@ class HomeController extends Controller
             $scheme->login=Auth::user()->name;
             $scheme->name_scheme=$request->name_scheme;
             $scheme->description_scheme=$request->description_scheme;
+            $scheme->category=$request->category;
             $scheme->color_scheme=$request->color_scheme;
             $scheme->code_scheme=$str;
             $scheme->save();

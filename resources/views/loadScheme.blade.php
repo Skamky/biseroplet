@@ -32,7 +32,14 @@
                 <div class="col-auto">
                     <input name="description_scheme" maxlength="2500" class=" col-auto form-control " value="{{$scheme->description_scheme}}" title="Описание схемы" placeholder="Описание схемы">
                 </div>
-
+                <div class="col-auto">
+                    Категория
+                    <select name="category" class="form-select">
+                        <option value="1">Не определено</option>
+                        <option value="2">Кольцо</option>
+                        <option value="3">Браслет</option>
+                    </select>
+                </div>
                 <div class=" d-flex align-items-center  form-check form-switch col-auto  ">
                     <input class="form-check-input" type="checkbox" name="newScheme" id="flexSwitchCheckChecked" checked>
                     <label class="form-check-label" for="flexSwitchCheckChecked">&#160;Перезаписать эту схему</label>
