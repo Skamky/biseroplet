@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="card">
+    <div class="card-header">Создать схему</div>
 <form action="/generate" method="post">
     <div class="m-3">
         <label> Ширина</label>
@@ -11,7 +12,7 @@
         <label> Цвет</label>
         <input class="form-control" type="color" value="#FFFFFF" name="color_sc">
     <hr>
-    <input class="btn  btn-primary " type="submit">
+        <button class="btn  btn-primary " type="submit">Создать</button>
     </div>
     @csrf
 </form>
