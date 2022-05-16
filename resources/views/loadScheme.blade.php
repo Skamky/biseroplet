@@ -38,6 +38,7 @@
                         <option value="1">Не определено</option>
                         <option value="2">Кольцо</option>
                         <option value="3">Браслет</option>
+
                     </select>
                 </div>
                 <div class=" d-flex align-items-center  form-check form-switch col-auto  ">
