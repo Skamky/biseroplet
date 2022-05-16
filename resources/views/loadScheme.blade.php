@@ -26,26 +26,26 @@
                 <input name="id_scheme" type="hidden" value="{{$schemeId}}">
                 <input name="color_scheme" type="hidden" id="color_scheme" required placeholder="цвета используемые в схеме">
                 <input name="code_scheme"   id="code_scheme" type="hidden"  required placeholder="код схемы">
-                <div class="col-auto">
-                    <input name="name_scheme" maxlength="250" class=" col-auto form-control " value="{{$scheme->name_scheme}}" required title="Название схемы" placeholder="Название схемы">
-                </div>
-                <div class="col-auto">
-                    <input name="description_scheme" maxlength="2500" class=" col-auto form-control " value="{{$scheme->description_scheme}}" title="Описание схемы" placeholder="Описание схемы">
-                </div>
-                <div class="col-auto">
-                    Категория
-                    <select name="category" class="form-select" >
-                        @foreach( $categories as $category)
-                            <option value="{{$category->id}}"
-                                    @if($category->id==$scheme->category) selected
+                <div class="d-flex align-items-stretch col-auto">
+                    <div class="input-group" title="Выберите 1 из вариантов">
+                        <label class="input-group-text">Категория</label>
+                        <select name="category" class="form-select" >
+                            @foreach( $categories as $category)
+                                <option value="{{$category->id}}"
+                                        @if($category->id==$scheme->category) selected
                                     @endif
-                            >{{$category->title}}</option>
-                        @endforeach
-{{--                        <option value="1">Не определено</option>--}}
-{{--                        <option value="2">Кольцо</option>--}}
-{{--                        <option value="3">Браслет</option>--}}
-                    </select>
+                                >{{$category->title}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
+                <div class="col-auto">
+                    <textarea name="name_scheme" maxlength="250" rows="1" class="form-control"  required title="Название схемы" placeholder="Название схемы">{{$scheme->name_scheme}}</textarea>
+                </div>
+                <div class="col-auto">
+                    <textarea name="description_scheme" maxlength="2500" rows="1" class="form-control " title="Описание схемы" placeholder="Описание схемы">{{$scheme->description_scheme}}</textarea>
+                </div>
+
                 <div class=" d-flex align-items-center  form-check form-switch col-auto  ">
                     <input class="form-check-input" type="checkbox" name="newScheme" id="flexSwitchCheckChecked" checked>
                     <label class="form-check-label" for="flexSwitchCheckChecked">&#160;Перезаписать эту схему</label>

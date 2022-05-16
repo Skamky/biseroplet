@@ -26,20 +26,24 @@
         <input name="color_scheme" required  id="color_scheme" type="hidden"  required placeholder="цвета используемые в схеме">
         <input name="code_scheme" required  id="code_scheme" type="hidden"   placeholder="код схемы">
         <div class="col-auto">
+            <div class="input-group" title="Выберите 1 из вариантов">
+                <label class="input-group-text">Категория</label>
+                <select name="category" class="form-select" >
+                    @foreach( $categories as $category)
+                        <option value="{{$category->id}}">{{$category->title}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-auto">
         <input name="name_scheme" maxlength="250" class="form-control col-auto" required title="Название схемы" placeholder="Название схемы">
         </div>
         <div class="col-auto">
         <input name="description_scheme" maxlength="2500" class="form-control col-auto" title="Описание схемы" placeholder="Описание схемы">
         </div>
         <div class="col-auto">
-            Категория
-            <select name="category" class="form-select">
-                <option value=1>Не определено1</option>
-                <option value=2>Кольцо</option>
-                <option value=3>Браслет</option>
-            </select>
+            <button type="submit" class="btn btn-outline-success col-auto"  onmousedown="ReadTable()">{{__('Save')}}</button>
         </div>
-        <button type="submit" class="btn btn-outline-success col-auto"  onmousedown="ReadTable()">{{__('Save')}}</button>
         @csrf
     </form>
 </div>

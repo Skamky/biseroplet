@@ -46,12 +46,13 @@ class IndexController extends Controller
     }
         public function home($color,$w,$h)
     {
+        $categories= Category::all();
         $color= strtr($color,'Z','#');
 
         $alerts['type']=session()->pull('type',null);
         $alerts['message']=session()->pull('message',null);
 
-        return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color,'alerts'=>$alerts]);
+        return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color,'alerts'=>$alerts,'categories'=> $categories]);
     }
     public function searchView()
     {
