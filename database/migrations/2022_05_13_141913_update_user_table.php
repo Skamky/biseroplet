@@ -14,9 +14,11 @@ class UpdateUserTable extends Migration
     public function up()
     {
         Schema::table('schemes', function (Blueprint $table) {
-            $table->bigInteger('category')
+            $table->unsignedBigInteger('category')
                 ->after('public')
                 ->default(1);
+            $table->foreign('category')->references('id')->on('categories');
+
 
         });
     }
