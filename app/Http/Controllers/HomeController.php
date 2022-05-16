@@ -158,10 +158,11 @@ class HomeController extends Controller
         }
         if ($ProfileName==Auth::user()->name||$scheme->public)
         {
+            $categories= Category::all();
             $alerts['type']=session()->pull('type',null);
             $alerts['message']=session()->pull('message',null);
             $colors=explode('#',$scheme-> color_scheme) ;
-            return view('loadScheme',['scheme'=>$scheme,'colors'=>$colors,'schemeId'=>$schemeId,'alerts'=>$alerts]);
+            return view('loadScheme',['scheme'=>$scheme,'categories'=> $categories, 'colors'=>$colors,'schemeId'=>$schemeId,'alerts'=>$alerts]);
 
         }
         else

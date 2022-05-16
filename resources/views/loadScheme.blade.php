@@ -34,11 +34,16 @@
                 </div>
                 <div class="col-auto">
                     Категория
-                    <select name="category" class="form-select">
-                        <option value="1">Не определено</option>
-                        <option value="2">Кольцо</option>
-                        <option value="3">Браслет</option>
-
+                    <select name="category" class="form-select" >
+                        @foreach( $categories as $category)
+                            <option value="{{$category->id}}"
+                                    @if($category->id==$scheme->category) selected
+                                    @endif
+                            >{{$category->title}}</option>
+                        @endforeach
+{{--                        <option value="1">Не определено</option>--}}
+{{--                        <option value="2">Кольцо</option>--}}
+{{--                        <option value="3">Браслет</option>--}}
                     </select>
                 </div>
                 <div class=" d-flex align-items-center  form-check form-switch col-auto  ">
