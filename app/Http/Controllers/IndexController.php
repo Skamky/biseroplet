@@ -25,7 +25,7 @@ class IndexController extends Controller
            //dd($scheme);
             $scheme->color_scheme=explode('#',$scheme->color_scheme) ;
             //тут название категории
-            $scheme->category=Category::find($scheme->category)->value('title');
+            $scheme->category=Category::where('id',$scheme->category)->value('title');
         }
         return view('welcome',['schemes'=>$schemes,'alerts'=>$alerts]);
       //  dd($alerts);

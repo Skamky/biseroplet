@@ -31,7 +31,14 @@
         <div class="col-auto">
         <input name="description_scheme" maxlength="2500" class="form-control col-auto" title="Описание схемы" placeholder="Описание схемы">
         </div>
-
+        <div class="col-auto">
+            Категория
+            <select name="category" class="form-select">
+                <option value=1>Не определено1</option>
+                <option value=2>Кольцо</option>
+                <option value=3>Браслет</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-outline-success col-auto"  onmousedown="ReadTable()">{{__('Save')}}</button>
         @csrf
     </form>

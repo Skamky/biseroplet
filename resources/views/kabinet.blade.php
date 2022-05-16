@@ -59,6 +59,7 @@
 
                             <div class="card-body">
 {{--                                <h5 class="card-title">{{$scheme->name_scheme}}</h5>--}}
+                                <p class="card-text">Категория: {{$scheme->category}}</p>
                                 <p class="card-text">{{$scheme->description_scheme }}</p>
                                 <form action="/save/access/{{$scheme->id_scheme}}" method="post" class="card-body">
                                     @csrf
@@ -184,6 +185,7 @@ r_handler - функция-обработчик ответа от сервера
                                 </script>
                                 <div class="card-body">
                                     {{--                    <h5 class="card-title">{{$scheme->name_scheme}}</h5>--}}
+                                    <p class="card-text">Категория: {{$scheme->category}}</p>
                                     <p class="card-text">{{$scheme->description_scheme }}</p>
                                     <p class="card-text">Автор: {{$scheme->login }}</p>
                                     <a href="/profile/{{$scheme->login}}/{{$scheme->id_scheme}}" class="btn btn-primary">Открыть схему</a>
