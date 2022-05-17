@@ -29,6 +29,10 @@ Route::get('/profile/{ProfileName}/{schemeId}','HomeController@loadScheme')->nam
 Route::get('/delete/{schemeId}','HomeController@deleteScheme')->name('deleteScheme');
 Route::get('/search','IndexController@searchView');
 
+Route::get('/ajax','AjaxController@index')->name('ajax');
+Route::get('/ajax/{schemeId}/{value}','AjaxController@rateSchema');
+
+
 Route::post('/save', "HomeController@saveScheme")->name('save');
 Route::post('/save/access/{schemeId}', "HomeController@redAccess");
 

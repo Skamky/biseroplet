@@ -40,34 +40,21 @@
                 </div>
             @endif
             <a href="/profile/{{$scheme->login}}/{{$scheme->id_scheme}}" class="list-group-item list-group-item-action list-group-item-primary">Открыть схему</a>
-{{--            <ul class="list-group  list-group-horizontal-lg">--}}
-{{--                <li class="list-group-item ">--}}
-{{--                    Элемент списка--}}
-{{--                    <span class="badge bg-primary rounded-pill">14</span>--}}
-{{--                </li>--}}
-{{--                <li class="list-group-item">--}}
-{{--                    Второй элемент списка--}}
-{{--                    <span class="badge bg-primary rounded-pill">2</span>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
-
         </ul>
         <ul class="list-group list-group-horizontal">
-            <li class="list-group-item">
+            <button class="list-group-item list-group-item-action"
+                    id="like{{$scheme->id_scheme}}"
+                    onclick="like('{{$scheme->id_scheme}}',1,'#like{{$scheme->id_scheme}}')">
                 👍🏻
                 <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item">
+            </button>
+            <button class="list-group-item list-group-item-action"
+                    id="dislike{{$scheme->id_scheme}}"
+                    onclick="like('{{$scheme->id_scheme}}',-1,'#dislike{{$scheme->id_scheme}}')">
                 👎🏻
                 <span class="badge bg-primary rounded-pill">2</span>
-            </li>
+            </button>
         </ul>
-
-
-
-
-
-
         <div class="card-footer">
             <small class="text-muted">Обновлено: {{$scheme->updated_at}}</small>
             <br>

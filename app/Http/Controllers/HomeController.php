@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-   // public  $alerts =array('type'=>array(),'message'=>array());
 
     /**
      * Create a new controller instance.
