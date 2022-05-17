@@ -18,9 +18,9 @@
 
     <script class="temp" defer>
         scale(-5)
-
         $('.temp').remove()
     </script>
+
 <style>
     @foreach($schemes as $scheme)
         @foreach($scheme->color_scheme as $color )
