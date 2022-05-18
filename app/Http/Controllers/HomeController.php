@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Rating;
 use App\Models\Scheme;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -48,7 +49,7 @@ class HomeController extends Controller
            return redirect()->back();
        }
             if($ProfileName==Auth::user()->name){
-                $schemes=Scheme::where('login',$ProfileName )->get();
+                $schemes=Scheme::where('login',$ProfileName )->paginate(4);
                 if  (Scheme::where('login',$ProfileName )->doesntExist()) {
                     session()->push('type', 'warning');
                     session()->push('message', '🤔 Это ваш профиль и он пуст.');
@@ -57,7 +58,7 @@ class HomeController extends Controller
                 }
             }
             else{
-                $schemes=Scheme::where('login',$ProfileName )->where('public',true)->get();
+                $schemes=Scheme::where('login',$ProfileName )->where('public',true)->paginate(4);
             }
 
         foreach ($schemes as $scheme)
@@ -67,6 +68,19 @@ class HomeController extends Controller
             $scheme->color_scheme=explode('#',$scheme->color_scheme) ;
             $scheme->category=Category::where('id',$scheme->category)->value('title');
 
+            if($ProfileName!=Auth::user()->name)
+            {
+                $scheme->likes=Rating::where('id_scheme',$scheme->id_scheme)->where('value',1)->count();
+                $scheme->dislikes=Rating::where('id_scheme',$scheme->id_scheme)->where('value',-1)->count();
+
+                $scheme->liked=false;
+                $scheme->disliked=false;
+
+                if(Rating::where('id_scheme',$scheme->id_scheme)->where('value',1)->where('id_user',Auth::user()->id)->exists())
+                    $scheme->liked=true;
+                elseif (Rating::where('id_scheme',$scheme->id_scheme)->where('value',-1)->where('id_user',Auth::user()->id)->exists())
+                    $scheme->disliked=true;
+            }
         }
 
         $alerts['type']=session()->pull('type',null);
@@ -183,7 +197,7 @@ class HomeController extends Controller
       //  $this->alerts['message'][]="Схема Успешно Удалена!";
         session()->push('type', 'success');
         session()->push('message', '💥 Схема успешно удалена!');
-        return redirect('/profile/'.Auth::user()->name);
+        return redirect('/profile/');
 
     }
 }

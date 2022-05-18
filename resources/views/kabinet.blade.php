@@ -25,6 +25,7 @@
     <script class="temp">
         let htmlcode="";
     </script>
+    {{ $schemes->links() }}
     @if(Auth::user()->name==$ProfileName)
             <div class="mx-2 row row-cols-1 row-cols-md-2 g-4">
 
@@ -159,7 +160,29 @@ r_handler - функция-обработчик ответа от сервера
                             @include('components.cardScheme')
                         @endforeach
                     </div>
+            <script>
+                function like(schemaId,value,thisIdElem,idContainer) {
+                    thisIdElem=$(thisIdElem);
+                    $(idContainer).html('<button class="btn btn-primary" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>🥱 Пожалуйста подождите...</button>')
+
+                    console.log(thisIdElem);
+                    let url;
+                    if (thisIdElem.hasClass('active'))
+                        url='{{route('ajax')}}/'+schemaId+'/0';
+                    else
+                        url='{{route('ajax')}}/'+schemaId+'/'+value;
+                    // $.get(url,myCallback)
+                    $(idContainer).load(url);
+                }
+
+                function myCallback( returnedData ) {
+
+                    console.log(returnedData)
+
+                }
+            </script>
     @endif
+                {{ $schemes->links() }}
 
                 <script class="temp" defer>
                     scale(-5)

@@ -1,4 +1,4 @@
-<form class="m-3 border p-3" style="width: 70%; position: absolute; left: 50%; transform: translate(-50%)">
+<form class="m-3 border p-3" >
     <p>Сортировка по</p>
     <div class="hstack gap-3" style="display: flex; flex-direction: row" >
             <select class="form-select" aria-label="Default select example" style="width: 30%">
