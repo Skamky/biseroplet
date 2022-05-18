@@ -12,11 +12,12 @@
 
     </div>
         <p>Отображать только</p>
-        <select class="form-select" name="filter">
+        <select name="filter">
             <option value="1">Кольцо</option>
             <option value="2">Браслет</option>
         </select>
     Поиск
     <input type="search">
+
     <button type="submit"></button>
 </form>
