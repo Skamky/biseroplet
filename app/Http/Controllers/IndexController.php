@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Rating;
 use App\Models\Scheme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,10 +23,23 @@ class IndexController extends Controller
         foreach ($schemes as $scheme)
         {
             $scheme->code_scheme=preg_replace('/color/',"id".$scheme->id_scheme."color",$scheme->code_scheme);
-           //dd($scheme);
             $scheme->color_scheme=explode('#',$scheme->color_scheme) ;
             //тут название категории
             $scheme->category=Category::where('id',$scheme->category)->value('title');
+
+            if(Auth::check())
+            {
+            $scheme->likes=Rating::where('id_scheme',$scheme->id_scheme)->where('value',1)->count();
+            $scheme->dislikes=Rating::where('id_scheme',$scheme->id_scheme)->where('value',-1)->count();
+
+            $scheme->liked=false;
+            $scheme->disliked=false;
+
+            if(Rating::where('id_scheme',$scheme->id_scheme)->where('value',1)->where('id_user',Auth::user()->id)->exists())
+                $scheme->liked=true;
+            elseif (Rating::where('id_scheme',$scheme->id_scheme)->where('value',-1)->where('id_user',Auth::user()->id)->exists())
+                $scheme->disliked=true;
+            }
         }
         return view('welcome',['schemes'=>$schemes,'alerts'=>$alerts]);
       //  dd($alerts);

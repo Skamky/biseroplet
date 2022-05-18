@@ -97,26 +97,16 @@
                 </div>
             </div>
         </nav>
+        <div class="alertsContainer">
         @isset($alerts['message'])
-        @for($i=0;$i<count($alerts['message']);$i++ )
-            <div class="alert alert-{{$alerts['type'][$i]}} alert-dismissible fade show" role="alert">
-                {{$alerts['message'][$i]}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endfor
-
+            @for($i=0;$i<count($alerts['message']);$i++ )
+                <div class="alert alert-{{$alerts['type'][$i]}} alert-dismissible fade show" role="alert">
+                    {{$alerts['message'][$i]}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endfor
         @endisset
-
-
-
-
-
-
-
-
-
-
-
+        </div>
 {{--        <div class="alert alert-warning alert-dismissible " role="alert">--}}
 {{--            Сайт находиться в активной стадии разработки, возможны ошибки и изменения, для мобильных устройств рекомендуеться планшетный режим--}}
 

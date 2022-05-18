@@ -41,20 +41,11 @@
             @endif
             <a href="/profile/{{$scheme->login}}/{{$scheme->id_scheme}}" class="list-group-item list-group-item-action list-group-item-primary">Открыть схему</a>
         </ul>
-        <ul class="list-group list-group-horizontal">
-            <button class="list-group-item list-group-item-action"
-                    id="like{{$scheme->id_scheme}}"
-                    onclick="like('{{$scheme->id_scheme}}',1,'#like{{$scheme->id_scheme}}')">
-                👍🏻
-                <span class="badge bg-primary rounded-pill">14</span>
-            </button>
-            <button class="list-group-item list-group-item-action"
-                    id="dislike{{$scheme->id_scheme}}"
-                    onclick="like('{{$scheme->id_scheme}}',-1,'#dislike{{$scheme->id_scheme}}')">
-                👎🏻
-                <span class="badge bg-primary rounded-pill">2</span>
-            </button>
-        </ul>
+        @auth()
+            <div id="likeBar{{$scheme->id_scheme}}">
+            @include('components.likeBar')
+            </div>
+        @endauth
         <div class="card-footer">
             <small class="text-muted">Обновлено: {{$scheme->updated_at}}</small>
             <br>

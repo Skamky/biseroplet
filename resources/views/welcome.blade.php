@@ -14,25 +14,28 @@
         @include('components.cardScheme')
     @endforeach
     </div>
-    <button onclick="f2(3)">Ajax</button>
 
     <a href="/search">Больше схем</a>
     <script>
-        function f()
-        {
-            $.get('{{route('ajax')}}',myCallback)
-        }
-        function like(schemaId,value,idelem) {
-           // $(this).hasClass("ovalVert")
-            console.log($(idelem));
-            $(idelem).toggleClass('active')
-            let url='{{route('ajax')}}/'+schemaId+'/'+value;
-            $.get(url,myCallback)
+
+        function like(schemaId,value,thisIdElem,idContainer) {
+            thisIdElem=$(thisIdElem);
+            $(idContainer).html('<button class="btn btn-primary" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>🥱 Пожалуйста подождите...</button>')
+
+            console.log(thisIdElem);
+            let url;
+            if (thisIdElem.hasClass('active'))
+                url='{{route('ajax')}}/'+schemaId+'/0';
+            else
+                url='{{route('ajax')}}/'+schemaId+'/'+value;
+           // $.get(url,myCallback)
+            $(idContainer).load(url);
         }
 
         function myCallback( returnedData ) {
 
             console.log(returnedData)
+
         }
     </script>
     <script class="temp" defer>
