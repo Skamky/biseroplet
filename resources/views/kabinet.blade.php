@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="temp{{$scheme->id_scheme}}" class="temp">
+                            <div id="temp{{$scheme->id_scheme}}" class="temp d-none">
                                 {{$scheme->code_scheme}}
                             </div>
                             <script class="temp" >

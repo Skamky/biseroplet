@@ -19,18 +19,13 @@
                 </div>
             </div>
 
-        <div id="temp{{$scheme->id_scheme}}" class="temp">
-            {{$scheme->code_scheme}}
-        </div>
-        <script class="temp" >
-            htmlcode =$('#temp{{$scheme->id_scheme}}').text();
-            console.log('Проверка {{$scheme->id_scheme}}');
-            // console.log(htmlcode);
-            $('#table{{$scheme->id_scheme}}').append(htmlcode);
-        </script>
-
-
         <ul class="list-group list-group-flush">
+            <li class="temp list-group-item">
+                <div class="d-flex align-items-center">
+                    <strong>Загрузка предпросмотра...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+            </li>
             <li class="list-group-item">Автор: {{$scheme->login }}</li>
             <li class="list-group-item">Категория: {{$scheme->category}}</li>
             @if($scheme->description_scheme!=null )
@@ -54,3 +49,12 @@
         </div>
     </div>
 </div>
+<div id="temp{{$scheme->id_scheme}}" class="temp d-none">
+    {{$scheme->code_scheme}}
+</div>
+<script class="temp" >
+    htmlcode =$('#temp{{$scheme->id_scheme}}').text();
+    console.log('Проверка {{$scheme->id_scheme}}');
+    // console.log(htmlcode);
+    $('#table{{$scheme->id_scheme}}').append(htmlcode);
+</script>

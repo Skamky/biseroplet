@@ -19,6 +19,29 @@
     $('.temp').remove()
 </script>
 
+<script>
+
+    function like(schemaId,value,thisIdElem,idContainer) {
+        thisIdElem=$(thisIdElem);
+        $(idContainer).html('<button class="btn btn-primary" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>🥱 Пожалуйста подождите...</button>')
+
+        console.log(thisIdElem);
+        let url;
+        if (thisIdElem.hasClass('active'))
+            url='{{route('ajax')}}/'+schemaId+'/0';
+        else
+            url='{{route('ajax')}}/'+schemaId+'/'+value;
+        // $.get(url,myCallback)
+        $(idContainer).load(url);
+    }
+
+    function myCallback( returnedData ) {
+
+        console.log(returnedData)
+
+    }
+</script>
+
 <style>
     @foreach($schemes as $scheme)
         @foreach($scheme->color_scheme as $color )
