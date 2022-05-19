@@ -15,7 +15,7 @@
     @endforeach
     </div>
 
-    <a href="/search">Больше схем</a>
+    <a href="/searchPage">Больше схем</a>
     <script>
 
         function like(schemaId,value,thisIdElem,idContainer) {

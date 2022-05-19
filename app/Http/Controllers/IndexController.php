@@ -71,6 +71,7 @@ class IndexController extends Controller
     }
     public function searchView()
     {
+        $categories= Category::all();
         $alerts['type']=session()->pull('type',null);
         $alerts['message']=session()->pull('message',null);
 
@@ -100,11 +101,71 @@ class IndexController extends Controller
                     $scheme->disliked=true;
             }
         }
-
-        return view('AllSchemes',['schemes'=>$schemes,'alerts'=>$alerts]);
+        return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'alerts'=>$alerts]);
     }
-    public  function search()
+    public function searchRedirect(Request $request)
+    {
+        return redirect(route('search',[$request->orderBy1,$request->orderBy2,$request->category,$request->search,$request->countOnPage]));
+    }
+    public  function search(Request $request)
     {
 
+        $categories= Category::all();
+        $alerts['type']=session()->pull('type',null);
+        $alerts['message']=session()->pull('message',null);
+
+        $couuntOnPage=$request->countOnPage;
+        $category=$request->category;
+//        $request->search;
+//        $request->countOnPage;
+//        $request->orderBy1;
+//        $request->orderBy2;
+
+        $schemes=Scheme::where('public',true)
+            ->when($category,function ($query, $category)
+            {
+                return $query->where('category',$category);
+            });
+
+        if(Auth::user()!=null) {
+            $UserSchemes = Scheme::where('login', Auth::user()->name)
+                ->when($category, function ($query, $category) {
+                    return $query->where('category', $category);
+                })
+                ->union($schemes);
+            $schemes = $UserSchemes;
+            }
+        $schemes=$schemes->paginate($couuntOnPage);
+       // $schemes->withPath('/result/search');
+
+
+        foreach ($schemes as $scheme)
+        {
+            $scheme->code_scheme=preg_replace('/color/',"id".$scheme->id_scheme."color",$scheme->code_scheme);
+            $scheme->color_scheme=explode('#',$scheme->color_scheme) ;
+            //тут  подмена ид на название категории
+            $scheme->category=Category::where('id',$scheme->category)->value('title');
+
+            if(Auth::check())
+            {
+                $scheme->likes=Rating::where('id_scheme',$scheme->id_scheme)->where('value',1)->count();
+                $scheme->dislikes=Rating::where('id_scheme',$scheme->id_scheme)->where('value',-1)->count();
+
+                $scheme->liked=false;
+                $scheme->disliked=false;
+
+                if(Rating::where('id_scheme',$scheme->id_scheme)->where('value',1)->where('id_user',Auth::user()->id)->exists())
+                    $scheme->liked=true;
+                elseif (Rating::where('id_scheme',$scheme->id_scheme)->where('value',-1)->where('id_user',Auth::user()->id)->exists())
+                    $scheme->disliked=true;
+            }
+        }
+        return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'alerts'=>$alerts]);
     }
+
+//    public  function searchResult($categories,$schemes,$alerts)
+//    {
+//        return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'alerts'=>$alerts]);
+//
+//    }
 }

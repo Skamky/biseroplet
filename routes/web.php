@@ -27,7 +27,10 @@ Route::get('/profile','HomeController@userProfileRedirect');
 Route::get('/profile/{ProfileName}','HomeController@userProfile')->name('profile');
 Route::get('/profile/{ProfileName}/{schemeId}','HomeController@loadScheme')->name('loadScheme');
 Route::get('/delete/{schemeId}','HomeController@deleteScheme')->name('deleteScheme');
-Route::get('/search','IndexController@searchView');
+
+Route::get('/searchPage','IndexController@searchView');
+//Route::get('/search/{orderBy1}/{orderBy2}/{category}/{search}/{couuntOnPage}','IndexController@search');
+
 
 Route::get('/ajax','AjaxController@index')->name('ajax');
 Route::get('/ajax/{schemeId}/{value}','AjaxController@rateSchema');
@@ -35,5 +38,5 @@ Route::get('/ajax/{schemeId}/{value}','AjaxController@rateSchema');
 
 Route::post('/save', "HomeController@saveScheme")->name('save');
 Route::post('/save/access/{schemeId}', "HomeController@redAccess");
-
+Route::post('/search','IndexController@search')->name('search');
 
