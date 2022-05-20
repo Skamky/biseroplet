@@ -28,7 +28,7 @@
     </div>
     Поиск
     <input name="search" type="search" value="{{old('search')}}">
-    Колличество записей на странице<input type="number" min="4" value="{{old('countOnPage',3)}}" name="countOnPage">
+    Колличество записей на странице<input type="number" min="4" value="{{old('countOnPage',50)}}" name="countOnPage">
     <button type="submit"> Поиск</button>
     @csrf
 

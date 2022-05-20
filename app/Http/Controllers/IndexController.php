@@ -116,15 +116,25 @@ class IndexController extends Controller
 
         $couuntOnPage=$request->countOnPage;
         $category=$request->category;
-//        $request->search;
+        $search=$request->search;
 //        $request->countOnPage;
-//        $request->orderBy1;
-//        $request->orderBy2;
+        if($request->orderBy1)
+        $orderBy=array( $request->orderBy1,$request->orderBy2);
+        else $orderBy=false;
+
 
         $schemes=Scheme::where('public',true)
             ->when($category,function ($query, $category)
             {
                 return $query->where('category',$category);
+            })
+            ->when($search,function ($query, $search)
+            {
+                return $query->where('name_scheme','LIKE','%'.$search.'%')->orWhere('description_scheme','LIKE','%'.$search.'%');
+            })
+            ->when($orderBy,function ($query, $orderBy)
+            {
+                return $query->orderBy($orderBy[0],$orderBy[1]);
             });
 
         if(Auth::user()!=null) {
