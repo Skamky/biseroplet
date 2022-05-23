@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Rating;
 use App\Models\Scheme;
+use Illuminate\Http\Request;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,5 +54,21 @@ class AjaxController extends Controller
 
 
         return view('components.likeBar',['scheme'=>$scheme]);
+    }
+    public function redAccess(Request $request)
+    {
+        if ($request->public){
+            Scheme::where('login',Auth::user()->name)->where('id_scheme',$request->id_scheme)
+                ->update
+                (['public'=>true]);
+           echo ('ℹ  Схема доступна для других пользователй.');
+        }
+        else{
+            Scheme::where('login',Auth::user()->name)->where('id_scheme',$request->id_scheme)
+                ->update
+                (['public'=>false]);
+            echo( 'ℹ  Схема изъята из общего доступа.');
+        }
+      //  echo $request;
     }
 }

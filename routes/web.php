@@ -34,9 +34,9 @@ Route::get('/searchPage','IndexController@searchView');
 
 Route::get('/ajax','AjaxController@index')->name('ajax');
 Route::get('/ajax/{schemeId}/{value}','AjaxController@rateSchema');
-
+Route::get('/save/access','AjaxController@redAccess');
 
 Route::post('/save', "HomeController@saveScheme")->name('save');
-Route::post('/save/access/{schemeId}', "HomeController@redAccess");
+//Route::post('/save/access/{schemeId}', "HomeController@redAccess");
 Route::any('/search','IndexController@search')->name('search');
 

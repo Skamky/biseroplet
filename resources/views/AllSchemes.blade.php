@@ -40,11 +40,6 @@
         $(idContainer).load(url);
     }
 
-    function myCallback( returnedData ) {
-
-        console.log(returnedData)
-
-    }
 </script>
 
 <style>

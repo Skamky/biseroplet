@@ -62,9 +62,7 @@
 {{--                                <h5 class="card-title">{{$scheme->name_scheme}}</h5>--}}
                                 <p class="card-text">Категория: {{$scheme->category}}</p>
                                 <p class="card-text">{{$scheme->description_scheme }}</p>
-                                <form action="/save/access/{{$scheme->id_scheme}}" method="post" class="card-body">
-                                    @csrf
-                                    <div class="form-check form-switch">
+                                    <div class="form-check form-switch" value="{{$scheme->id_scheme}}">
                                         <input class="form-check-input" type="checkbox" role="switch"
                                                @if($scheme->public==1)
                                                checked
@@ -73,8 +71,6 @@
                                                id="flexSwitchCheckDefault{{$scheme->id_scheme}}">
                                         <label class="form-check-label" for="flexSwitchCheckDefault{{$scheme->id_scheme}}">Общедоступная схема</label>
                                     </div>
-                                    <button type="submit" class="btn btn-outline-primary">Применить изменения</button>
-                                </form>
                                 <div class="card-body d-flex justify-content-between">
                                     <a href="/profile/{{$ProfileName}}/{{$scheme->id_scheme}}" class="btn btn-primary">Открыть схему</a>
                                     {{--                                <a href="/delete/{{$scheme->id_scheme}}" class="btn btn-outline-danger" title="Удалить схему">🗑</a>--}}
@@ -104,51 +100,30 @@
                         console.log(newhref);
                     }
 
-                    /*
-Функция посылки запроса к файлу на сервере
-r_method  - тип запроса: GET или POST
-r_path    - путь к файлу
-r_args    - аргументы вида a=1&b=2&c=3...
-r_handler - функция-обработчик ответа от сервера
-*/
+
+
+
 
                     $( ".form-switch" ).change(
-                        function( event,idScheme )
-                        {
-                            console.log('начало ajax')
+                        function( event) {
 
-                            r_method="POST";
-                            r_path ="/save/access/"+idScheme;
+                           let schemeid=  $(this).attr('value');
+                           let inputswitch = $(this).children('input');
+                            inputswitch.attr('disabled','disabled');
+                            setTimeout(enabledFormswitch,3000,inputswitch);
+                           let url;
+                           console.log( inputswitch.prop("checked"));
+                          let datarequest={id_scheme:schemeid,public:inputswitch.prop("checked") }
 
-                            //Создаём запрос
-                            var Request = CreateRequest();
-//Проверяем существование запроса еще раз
-                            if (!Request)
-                            {
-                                return;
-                            }
-
-                            //Назначаем пользовательский обработчик
-                            Request.onreadystatechange = function()
-                            {
-                                //Если обмен данными завершен
-                                if (Request.readyState == 4)
-                                {
-                                    //Передаем управление обработчику пользователя
-                                    r_handler(Request);
-                                }
-                            }
-
-                            //Инициализируем соединение
-                            Request.open(r_method, r_path , true);
-
-                            //Устанавливаем заголовок
-                            Request.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8");
-                            //Посылаем запрос
-                            Request.send(r_args);
-
+                           url = '/save/access/'
+                            $.get(url,datarequest,CallbackToConsole)
                         }
                     );
+                    function enabledFormswitch(inputswitch)
+                    {
+                        inputswitch.removeAttr('disabled');
+                    }
+
                 </script>
     @else
                     <div class="alert alert-warning alert-dismissible " role="alert">
@@ -175,11 +150,6 @@ r_handler - функция-обработчик ответа от сервера
                     $(idContainer).load(url);
                 }
 
-                function myCallback( returnedData ) {
-
-                    console.log(returnedData)
-
-                }
             </script>
     @endif
                 {{ $schemes->links() }}

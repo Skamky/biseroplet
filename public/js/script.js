@@ -121,3 +121,6 @@ function hideShowPalitra()
         $("#divFullPalitra").removeClass('h-50');
     }
 }
+function CallbackToConsole( returnedData ) {
+    console.log(returnedData)
+}
