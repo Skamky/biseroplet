@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 /*
@@ -29,7 +30,6 @@ Route::get('/profile/{ProfileName}/{schemeId}','HomeController@loadScheme')->nam
 Route::get('/delete/{schemeId}','HomeController@deleteScheme')->name('deleteScheme');
 
 Route::get('/searchPage','IndexController@searchView');
-//Route::get('/search/{orderBy1}/{orderBy2}/{category}/{search}/{couuntOnPage}','IndexController@search');
 
 
 Route::get('/ajax','AjaxController@index')->name('ajax');
@@ -38,5 +38,5 @@ Route::get('/ajax/{schemeId}/{value}','AjaxController@rateSchema');
 
 Route::post('/save', "HomeController@saveScheme")->name('save');
 Route::post('/save/access/{schemeId}', "HomeController@redAccess");
-Route::post('/search','IndexController@search')->name('search');
+Route::any('/search','IndexController@search')->name('search');
 

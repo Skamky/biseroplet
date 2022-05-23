@@ -150,11 +150,25 @@ class IndexController extends Controller
                 ->when($category, function ($query, $category) {
                     return $query->where('category', $category);
                 })
-                ->union($schemes);
+                ->when($author,function ($query, $author)
+                {
+                    return $query->where('login','LIKE','%'.$author.'%');
+                })
+                ->when($search,function ($query, $search)
+                {
+                    return $query->where('name_scheme','LIKE','%'.$search.'%')->orWhere('description_scheme','LIKE','%'.$search.'%');
+                })
+                ->union($schemes)
+                ->when($orderBy,function ($query, $orderBy)
+                {
+                    return $query->orderBy($orderBy[0],$orderBy[1]);
+                });
+
             $schemes = $UserSchemes;
             }
         $schemes=$schemes->paginate($couuntOnPage);
-       // $schemes->withPath('/result/search');
+       // dd();
+        $schemes->withPath(url()->full());
 
 
         foreach ($schemes as $scheme)
@@ -181,10 +195,4 @@ class IndexController extends Controller
         $dataListUsers=User::pluck('name');
         return view('AllSchemes',['categories'=>$categories,'dataListUsers'=>$dataListUsers,'schemes'=>$schemes,'alerts'=>$alerts]);
     }
-
-//    public  function searchResult($categories,$schemes,$alerts)
-//    {
-//        return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'alerts'=>$alerts]);
-//
-//    }
 }

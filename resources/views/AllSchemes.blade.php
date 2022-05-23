@@ -1,7 +1,13 @@
 @extends('layouts.app')
 @section('content')
-@include('components.SerachBar')
-<hr>
+
+    <div class="card">
+        <h5 class="card-header">Поиск</h5>
+        <div class="card-body">
+            @include('components.SerachBar')
+        </div>
+    </div>
+    <hr>
 {{ $schemes->links() }}
 
 <div class="mx-2 row row-cols-1 row-cols-md-2 g-4">
@@ -20,7 +26,6 @@
 </script>
 
 <script>
-
     function like(schemaId,value,thisIdElem,idContainer) {
         thisIdElem=$(thisIdElem);
         $(idContainer).html('<button class="btn btn-primary" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>🥱 Пожалуйста подождите...</button>')

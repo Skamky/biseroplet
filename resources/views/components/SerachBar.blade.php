@@ -1,4 +1,4 @@
-<form class="m-3 border p-3" method="post" action="{{ route('search') }}" >
+<form  method="get" action="{{ route('search') }}" >
     <label>Сортировка</label>
     <div class="input-group">
         <div class="btn-group">
@@ -34,11 +34,12 @@
         @endforeach
     </datalist>
    <label>Поиск</label>
-    <input name="search" class="form-control" type="search" placeholder="Название или описание схемы" value="{{old('search')}}">
+    <input name="search"  type="search" placeholder="Название или описание схемы" value="{{old('search')}}" class="form-control">
 
 
-    Колличество записей на странице<input type="number" min="4" value="{{old('countOnPage',50)}}" name="countOnPage" class="form-control">
-    <button type="submit"> Поиск</button>
+    <label> Колличество записей на странице </label>
+        <input type="number" min="4" value="{{old('countOnPage',50)}}" name="countOnPage" class="form-control">
+    <button type="submit" class="btn btn-outline-success"> Поиск</button>
     @csrf
 
 </form>
