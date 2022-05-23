@@ -72,6 +72,7 @@ class IndexController extends Controller
     public function searchView()
     {
         $categories= Category::all();
+
         $alerts['type']=session()->pull('type',null);
         $alerts['message']=session()->pull('message',null);
 
@@ -101,7 +102,8 @@ class IndexController extends Controller
                     $scheme->disliked=true;
             }
         }
-        return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'alerts'=>$alerts]);
+        $dataListUsers=User::pluck('name');
+        return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'dataListUsers'=>$dataListUsers,'alerts'=>$alerts]);
     }
     public function searchRedirect(Request $request)
     {
@@ -114,19 +116,25 @@ class IndexController extends Controller
         $alerts['type']=session()->pull('type',null);
         $alerts['message']=session()->pull('message',null);
 
+        $author = $request->author;
         $couuntOnPage=$request->countOnPage;
         $category=$request->category;
         $search=$request->search;
-//        $request->countOnPage;
+
         if($request->orderBy1)
-        $orderBy=array( $request->orderBy1,$request->orderBy2);
-        else $orderBy=false;
+            $orderBy=array( $request->orderBy1,$request->orderBy2);
+        else
+            $orderBy=false;
 
 
         $schemes=Scheme::where('public',true)
             ->when($category,function ($query, $category)
             {
                 return $query->where('category',$category);
+            })
+            ->when($author,function ($query, $author)
+            {
+                return $query->where('login','LIKE','%'.$author.'%');
             })
             ->when($search,function ($query, $search)
             {
@@ -170,7 +178,8 @@ class IndexController extends Controller
                     $scheme->disliked=true;
             }
         }
-        return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'alerts'=>$alerts]);
+        $dataListUsers=User::pluck('name');
+        return view('AllSchemes',['categories'=>$categories,'dataListUsers'=>$dataListUsers,'schemes'=>$schemes,'alerts'=>$alerts]);
     }
 
 //    public  function searchResult($categories,$schemes,$alerts)
