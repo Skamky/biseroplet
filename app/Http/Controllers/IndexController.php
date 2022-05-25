@@ -69,7 +69,7 @@ class IndexController extends Controller
 
         return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color,'alerts'=>$alerts,'categories'=> $categories]);
     }
-    public function searchView()
+    public function searchLatest()
     {
         $categories= Category::all();
 
@@ -77,9 +77,9 @@ class IndexController extends Controller
         $alerts['message']=session()->pull('message',null);
 
         if(Auth::user()!=null)
-            $schemes=Scheme::where('login','!=',Auth::user()->name)->where('public',true)->orwhere('login',Auth::user()->name )->latest()->paginate(4);
+            $schemes=Scheme::where('login','!=',Auth::user()->name)->where('public',true)->orwhere('login',Auth::user()->name )->latest()->paginate();
         else
-            $schemes=Scheme::where('public',true)->latest()->paginate(4);
+            $schemes=Scheme::where('public',true)->latest()->paginate();
 
         foreach ($schemes as $scheme)
         {
@@ -103,12 +103,17 @@ class IndexController extends Controller
             }
         }
         $dataListUsers=User::pluck('name');
-        return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'dataListUsers'=>$dataListUsers,'alerts'=>$alerts]);
+
+        $request=request();
+        $request->orderBy1 ="created_at";
+        $request->orderBy2 ="desc";
+
+        return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'dataListUsers'=>$dataListUsers,'alerts'=>$alerts,'request'=>$request]);
     }
-    public function searchRedirect(Request $request)
-    {
-        return redirect(route('search',[$request->orderBy1,$request->orderBy2,$request->category,$request->search,$request->countOnPage]));
-    }
+//    public function searchRedirect(Request $request)
+//    {
+//        return redirect(route('search',[$request->orderBy1,$request->orderBy2,$request->category,$request->search,$request->countOnPage]));
+//    }
     public  function search(Request $request)
     {
 
@@ -120,7 +125,6 @@ class IndexController extends Controller
         $couuntOnPage=$request->countOnPage;
         $category=$request->category;
         $search=$request->search;
-
         if($request->orderBy1)
             $orderBy=array( $request->orderBy1,$request->orderBy2);
         else
@@ -167,7 +171,6 @@ class IndexController extends Controller
             $schemes = $UserSchemes;
             }
         $schemes=$schemes->paginate($couuntOnPage);
-       // dd();
         $schemes->withPath(url()->full());
 
 
@@ -193,6 +196,6 @@ class IndexController extends Controller
             }
         }
         $dataListUsers=User::pluck('name');
-        return view('AllSchemes',['categories'=>$categories,'dataListUsers'=>$dataListUsers,'schemes'=>$schemes,'alerts'=>$alerts]);
+        return view('AllSchemes',['categories'=>$categories,'dataListUsers'=>$dataListUsers,'schemes'=>$schemes,'alerts'=>$alerts,'request'=>$request]);
     }
 }
