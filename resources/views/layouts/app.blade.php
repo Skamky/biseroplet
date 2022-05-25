@@ -55,6 +55,9 @@
                         </li>
                         @endauth
                         <li class="nav-item">
+                            <a class="nav-link" href="/search/last">{{__('Search')}}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="https://forms.gle/HM8v4NR4kS5DLiWw5"  target="_blank">Оставить отзыв</a>
                         </li>
                     </ul>

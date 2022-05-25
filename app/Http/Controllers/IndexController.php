@@ -134,7 +134,7 @@ class IndexController extends Controller
             })
             ->when($author,function ($query, $author)
             {
-                return $query->where('login','LIKE','%'.$author.'%');
+                return $query->where('login',$author);
             })
             ->when($search,function ($query, $search)
             {
@@ -152,7 +152,7 @@ class IndexController extends Controller
                 })
                 ->when($author,function ($query, $author)
                 {
-                    return $query->where('login','LIKE','%'.$author.'%');
+                    return $query->where('login',$author);
                 })
                 ->when($search,function ($query, $search)
                 {

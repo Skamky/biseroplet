@@ -29,7 +29,7 @@ Route::get('/profile/{ProfileName}','HomeController@userProfile')->name('profile
 Route::get('/profile/{ProfileName}/{schemeId}','HomeController@loadScheme')->name('loadScheme');
 Route::get('/delete/{schemeId}','HomeController@deleteScheme')->name('deleteScheme');
 
-Route::get('/searchPage','IndexController@searchView');
+Route::get('/search/last','IndexController@searchView');
 
 
 Route::get('/ajax','AjaxController@index')->name('ajax');
