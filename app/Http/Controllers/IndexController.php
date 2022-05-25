@@ -105,10 +105,10 @@ class IndexController extends Controller
         $dataListUsers=User::pluck('name');
         return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'dataListUsers'=>$dataListUsers,'alerts'=>$alerts]);
     }
-    public function searchRedirect(Request $request)
-    {
-        return redirect(route('search',[$request->orderBy1,$request->orderBy2,$request->category,$request->search,$request->countOnPage]));
-    }
+//    public function searchRedirect(Request $request)
+//    {
+//        return redirect(route('search',[$request->orderBy1,$request->orderBy2,$request->category,$request->search,$request->countOnPage]));
+//    }
     public  function search(Request $request)
     {
 
