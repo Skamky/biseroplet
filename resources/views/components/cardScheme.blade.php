@@ -26,7 +26,7 @@
                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
             </li>
-            <li class="list-group-item">Автор: {{$scheme->login }}</li>
+            <li class="list-group-item">Автор: <a href="/profile/{{$scheme->login }}" title="Перейти в профиль автора">{{$scheme->login }}</a></li>
             <li class="list-group-item">Категория: {{$scheme->category}}</li>
             @if($scheme->description_scheme!=null )
                 <div class="card-body">
