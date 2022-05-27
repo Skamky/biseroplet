@@ -15,6 +15,8 @@
         <button class="btn btn-outline-secondary" onclick="addColumnToStart()" title="Добавить столбец в начале">◀</button>
         <button class="btn btn-outline-secondary" onclick="addColumnToEnd()" title="Добавить стобец в конце">▶</button>
     </div>
+    <button class="btn btn-lg btn-outline-primary" onclick="raschet()">Колличество цветов</button>
+
 </div>
 <hr>
 @auth
@@ -114,6 +116,7 @@
 </div>
 
 <script>
+
     $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
 
     $( "#btndelete" ).click(

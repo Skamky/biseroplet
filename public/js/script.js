@@ -157,3 +157,13 @@ function hideShowPalitra()
 function CallbackToConsole( returnedData ) {
     console.log(returnedData)
 }
+function raschet()
+{
+    console.log('Колличество цветов '+CountColor);
+    let html='<div class="alert alert-light  alert-dismissible fade show" role="alert">';
+    for (let i = 1; i <=CountColor ; i++) {
+        html+='<div class="px-5 color'+i+'"> <p class="bg-light"> Цвет '+i+': '+ $('td>.color'+i).length+' шт</p></div>' ;
+    }
+    html+= '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    </div>';
+    $('.alertsContainer').append(html);
+}
