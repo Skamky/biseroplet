@@ -114,37 +114,39 @@
 </div>
 
 <script>
-
+        $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
     //покраска эллемента
-    $( ".ovalHoriz,.ovalVert" ).click(
-        function( event )
-        {
-            if($("#btndelete").hasClass('selectColor'))
-            {
-                $(this).css('opacity',0 )
-            }
-            else
-            {
-                let color = $(".selectColor").prop("id");
-                console.log(color);
-
-                if ($(this).hasClass("ovalVert"))
-                {
-                    $(this).removeClass().addClass( "ovalVert "+color);
-                }
-                else
-                {
-                    $(this).removeClass().addClass( "ovalHoriz "+color);
-                }
-                //$(this).css('background', color);
-                $(this).css('opacity',1)
-            }
-            // console.log( $(this).prop('className'));
-            // $(this).addClass('active');
-            // console.log( $(this).prop('className'));
+   // $( ".ovalHoriz,.ovalVert" ).on("click",paint );
+    function paint( event )
+    {
+        console.log('paint')
+        let orentation;
+        if ($(this).hasClass("ovalVert")) {
+            orentation = "ovalVert ";
         }
-    );
+        else {
+            orentation = "ovalHoriz ";
+        }
 
+        if($("#btndelete").hasClass('selectColor'))
+        {
+            $(this).css('opacity',0 );
+            $(this).removeClass().addClass(orentation);
+        }
+        else
+        {
+            let color = $(".selectColor").prop("id");
+            //console.log(color);
+
+            $(this).removeClass().addClass(orentation+color);
+
+            //$(this).css('background', color);
+            $(this).css('opacity',1)
+        }
+        // console.log( $(this).prop('className'));
+        // $(this).addClass('active');
+        // console.log( $(this).prop('className'));
+    }
     $( "#btndelete" ).click(
         function selectPalitra ( event )
         {
