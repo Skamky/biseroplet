@@ -19,6 +19,7 @@ function addRowToStart()
     }
 
     let color = $(".selectColor").prop("id");
+    if (color=="btndelete")color=""
 
     let html1='<td></td><td><div class="ovalHoriz '+color+'"></div></td>'
     let html2 ='<td></td><td><div class="ovalVert '+color+'"></div></td>';
@@ -49,6 +50,7 @@ function addRowToEnd()
     let countColumns =$('thead th').last().html();
 
     let color = $(".selectColor").prop("id");
+    if (color=="btndelete")color=""
 
     let html1='<td></td><td><div class="ovalHoriz '+color+'"></div></td>'
     let html2 ='<td></td><td><div class="ovalVert '+color+'"></div></td>';
@@ -78,6 +80,8 @@ function addColumnToStart()
     $('thead tr').append('<th scope="col"></th><th scope="col">'+countColumns+'</th>')
 
     let color = $(".selectColor").prop("id");
+    if (color=="btndelete")color=""
+
     let html1 ='<td></td><td><div class="ovalVert '+color+'"></div></td>';
     let html2='<td><div class="ovalHoriz '+color+'"></div></td><td></td>'
 
@@ -101,6 +105,7 @@ function addColumnToEnd()
     $('thead tr').append('<th scope="col"></th><th scope="col">'+countColumns+'</th>')
 
     let color = $(".selectColor").prop("id");
+    if (color=="btndelete")color=""
 
     let html1 ='<td></td><td><div class="ovalVert '+color+'"></div></td>';
     let html2='<td></td><td><div class="ovalHoriz '+color+'"></div></td>'

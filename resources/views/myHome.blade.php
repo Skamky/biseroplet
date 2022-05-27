@@ -114,39 +114,8 @@
 </div>
 
 <script>
-        $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
-    //покраска эллемента
-   // $( ".ovalHoriz,.ovalVert" ).on("click",paint );
-    function paint( event )
-    {
-        console.log('paint')
-        let orentation;
-        if ($(this).hasClass("ovalVert")) {
-            orentation = "ovalVert ";
-        }
-        else {
-            orentation = "ovalHoriz ";
-        }
+    $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
 
-        if($("#btndelete").hasClass('selectColor'))
-        {
-            $(this).css('opacity',0 );
-            $(this).removeClass().addClass(orentation);
-        }
-        else
-        {
-            let color = $(".selectColor").prop("id");
-            //console.log(color);
-
-            $(this).removeClass().addClass(orentation+color);
-
-            //$(this).css('background', color);
-            $(this).css('opacity',1)
-        }
-        // console.log( $(this).prop('className'));
-        // $(this).addClass('active');
-        // console.log( $(this).prop('className'));
-    }
     $( "#btndelete" ).click(
         function selectPalitra ( event )
         {

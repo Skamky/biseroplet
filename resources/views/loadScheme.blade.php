@@ -102,35 +102,8 @@
     <script>
 
 
-        //покраска эллемента
-        $( ".ovalHoriz,.ovalVert" ).click(
-            function( event )
-            {
-                if($("#btndelete").hasClass('selectColor'))
-                {
-                    $(this).css('opacity',0 )
-                }
-                else
-                {
-                    let color = $(".selectColor").prop("id");
-                    console.log(color);
+        $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
 
-                    if ($(this).hasClass("ovalVert"))
-                    {
-                        $(this).removeClass().addClass( "ovalVert "+color);
-                    }
-                    else
-                    {
-                        $(this).removeClass().addClass( "ovalHoriz "+color);
-                    }
-                    //$(this).css('background', color);
-                    $(this).css('opacity',1)
-                }
-                // console.log( $(this).prop('className'));
-                // $(this).addClass('active');
-                // console.log( $(this).prop('className'));
-            }
-        );
         //выбор палитры
         $( "#btndelete" ).click(
             function selectPalitra ( event )
