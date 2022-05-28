@@ -110,16 +110,12 @@ class IndexController extends Controller
 
         return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'dataListUsers'=>$dataListUsers,'alerts'=>$alerts,'request'=>$request]);
     }
-//    public function searchRedirect(Request $request)
-//    {
-//        return redirect(route('search',[$request->orderBy1,$request->orderBy2,$request->category,$request->search,$request->countOnPage]));
-//    }
+
     public  function search(Request $request)
     {
 
         $categories= Category::all();
-        $alerts['type']=session()->pull('type',null);
-        $alerts['message']=session()->pull('message',null);
+
 
         $author = $request->author;
         $couuntOnPage=$request->countOnPage;
@@ -167,35 +163,45 @@ class IndexController extends Controller
                 {
                     return $query->orderBy($orderBy[0],$orderBy[1]);
                 });
-
             $schemes = $UserSchemes;
             }
+
         $schemes=$schemes->paginate($couuntOnPage);
         $schemes->withPath(url()->full());
 
-
-        foreach ($schemes as $scheme)
+        if($schemes->count()<=0)
         {
-            $scheme->code_scheme=preg_replace('/color/',"id".$scheme->id_scheme."color",$scheme->code_scheme);
-            $scheme->color_scheme=explode('#',$scheme->color_scheme) ;
-            //тут  подмена ид на название категории
-            $scheme->category=Category::where('id',$scheme->category)->value('title');
+            $request->session()->push('type', 'info');
+            $request->session()->push('message', 'ℹ  По вашему запросу ничего не нашлось (。﹏。*)');
+        }
+        else {
 
-            if(Auth::check())
-            {
-                $scheme->likes=Rating::where('id_scheme',$scheme->id_scheme)->where('value',1)->count();
-                $scheme->dislikes=Rating::where('id_scheme',$scheme->id_scheme)->where('value',-1)->count();
+            foreach ($schemes as $scheme) {
+                $scheme->code_scheme = preg_replace('/color/', "id" . $scheme->id_scheme . "color", $scheme->code_scheme);
+                $scheme->color_scheme = explode('#', $scheme->color_scheme);
+                //тут  подмена ид на название категории
+                $scheme->category = Category::where('id', $scheme->category)->value('title');
 
-                $scheme->liked=false;
-                $scheme->disliked=false;
+                if (Auth::check()) {
+                    $scheme->likes = Rating::where('id_scheme', $scheme->id_scheme)->where('value', 1)->count();
+                    $scheme->dislikes = Rating::where('id_scheme', $scheme->id_scheme)->where('value', -1)->count();
 
-                if(Rating::where('id_scheme',$scheme->id_scheme)->where('value',1)->where('id_user',Auth::user()->id)->exists())
-                    $scheme->liked=true;
-                elseif (Rating::where('id_scheme',$scheme->id_scheme)->where('value',-1)->where('id_user',Auth::user()->id)->exists())
-                    $scheme->disliked=true;
+                    $scheme->liked = false;
+                    $scheme->disliked = false;
+
+                    if (Rating::where('id_scheme', $scheme->id_scheme)->where('value', 1)->where('id_user', Auth::user()->id)->exists())
+                        $scheme->liked = true;
+                    elseif (Rating::where('id_scheme', $scheme->id_scheme)->where('value', -1)->where('id_user', Auth::user()->id)->exists())
+                        $scheme->disliked = true;
+                }
             }
         }
+
+
         $dataListUsers=User::pluck('name');
+        $alerts['type']=session()->pull('type',null);
+        $alerts['message']=session()->pull('message',null);
+
         return view('AllSchemes',['categories'=>$categories,'dataListUsers'=>$dataListUsers,'schemes'=>$schemes,'alerts'=>$alerts,'request'=>$request]);
     }
 }

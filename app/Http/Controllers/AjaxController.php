@@ -21,10 +21,6 @@ class AjaxController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
-    {
-        echo "Hello, World!";
-    }
     public function rateSchema($schemeId,$value)
     {
         $scheme= new Scheme;
@@ -47,11 +43,8 @@ class AjaxController extends Controller
                 $scheme->disliked=true;
         }
 
-
         $scheme->likes=Rating::where('id_scheme',$schemeId)->where('value',1)->count();
         $scheme->dislikes=Rating::where('id_scheme',$schemeId)->where('value',-1)->count();
-
-
 
         return view('components.likeBar',['scheme'=>$scheme]);
     }
@@ -69,6 +62,6 @@ class AjaxController extends Controller
                 (['public'=>false]);
             echo( 'ℹ  Схема изъята из общего доступа.');
         }
-      //  echo $request;
+
     }
 }

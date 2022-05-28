@@ -1,7 +1,5 @@
 // доабавление цвета на палитру
 let CountColor = 1;
-let ScaleValue =1;
-
 //покраска эллемента
 function paint( event )
 {
@@ -75,7 +73,16 @@ function selectPalitra (num)
     // console.log( $(this).prop('className'));
     // console.log( $(this).val());
 }
+function selectDelete ( event )
+{
+    console.log("select")
+    $( "article,#btndelete").removeClass('selectColor')
+    $("article>button").removeClass('active').text('Выбрать')
 
+    console.log( $(this));
+    $(this).addClass('selectColor');
+    $(".stroke").removeClass().addClass("card-card-header p-2 stroke")
+}
 function printSchema()
 {
     console.log('начало печати');
@@ -154,9 +161,7 @@ function hideShowPalitra()
         $("#divFullPalitra").removeClass('h-50');
     }
 }
-function CallbackToConsole( returnedData ) {
-    console.log(returnedData)
-}
+
 function raschet()
 {
     console.log('Колличество цветов '+CountColor);
@@ -166,4 +171,7 @@ function raschet()
     }
     html+= '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    </div>';
     $('.alertsContainer').append(html);
+}
+function CallbackToConsole( returnedData ) {
+    console.log(returnedData)
 }

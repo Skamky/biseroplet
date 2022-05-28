@@ -94,41 +94,26 @@
         {{$scheme->code_scheme}}
     </div>
 
-<script class="temp">
-    let htmlcode =$('#temp').text();
-    console.log('Проверка');
-    console.log(htmlcode);
-    $('table').append(htmlcode);
-    $('.temp').remove()
-</script>
-    <script>
 
 
-        $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
-
-        //выбор палитры
-        $( "#btndelete" ).click(
-            function selectPalitra ( event )
-            {
-                console.log("select")
-                $( "article,#btndelete").removeClass('selectColor')
-                $("article>button").removeClass('active').text('Выбрать')
-
-                console.log( $(this));
-                $(this).addClass('selectColor');
-                $(".stroke").removeClass().addClass("card-card-header p-2 stroke")
-            }
-        );
-
-    </script>
     <div id="divStyles">
-
-    <style id="stPalitra">
-        @foreach($colors as $color )
-        .color{{$loop->iteration}}{background-color:#{{$color}};}
-        @endforeach
-    </style>
+        <style id="stPalitra">
+            @foreach($colors as $color )
+            .color{{$loop->iteration}}{background-color:#{{$color}};}
+            @endforeach
+        </style>
     <style id="stTransform"> </style>
     </div>
+    <script class="temp">
+        let htmlcode =$('#temp').text();
+        console.log('Проверка');
+        console.log(htmlcode);
+        $('table').append(htmlcode);
+        $('.temp').remove()
+    </script>
+    <script>
+        $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
+        $( "#btndelete" ).click(selectDelete);
+    </script>
 
 @endsection

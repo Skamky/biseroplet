@@ -103,15 +103,8 @@ class HomeController extends Controller
             $request->session()->push('type', 'info');
             $request->session()->push('message', 'ℹ  Схема изъята из общего доступа.');
         }
-        //dd($schemeId,$request->check);
 
         return redirect('/profile/'.Auth::user()->name);
-        //$alerts['type']=session()->pull('type',null);
-        //$alerts['message']=session()->pull('message',null);
-
-
-        //return view('components.alert' );
-
     }
 
     public function saveScheme(Request $request)
@@ -135,9 +128,6 @@ class HomeController extends Controller
             $request->session()->push('type', 'success');
             $request->session()->push('message', '✅ Изменения успешно сохранены!');
             return redirect()->back();
-
-            //$this->alerts['type'][]='success';
-            //$this->alerts['message'][]="Изменения успешно сохранены!";
         }
         else
         {
@@ -153,10 +143,6 @@ class HomeController extends Controller
             $request->session()->push('type', 'success');
             $request->session()->push('message', '✅  Новая схема успешно создана!');
             return redirect('/profile/'.Auth::user()->name);
-
-            //  $this->alerts['type'][]='success';
-          //  $this->alerts['message'][]="Новая схема успешно создана!";
-
         }
     }
 
@@ -176,7 +162,6 @@ class HomeController extends Controller
             $alerts['message']=session()->pull('message',null);
             $colors=explode('#',$scheme-> color_scheme) ;
             return view('loadScheme',['scheme'=>$scheme,'categories'=> $categories, 'colors'=>$colors,'schemeId'=>$schemeId,'alerts'=>$alerts]);
-
         }
         else
         {
@@ -184,10 +169,6 @@ class HomeController extends Controller
             session()->push('message', '⛔ В доступе к схеме отказано!');
             return redirect()->back();
         }
-
-
-
-
     }
     public function deleteScheme($id_scheme)
     {
