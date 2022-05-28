@@ -1,6 +1,39 @@
 // доабавление цвета на палитру
 let CountColor = 1;
 let ScaleValue =1;
+
+//покраска эллемента
+function paint( event )
+{
+    console.log('paint')
+    let orentation;
+    if ($(this).hasClass("ovalVert")) {
+        orentation = "ovalVert ";
+    }
+    else {
+        orentation = "ovalHoriz ";
+    }
+
+    if($("#btndelete").hasClass('selectColor'))
+    {
+        $(this).css('opacity',0 );
+        $(this).removeClass().addClass(orentation);
+    }
+    else
+    {
+        let color = $(".selectColor").prop("id");
+        //console.log(color);
+
+        $(this).removeClass().addClass(orentation+color);
+
+        //$(this).css('background', color);
+        $(this).css('opacity',1)
+    }
+    // console.log( $(this).prop('className'));
+    // $(this).addClass('active');
+    // console.log( $(this).prop('className'));
+}
+
 function addColor()
 {
     CountColor++;
@@ -123,4 +156,14 @@ function hideShowPalitra()
 }
 function CallbackToConsole( returnedData ) {
     console.log(returnedData)
+}
+function raschet()
+{
+    console.log('Колличество цветов '+CountColor);
+    let html='<div class="alert alert-light  alert-dismissible fade show" role="alert">';
+    for (let i = 1; i <=CountColor ; i++) {
+        html+='<div class="px-5 color'+i+'"> <p class="bg-light"> Цвет '+i+': '+ $('td>.color'+i).length+' шт</p></div>' ;
+    }
+    html+= '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    </div>';
+    $('.alertsContainer').append(html);
 }

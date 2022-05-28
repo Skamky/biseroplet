@@ -15,6 +15,8 @@
         <button class="btn btn-outline-secondary" onclick="addColumnToStart()" title="Добавить столбец в начале">◀</button>
         <button class="btn btn-outline-secondary" onclick="addColumnToEnd()" title="Добавить стобец в конце">▶</button>
     </div>
+    <button class="btn btn-lg btn-outline-primary" onclick="raschet()">Колличество цветов</button>
+
 </div>
 <hr>
 @auth
@@ -115,35 +117,7 @@
 
 <script>
 
-    //покраска эллемента
-    $( ".ovalHoriz,.ovalVert" ).click(
-        function( event )
-        {
-            if($("#btndelete").hasClass('selectColor'))
-            {
-                $(this).css('opacity',0 )
-            }
-            else
-            {
-                let color = $(".selectColor").prop("id");
-                console.log(color);
-
-                if ($(this).hasClass("ovalVert"))
-                {
-                    $(this).removeClass().addClass( "ovalVert "+color);
-                }
-                else
-                {
-                    $(this).removeClass().addClass( "ovalHoriz "+color);
-                }
-                //$(this).css('background', color);
-                $(this).css('opacity',1)
-            }
-            // console.log( $(this).prop('className'));
-            // $(this).addClass('active');
-            // console.log( $(this).prop('className'));
-        }
-    );
+    $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
 
     $( "#btndelete" ).click(
         function selectPalitra ( event )
