@@ -24,6 +24,7 @@ class IndexController extends Controller
         foreach ($schemes as $scheme)
         {
             $scheme->code_scheme=preg_replace('/color/',"id".$scheme->id_scheme."color",$scheme->code_scheme);
+
             $scheme->color_scheme=explode('#',$scheme->color_scheme) ;
             //тут название категории
             $scheme->category=Category::where('id',$scheme->category)->value('title');

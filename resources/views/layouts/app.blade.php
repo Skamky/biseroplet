@@ -18,8 +18,8 @@
     <!--мой CSS-->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!--мой JS-->
-    <script src="{{ asset('js/script.js') }}"></script>
-    <script src="{{asset('js/tableScript.js')}}"></script>
+    <script  src="{{ asset('js/script.js') }}"></script>
+    <script  src="{{asset('js/tableScript.js')}}"></script>
     <link rel="shortcut icon"  type="image/x-icon">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

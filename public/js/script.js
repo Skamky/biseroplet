@@ -175,3 +175,22 @@ function raschet()
 function CallbackToConsole( returnedData ) {
     console.log(returnedData)
 }
+function textToTable(idTextContainer,idTableContainer) {
+
+    console.log('Загрузка схемы '+idTextContainer+'\t'+idTableContainer);
+        htmlcode =$(idTextContainer).text();
+
+        $(idTableContainer).append(htmlcode);
+
+}
+
+function peremWidth(idColumn) {
+    if($(idColumn).outerWidth()==$(idColumn).parent().outerWidth()){
+        console.log('ширина уже 100')
+        $(idColumn).removeAttr('style')
+    }
+    else {
+        $(idColumn).outerWidth('100%')
+        console.log('Ширина 100')
+    }
+}

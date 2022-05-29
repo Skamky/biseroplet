@@ -30,33 +30,28 @@
             <div class="mx-2 row row-cols-1 row-cols-md-2 g-4">
 
             @foreach($schemes as $scheme)
-                    <div class="col">
+                    <div class="col animated moving" id="column{{$scheme->id_scheme}}">
                         <div class="card">
                             {{--                <img src="..." class="card-img-top" alt="">--}}
                             <div class="accordion accordion-flush" id="accordion{{$scheme->id_scheme}}">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo{{$scheme->id_scheme}}" aria-expanded="false" aria-controls="collapseTwo{{$scheme->id_scheme}}">
-                                            <h5 class="card-title">{{$scheme->name_scheme}}</h5>                            </button>
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo{{$scheme->id_scheme}}" aria-expanded="false" aria-controls="collapseTwo{{$scheme->id_scheme}} "   onclick="peremWidth('#column{{$scheme->id_scheme}}')">
+                                            <h5 class="card-title">{{$scheme->name_scheme}}</h5>
+                                        </button>
                                     </h2>
                                     <div id="collapseTwo{{$scheme->id_scheme}}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion{{$scheme->id_scheme}}">
                                         <div class="accordion-body">
                                             <div class="table-responsive">
                                                 <table id="table{{$scheme->id_scheme}}" class="table-borderless   table-responsive ">
+                                                    {!! $scheme->code_scheme!!}
                                                 </table>
-                                            </div>                            </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="temp{{$scheme->id_scheme}}" class="temp d-none">
-                                {{$scheme->code_scheme}}
-                            </div>
-                            <script class="temp" >
-                                htmlcode =$('#temp{{$scheme->id_scheme}}').text();
-                                console.log('Проверка {{$scheme->id_scheme}}');
-                                // console.log(htmlcode);
-                                $('#table{{$scheme->id_scheme}}').append(htmlcode);
-                            </script>
+
 
                             <div class="card-body">
 {{--                                <h5 class="card-title">{{$scheme->name_scheme}}</h5>--}}
@@ -156,7 +151,6 @@
 
                 <script class="temp" defer>
                     scale(-5)
-
                     $('.temp').remove()
                 </script>
                 <style>

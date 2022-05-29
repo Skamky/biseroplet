@@ -87,14 +87,10 @@
     <div id="table_for_print">
         <div class="table-responsive">
             <table class="table-borderless   table-responsive ">
+                {!! $scheme->code_scheme!!}
             </table>
         </div>
     </div>
-    <div id="temp" class="temp">
-        {{$scheme->code_scheme}}
-    </div>
-
-
 
     <div id="divStyles">
         <style id="stPalitra">
@@ -104,13 +100,7 @@
         </style>
     <style id="stTransform"> </style>
     </div>
-    <script class="temp">
-        let htmlcode =$('#temp').text();
-        console.log('Проверка');
-        console.log(htmlcode);
-        $('table').append(htmlcode);
-        $('.temp').remove()
-    </script>
+
     <script>
         $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
         $( "#btndelete" ).click(selectDelete);
