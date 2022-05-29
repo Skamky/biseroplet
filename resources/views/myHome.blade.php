@@ -115,24 +115,7 @@
     </div>
 </div>
 
-<script>
 
-    $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
-
-    $( "#btndelete" ).click(
-        function selectPalitra ( event )
-        {
-            console.log("select")
-            $( "article,#btndelete").removeClass('selectColor')
-            $("article>button").removeClass('active').text('Выбрать')
-
-            console.log( $(this));
-             $(this).addClass('selectColor');
-            $(".stroke").removeClass().addClass("card-card-header p-2 stroke")
-        }
-    );
-
-</script>
 
 <div id="divStyles">
 <style id="stPalitra">
@@ -140,4 +123,8 @@
 </style>
 <style id="stTransform"> </style>
 </div>
+<script>
+    $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
+    $( "#btndelete" ).click(selectDelete);
+</script>
 @endsection

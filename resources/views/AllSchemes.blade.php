@@ -20,12 +20,14 @@
     </div>
 {{ $schemes->links() }}
 
-<script class="temp" defer>
-    scale(-5)
-    $('.temp').remove()
-</script>
+    <script class="temp" defer>
+        document.addEventListener("DOMContentLoaded", () => {
+            scale(-5)
+            $('.temp').remove()
+        });
+    </script>
 
-<script>
+<script defer>
     function like(schemaId,value,thisIdElem,idContainer) {
         thisIdElem=$(thisIdElem);
         $(idContainer).html('<button class="btn btn-primary" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>🥱 Пожалуйста подождите...</button>')
