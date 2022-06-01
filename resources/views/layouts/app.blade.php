@@ -14,25 +14,29 @@
     <!--    jqury-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <!--мой CSS-->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <!--мой JS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    <!--мой JS-->
     <script  src="{{ asset('js/script.js') }}"></script>
     <script  src="{{asset('js/tableScript.js')}}"></script>
     <link rel="shortcut icon"  type="image/x-icon">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Caveat:wght@400;500;600;700&family=Neucha&display=swap');
+    </style>
+
 
     <!-- Styles -->
 {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+<!--мой CSS-->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body >
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <nav class="navbar navbar-expand-md  navbar-dark shadow-sm sticky-top"  style="background-color: #FD6E0D;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{asset('favicon.ico')}}" alt="" width="30" height="24" class="d-inline-block align-text-top">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -53,6 +57,9 @@
                         <li class="nav-item">
                         <a class="nav-link" href="/profile/{{ Auth::user()->name }}">Ваши схемы</a>
                         </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('favorites')}}">Избранные</a>
+                            </li>
                         @endauth
                         <li class="nav-item">
                             <a class="nav-link" href="/search/last">{{__('Search')}}</a>
@@ -118,8 +125,7 @@
             @yield('content')
         </main>
         <!-- Вариант 1: Bootstrap в связке с Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    </div>
 
 
 </body>

@@ -1,5 +1,5 @@
 <div class="col animated moving" id="column{{$scheme->id_scheme}}">
-    <div class="card">
+    <div class="card border-success ">
         {{--                <img src="..." class="card-img-top" alt="">--}}
 
             <div class="accordion accordion-flush" id="accordion{{$scheme->id_scheme}}">
