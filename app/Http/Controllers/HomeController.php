@@ -172,14 +172,45 @@ class HomeController extends Controller
     }
     public function deleteScheme($id_scheme)
     {
-        Scheme::where('login',Auth::user()->name)->where('id_scheme',$id_scheme)->delete();
+        Scheme::where('login', Auth::user()->name)->where('id_scheme', $id_scheme)->delete();
 
-      //  $this->alerts['type'][]='success';
-      //  $this->alerts['message'][]="Схема Успешно Удалена!";
+        //  $this->alerts['type'][]='success';
+        //  $this->alerts['message'][]="Схема Успешно Удалена!";
         session()->push('type', 'success');
         session()->push('message', '💥 Схема успешно удалена!');
         return redirect('/profile/');
+    }
 
+    public function favoritesSchemes()
+    {   $likedSchemes=Rating::where('id_user',Auth::user()->id)->where('value',1)->pluck('id_scheme');
+        //dd($likedSchemes);
+        $schemes=Scheme::whereIn('id_scheme',$likedSchemes)
+            ->where('public',true)
+            ->latest()
+            ->paginate();
+        foreach ($schemes as $scheme)
+        {
+            $scheme->code_scheme=preg_replace('/color/',"id".$scheme->id_scheme."color",$scheme->code_scheme);
+            $scheme->color_scheme=explode('#',$scheme->color_scheme) ;
+            //тут название категории
+            $scheme->category=Category::where('id',$scheme->category)->value('title');
+
+            $scheme->likes=Rating::where('id_scheme',$scheme->id_scheme)->where('value',1)->count();
+            $scheme->dislikes=Rating::where('id_scheme',$scheme->id_scheme)->where('value',-1)->count();
+
+            $scheme->liked=false;
+            $scheme->disliked=false;
+
+            if(Rating::where('id_scheme',$scheme->id_scheme)->where('value',1)->where('id_user',Auth::user()->id)->exists())
+                $scheme->liked=true;
+
+        }
+
+        $alerts['type']=session()->pull('type',null);
+        $alerts['message']=session()->pull('message',null);
+
+        return view('favorites',['schemes'=>$schemes,'alerts'=>$alerts]);
     }
 }
+
 

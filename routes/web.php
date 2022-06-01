@@ -25,8 +25,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile/{ProfileName}','HomeController@userProfile')->name('profile');
 Route::get('/profile', 'HomeController@userProfileRedirect' );
-
 Route::get('/profile/{ProfileName}/{schemeId}','HomeController@loadScheme')->name('loadScheme');
+Route::get('/favorites','HomeController@favoritesSchemes')->name('favorites');
 Route::get('/delete/{schemeId}','HomeController@deleteScheme')->name('deleteScheme');
 
 Route::get('/search/last','IndexController@searchLatest');
