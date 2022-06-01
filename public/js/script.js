@@ -164,7 +164,7 @@ function hideShowPalitra()
 
 function raschet()
 {
-    console.log('Колличество цветов '+CountColor);
+    console.log('Количество цветов '+CountColor);
     let html='<div class="alert alert-light  alert-dismissible fade show" role="alert">';
     for (let i = 1; i <=CountColor ; i++) {
         html+='<div class="px-5 color'+i+'"> <p class="bg-light"> Цвет '+i+': '+ $('td>.color'+i).length+' шт</p></div>' ;

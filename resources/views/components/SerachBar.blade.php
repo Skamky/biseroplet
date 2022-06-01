@@ -37,7 +37,7 @@
     <input name="search"  type="search" placeholder="Название или описание схемы" value="{{optional($request)->search}}" class="form-control">
 
 
-    <label> Колличество записей на странице </label>
+    <label> Количество записей на странице </label>
         <input type="number" min="4" value="{{optional($request)->countOnPage}}" name="countOnPage" class="form-control" placeholder="По умолчанию или введите значение">
     <button type="submit" class="btn btn-outline-success"> Поиск</button>
     @csrf

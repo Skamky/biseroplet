@@ -15,7 +15,7 @@
             <button class="btn btn-outline-secondary" onclick="addColumnToStart()" title="Добавить столбец в начале">◀</button>
             <button class="btn btn-outline-secondary" onclick="addColumnToEnd()" title="Добавить стобец в конце">▶</button>
         </div>
-        <button class="btn btn-lg btn-outline-primary" onclick="raschet()">Колличество цветов</button>
+        <button class="btn btn-lg btn-outline-primary" onclick="raschet()">Количество цветов</button>
 
     </div>
     <hr>
@@ -60,7 +60,7 @@
         <hr>
     @endauth
 
-    <div  id="divFullPalitra" class="rounted shadow bottom-0 end-0 mx-1 card position-fixed h-50">
+    <div  id="divFullPalitra" class="rounted shadow bottom-0 end-0 mx-1 card position-fixed z-index-1 h-50" style="z-index: 100">
         <h5 class="card-card-header p-2 stroke" onclick="hideShowPalitra()">Палитра</h5>
 
         <div class="card-body overflow-auto " id="divPalitra">
@@ -78,7 +78,7 @@
             @endforeach
             <script>
                 CountColor={{$colorsCount}};
-                console.log('Колличество цветов')
+                console.log('Количество цветов')
                 console.log(CountColor)
             </script>
         </div>
