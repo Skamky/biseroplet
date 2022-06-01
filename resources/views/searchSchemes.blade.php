@@ -18,7 +18,9 @@
         @include('components.cardScheme')
     @endforeach
     </div>
-{{ $schemes->links() }}
+    <nav class="my-3">
+        {{ $schemes->links() }}
+    </nav>
 
     <script class="temp" defer>
         document.addEventListener("DOMContentLoaded", () => {

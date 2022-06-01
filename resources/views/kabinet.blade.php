@@ -21,7 +21,8 @@
         </div>
     </div>
 
-<h1>Профиль</h1>
+    <h1>Профиль</h1>
+    <hr>
     <script class="temp">
         let htmlcode="";
     </script>
@@ -147,8 +148,10 @@
 
             </script>
     @endif
+            </div>
+            <nav class="my-3">
                 {{ $schemes->links() }}
-
+            </nav>
                 <script class="temp" defer>
                     scale(-5)
                     $('.temp').remove()

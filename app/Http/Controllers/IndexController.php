@@ -57,18 +57,18 @@ class IndexController extends Controller
     {
       //$this->home($request->width_sc,$request->height_sc,$request->color_sc);
        $color = $request->color_sc;
-       $color= strtr($color,'#','Z');
+       $color= strtr($color,'#','K');
         return redirect("/generate/{$color}/{$request->width_sc}/{$request->height_sc}");
     }
-        public function home($color,$w,$h)
+        public function newSchema($color, $w, $h)
     {
         $categories= Category::all();
-        $color= strtr($color,'Z','#');
+        $color= strtr($color,'K','#');
 
         $alerts['type']=session()->pull('type',null);
         $alerts['message']=session()->pull('message',null);
 
-        return view('myHome',["w"=>$w,"h"=>$h,"color"=>$color,'alerts'=>$alerts,'categories'=> $categories]);
+        return view('newScheme',["w"=>$w,"h"=>$h,"color"=>$color,'alerts'=>$alerts,'categories'=> $categories]);
     }
     public function searchLatest()
     {
@@ -109,7 +109,7 @@ class IndexController extends Controller
         $request->orderBy1 ="created_at";
         $request->orderBy2 ="desc";
 
-        return view('AllSchemes',['categories'=>$categories,'schemes'=>$schemes,'dataListUsers'=>$dataListUsers,'alerts'=>$alerts,'request'=>$request]);
+        return view('searchSchemes',['categories'=>$categories,'schemes'=>$schemes,'dataListUsers'=>$dataListUsers,'alerts'=>$alerts,'request'=>$request]);
     }
 
     public  function search(Request $request)
@@ -203,6 +203,6 @@ class IndexController extends Controller
         $alerts['type']=session()->pull('type',null);
         $alerts['message']=session()->pull('message',null);
 
-        return view('AllSchemes',['categories'=>$categories,'dataListUsers'=>$dataListUsers,'schemes'=>$schemes,'alerts'=>$alerts,'request'=>$request]);
+        return view('searchSchemes',['categories'=>$categories,'dataListUsers'=>$dataListUsers,'schemes'=>$schemes,'alerts'=>$alerts,'request'=>$request]);
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,16 +17,15 @@ use App\Http\Controllers\IndexController;
 Route::get('/', 'IndexController@welcome');
 
 Route::get('/create','IndexController@createNewScheme');
-
-Route::get('/generate/{color}/{w}/{h}','IndexController@home');
-
+Route::get('/generate/{color}/{w}/{h}','IndexController@newSchema');
 Route::post('/generate','IndexController@generate');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profile','HomeController@userProfileRedirect');
 Route::get('/profile/{ProfileName}','HomeController@userProfile')->name('profile');
+Route::get('/profile', 'HomeController@userProfileRedirect' );
+
 Route::get('/profile/{ProfileName}/{schemeId}','HomeController@loadScheme')->name('loadScheme');
 Route::get('/delete/{schemeId}','HomeController@deleteScheme')->name('deleteScheme');
 
