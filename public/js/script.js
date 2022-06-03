@@ -3,7 +3,7 @@ let CountColor = 1;
 //покраска эллемента
 function paint( event )
 {
-    console.log('paint')
+
     let orentation;
     if ($(this).hasClass("ovalVert")) {
         orentation = "ovalVert ";
@@ -11,25 +11,44 @@ function paint( event )
     else {
         orentation = "ovalHoriz ";
     }
+    let delAction = $('input[name=radioDelete]:checked').val();
+    console.log(delAction)
+    switch (delAction) {
+        case "element":
+            $(this).css('opacity',0 );
+            //$(this).toggleClass('opacity-0');
+            $(this).removeClass().addClass(orentation);
+            console.log('ELEMENT')
+            break;
+        case "row":
+            $(this).parent().parent().toggleClass('willBeDeleted');
+            console.log('ROW')
+            break;
+        case "column":
+            console.log('COLUMN')
 
-    if($("#btndelete").hasClass('selectColor'))
-    {
-        $(this).css('opacity',0 );
-        $(this).removeClass().addClass(orentation);
+            let th_num = $(this).parent().index()-1;
+            $('tbody tr').each(function(){
+                $(this).children('td').each(function(td_num){
+                    if(td_num===th_num){
+                        $(this).toggleClass('willBeDeleted');
+                    }
+                })
+            })
+
+
+            break;
+        default:
+            let color = $(".selectColor").prop("id");
+            //console.log(color);
+
+            $(this).removeClass().addClass(orentation+color);
+
+            //$(this).css('background', color);
+            $(this).css('opacity',1)
+
+            console.log('PAINT');
     }
-    else
-    {
-        let color = $(".selectColor").prop("id");
-        //console.log(color);
-
-        $(this).removeClass().addClass(orentation+color);
-
-        //$(this).css('background', color);
-        $(this).css('opacity',1)
-    }
-    // console.log( $(this).prop('className'));
-    // $(this).addClass('active');
-    // console.log( $(this).prop('className'));
 }
 
 function addColor()
@@ -136,6 +155,7 @@ function scale(increase)
 
 function ReadTable()
 {
+    Otmena(true);
     let colors="";
     console.log($('table').html())
 
@@ -175,14 +195,7 @@ function raschet()
 function CallbackToConsole( returnedData ) {
     console.log(returnedData)
 }
-function textToTable(idTextContainer,idTableContainer) {
 
-    console.log('Загрузка схемы '+idTextContainer+'\t'+idTableContainer);
-        htmlcode =$(idTextContainer).text();
-
-        $(idTableContainer).append(htmlcode);
-
-}
 
 function peremWidth(idColumn) {
     if($(idColumn).outerWidth()==$(idColumn).parent().outerWidth()){
@@ -192,5 +205,47 @@ function peremWidth(idColumn) {
     else {
         $(idColumn).outerWidth('100%')
         console.log('Ширина 100')
+    }
+}
+
+function Otmena(otmena=false)
+{
+    if($('.willBeDeleted').length===0)
+    {
+        otmena=true
+    }
+    //let otmena=false;
+    if(!otmena)
+    {
+        otmena =  confirm('Отменить изменения?');
+    }
+    if(otmena)
+    {
+        $('.willBeDeleted').removeClass('willBeDeleted');
+        $('table').removeClass('border border-danger');
+        $('.deleteBar').addClass('d-none');
+        $('input[name=radioDelete]:checked').prop('checked', false);
+    }
+
+}
+function radioDeleteMouseDown(radioId)
+{
+    let radio =document.getElementById(radioId)
+    radio.isChecked=radio.checked;
+}
+function radioDeleteClick()
+{
+    this.checked=!this.isChecked;
+    console.log($(this).prop('checked'))
+    console.log(this)
+    if($(this).prop('checked')){
+        $('table').addClass('border border-danger');
+        $('.deleteBar').removeClass('d-none')
+    }
+    else {
+        $('table').removeClass('border border-danger');
+        $('.deleteBar').addClass('d-none');
+
+
     }
 }

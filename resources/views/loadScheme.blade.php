@@ -2,21 +2,36 @@
 
 @section('content')
     {{--Панель инструментов--}}
-    <div>
-        <h5>Инструменты</h5>
+    <h5>Инструменты</h5>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div id="div Tools" class="btn-group btn-group-lg" role="group">
-            <button title="Увеличить схему" class="btn btn-outline-secondary" onclick="scale(1)">+</button>
-            <button title="Уменьшить схему" class="btn btn-outline-secondary" onclick="scale(-1)">-</button>
-            <button class="btn btn-outline-primary" onclick="printSchema()" title="Экспорт в PDF или печать">Экспорт</button>
+            <button title="Увеличить схему" class="btn btn-outline-info" onclick="scale(1)"><i class="bi bi-zoom-in"></i></button>
+            <button title="Уменьшить схему" class="btn btn-outline-info" onclick="scale(-1)"><i class="bi bi-zoom-out"></i></button>
+            <button class="btn btn-outline-info" onclick="printSchema()" title="Экспорт в PDF или печать"><i class="bi bi-file-pdf-fill" aria-hidden="true"></i></button>
         </div>
-        <div  class="btn-group btn-group-lg" role="group">
-            <button class="btn btn-outline-secondary" onclick="addRowToStart()" title="Добавить строку сверху">🔼</button>
-            <button class="btn btn-outline-secondary" onclick="addRowToEnd()" title="Добавить строку снизу">🔽</button>
-            <button class="btn btn-outline-secondary" onclick="addColumnToStart()" title="Добавить столбец в начале">◀</button>
-            <button class="btn btn-outline-secondary" onclick="addColumnToEnd()" title="Добавить стобец в конце">▶</button>
-        </div>
-        <button class="btn btn-lg btn-outline-primary" onclick="raschet()">Количество цветов</button>
+        <button class="btn btn-lg btn-outline-info" onclick="raschet()" title="Количество цветов" aria-label="Количество цветов"><i class="bi bi-calculator" aria-hidden="true"></i></button>
 
+        <div  class="btn-group btn-group-lg" role="group">
+            <button class="btn btn-outline-info" onclick="addRowToStart()" title="Добавить строку сверху"><i class="bi bi-box-arrow-up"></i></button>
+            <button class="btn btn-outline-info" onclick="addRowToEnd()" title="Добавить строку снизу"><i class="bi bi-box-arrow-down"></i></button>
+            <button class="btn btn-outline-info" onclick="addColumnToStart()" title="Добавить столбец в начале"><i class="bi bi-box-arrow-left"></i></button>
+            <button class="btn btn-outline-info" onclick="addColumnToEnd()" title="Добавить стобец в конце"><i class="bi bi-box-arrow-right"></i></button>
+        </div>
+        <div class="btn-group ">
+            <input type="radio"  class="btn-check" name="radioDelete" id="deleteElem"  value="element" autocomplete="off"  >
+            <label class="btn btn-outline-danger" for="deleteElem"  onmousedown="radioDeleteMouseDown('deleteElem')">Удалить элемнт</label>
+
+            <input type="radio"  class="btn-check" name="radioDelete" id="deleteRow"   value="row" autocomplete="off"   >
+            <label class="btn btn-outline-danger" for="deleteRow"  onmousedown="radioDeleteMouseDown('deleteRow')">Удалить строку </label>
+
+            <input type="radio" class="btn-check" name="radioDelete" id="deleteColumn" value="column" autocomplete="off"   >
+            <label class="btn btn-outline-danger" for="deleteColumn" onmousedown="radioDeleteMouseDown('deleteColumn')">Удалить столбец</label>
+        </div>
+        <div class="btn-group d-none deleteBar">
+            <button class="btn btn-primary" onclick="if(confirm('Удалить выбранные элементы? '))   $('.willBeDeleted').remove();">
+                Применить</button>
+            <button class="btn btn-secondary" onclick="Otmena()" >Отменить</button>
+        </div>
     </div>
     <hr>
     @auth
@@ -103,7 +118,9 @@
 
     <script>
         $('tbody').on("click",".ovalHoriz,.ovalVert",paint)
-        $( "#btndelete" ).click(selectDelete);
+        // $( "#btndelete" ).click(selectDelete);
+        $('input[name=radioDelete]').click(radioDeleteClick)
+        $('input[name=radioDelete]').mousedown(radioDeleteMouseDown)
     </script>
 
 @endsection

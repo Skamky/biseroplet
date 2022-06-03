@@ -15,6 +15,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    <!--мой JS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
     <script  src="{{ asset('js/script.js') }}"></script>
     <script  src="{{asset('js/tableScript.js')}}"></script>
     <link rel="shortcut icon"  type="image/x-icon">
@@ -108,7 +110,7 @@
                 </div>
             </div>
         </nav>
-        <div class="alertsContainer">
+        <div class="alertsContainer sticky-top">
         @isset($alerts['message'])
             @for($i=0;$i<count($alerts['message']);$i++ )
                 <div class="alert alert-{{$alerts['type'][$i]}} alert-dismissible fade show" role="alert">
