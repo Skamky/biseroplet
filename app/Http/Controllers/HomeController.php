@@ -49,7 +49,7 @@ class HomeController extends Controller
            return redirect()->back();
        }
             if($ProfileName==Auth::user()->name){
-                $schemes=Scheme::where('login',$ProfileName )->paginate(10);
+                $schemes=Scheme::where('login',$ProfileName )->latest('updated_at')->paginate(10);
                 if  (Scheme::where('login',$ProfileName )->doesntExist()) {
                     session()->push('type', 'warning');
                     session()->push('message', '🤔 Это ваш профиль и он пуст.');
@@ -58,7 +58,7 @@ class HomeController extends Controller
                 }
             }
             else{
-                $schemes=Scheme::where('login',$ProfileName )->where('public',true)->paginate(10);
+                $schemes=Scheme::where('login',$ProfileName )->where('public',true)->latest()->paginate(10);
             }
 
         foreach ($schemes as $scheme)
