@@ -109,11 +109,18 @@ class HomeController extends Controller
 
     public function saveScheme(Request $request)
     {
+
         $str= $request->code_scheme;
         $str= preg_replace ('/(width.*?; )|(height.*?;)/','',$str);
         $str= preg_replace ('/style=""/',' ',$str);
         $str= preg_replace ('/\s{2,}|\n|\f|\v/','',$str);
+        $validatedData = $request->validate([
+            'name_scheme' => ['required'],
+            'category' => ['required'],
+            'color_scheme' => ['required'],
+            'code_scheme' => ['required'],
 
+        ]);
         if($request->newScheme)
         {
             $id_scheme= (int)$request->id_scheme;

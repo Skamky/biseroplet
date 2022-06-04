@@ -111,6 +111,18 @@
             </div>
         </nav>
         <div class="alertsContainer sticky-top">
+            {{--генерация исключений--}}
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
         @isset($alerts['message'])
             @for($i=0;$i<count($alerts['message']);$i++ )
                 <div class="alert alert-{{$alerts['type'][$i]}} alert-dismissible fade show" role="alert">
