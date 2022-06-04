@@ -157,7 +157,7 @@ function ReadTable()
 {
     Otmena(true);
     let colors="";
-    console.log($('table').html())
+    console.log($('#table_schema').html())
 
     console.log("цвета");
     $('.inputColor').each(function( index )
@@ -166,7 +166,7 @@ function ReadTable()
         console.log( index + ": " + $( this ).val());
     });
     console.log(colors);
-    $('#code_scheme').val($('table').html());
+    $('#code_scheme').val($('#table_schema').html());
     $('#color_scheme').val(colors.slice(1));
 }
 function hideShowPalitra()

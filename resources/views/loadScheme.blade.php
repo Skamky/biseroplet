@@ -178,7 +178,7 @@
     {{--табличка--}}
     <div id="table_for_print">
         <div class="table-responsive">
-            <table class="table-borderless   table-responsive ">
+            <table id="table_schema" class="table-borderless   table-responsive ">
                 {!! $scheme->code_scheme!!}
             </table>
         </div>

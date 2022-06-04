@@ -50,17 +50,17 @@ class AjaxController extends Controller
     }
     public function redAccess(Request $request)
     {
-        if ($request->public){
+        if ($request->public=='true'){
             Scheme::where('login',Auth::user()->name)->where('id_scheme',$request->id_scheme)
                 ->update
                 (['public'=>true]);
-           echo ('ℹ  Схема доступна для других пользователй.');
+           echo ($request->public.'ℹ  Схема доступна для других пользователй.');
         }
         else{
             Scheme::where('login',Auth::user()->name)->where('id_scheme',$request->id_scheme)
                 ->update
                 (['public'=>false]);
-            echo( 'ℹ  Схема изъята из общего доступа.');
+            echo($request->public. 'ℹ  Схема изъята из общего доступа.');
         }
 
     }
