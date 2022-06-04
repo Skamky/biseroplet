@@ -13,7 +13,7 @@
 .selectColor{ border:3px groove black;}
 
 .stroke{
-     text-shadow: white 0 0 2px;
+     text-shadow: white 0 0 5px;
  }
 
 *{font-family: 'Neucha', "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji",cursive;}

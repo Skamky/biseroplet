@@ -72,9 +72,12 @@ function changeColor( num )
     // console.log(this.id);
     console.log(newcolor);
 
-    let htmlstyle ="."+idpalitra+"{background-color:"+newcolor+";}";
+    let htmlstyle ="."+idpalitra+"{background-color:"+newcolor+";} .selectColor{ border:3px groove "+newcolor+";}";
     // $('#css'+idpalitra).empty();
     $('#stPalitra').append(htmlstyle);
+    $("#headingOne").css( 'border',"5px solid "+newcolor)
+    $("#divFullPalitra").css( 'border',"5px solid "+newcolor)
+    $('hr').css('color',newcolor)
 
     // $('#css'+idpalitra).replaceWith(temp);
     console.log('#css'+idpalitra);
@@ -88,7 +91,14 @@ function selectPalitra (num)
 
     $("#color"+num).addClass('selectColor')
     $('.selectColor>button').addClass('active').text("Выбран")
-    $(".stroke").removeClass().addClass("card-card-header p-2 stroke color"+num)
+
+    let color=  $('.selectColor>input').val()
+    let htmlstyle =".selectColor{ border:3px groove "+color+";}";
+    // $('#css'+idpalitra).empty();
+    $('#stPalitra').append(htmlstyle);
+    $("#headingOne").css( 'border',"5px solid "+color)
+    $("#divFullPalitra").css( 'border',"5px solid "+color)
+    $('hr').css('color',color)
     // console.log( $(this).prop('className'));
     // console.log( $(this).val());
 }
@@ -101,6 +111,7 @@ function selectDelete ( event )
     console.log( $(this));
     $(this).addClass('selectColor');
     $(".stroke").removeClass().addClass("card-card-header p-2 stroke")
+
 }
 function printSchema()
 {
@@ -171,15 +182,15 @@ function ReadTable()
 }
 function hideShowPalitra()
 {
-    if( $("#divPalitra").hasClass('collapse'))
-    {
-        $("#divPalitra").removeClass('collapse');
-        $("#divFullPalitra").addClass('h-50');
-    }
-    else {
-        $("#divPalitra").addClass('collapse');
-        $("#divFullPalitra").removeClass('h-50');
-    }
+    // if( $("#divPalitra").hasClass('collapse'))
+    // {
+    //     $("#divPalitra").removeClass('collapse');
+    //     $("#divFullPalitra").addClass('h-50');
+    // }
+    // else {
+    //     $("#divPalitra").addClass('collapse');
+    //     $("#divFullPalitra").removeClass('h-50');
+    // }
 }
 
 function raschet()

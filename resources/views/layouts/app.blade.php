@@ -35,7 +35,7 @@
 </head>
 <body >
     <div id="app">
-        <nav class="navbar navbar-expand-md  navbar-dark shadow-sm sticky-top"  style="background-color: #FD6E0D;">
+        <nav class="navbar navbar-expand-md  navbar-dark shadow-sm sticky-top"  style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.9) 50%);;filter: drop-shadow(0px -25px 30px #00FFFA);">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{asset('favicon.ico')}}" alt="" width="30" height="24" class="d-inline-block align-text-top">

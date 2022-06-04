@@ -146,10 +146,15 @@
     <hr>
 @endauth
 
-<div  id="divFullPalitra" class="rounted shadow bottom-0 end-0 mx-1 card position-fixed h-50" style="z-index: 100">
-<h5 class="card-card-header p-2 stroke" onclick="hideShowPalitra()" title="Нажми что бы скрыть">Палитра</h5>
-
-    <div class="card-body overflow-auto " id="divPalitra">
+<div  id="divFullPalitra" class="rounted shadow bottom-0 end-0 mx-1 card position-fixed" style="z-index: 100">
+{{--<h5 class="card-card-header p-2 stroke"  title="Нажми что бы скрыть">Палитра</h5>--}}
+    <h2 class="m-0" id="headingOne">
+                <button class="card-card-header p-2 stroke accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#divPalitra" aria-expanded="true" aria-controls="collapseOne">
+            <h5 class="card-header p2 "> Палитра</h5>
+        </button>
+    </h2>
+    <div id="divPalitra" class="card-body collapse show overflow-auto" aria-labelledby="headingOne" style="max-height:50vh " >
+{{--    <div class="card-body overflow-auto " id="divPalitra">--}}
         Добавить новый цвет <button onclick="addColor()">➕</button>
 {{--        <br>--}}
 {{--        Удалить элемент <button id="btndelete"  >❌</button>--}}
@@ -160,7 +165,7 @@
             <button type="button" onclick="selectPalitra(1)" class="btn btn-outline-secondary active">Выбран</button>
             <input type="color" title="Изменить этот цвет" class=" inputColor form-control form-control-color " value="{{$color}}"  onchange="changeColor(1)">
         </article>
-
+{{--    </div>--}}
     </div>
 </div>
 {{--табличка--}}
