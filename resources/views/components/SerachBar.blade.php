@@ -3,10 +3,10 @@
     <div class="input-group">
         <div class="btn-group">
             <input type="radio" value="asc" {{ "asc" == optional($request)->orderBy2 ? ' checked' : '' }} class="btn-check" name="orderBy2" id="option1" autocomplete="off" title="Сортировка по возростанию"   >
-            <label class="btn btn-outline-primary" for="option1" title="Сортировка по возростанию">⬆</label>
+            <label class="btn btn-outline-primary" for="option1" title="Сортировка по возростанию"><i class="bi bi-sort-alpha-up"></i></label>
 
             <input type="radio" value="desc" {{ "desc" == optional($request)->orderBy2 ? ' checked' : '' }} class="btn-check" name="orderBy2" id="option2" autocomplete="off" title="Сортировка по убыванию">
-            <label class="btn btn-outline-primary" for="option2" title="Сортировка по убыванию">⬇</label>
+            <label class="btn btn-outline-primary" for="option2" title="Сортировка по убыванию"><i class="bi bi-sort-alpha-down-alt"></i></label>
         </div>
         <select name="orderBy1" class="form-select" aria-label="Default select example">
                 <option value="0" >По умолчанию</option>

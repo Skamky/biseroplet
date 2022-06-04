@@ -1,8 +1,85 @@
 @extends('layouts.app')
 
 @section('content')
+    <!-- Modal -->
+    <div class="modal fade" id="HelpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Инструкция</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-borderless  table-hover">
+                        <tr>
+                            <td> <button title="Увеличить схему" class="btn btn-lg btn-outline-info"><i class="bi bi-zoom-in"></i></button></td>
+                            <td>Увеличить схему</td>
+                        </tr>
+                        <tr>
+                            <td><button title="Уменьшить схему" class="btn btn-lg btn-outline-info"><i class="bi bi-zoom-out"></i></button></td>
+                            <td>Уменьшить схему</td>
+                        </tr>
+                        <tr>
+                            <td> <button class="btn btn-lg btn-outline-info" title="Экспорт в PDF или печать"><i class="bi bi-file-pdf-fill" aria-hidden="true"></i></button></td>
+                            <td>Экспорт в PDF или печать</td></tr>
+                        <tr>
+                            <td> <button class="btn btn-lg btn-outline-info"  title="Количество цветов" aria-label="Количество цветов"><i class="bi bi-calculator" aria-hidden="true"></i></button></td>
+                            <td>Расчёт количества затрачиваемых на схему материалов </td></tr>
+
+                        <tr>
+                            <td> <button class="btn btn-lg btn-outline-info"  title="Добавить строку сверху"><i class="bi bi-box-arrow-up"></i></button></td>
+                            <td>Добавить строку сверху</td></tr>
+
+                        <tr>
+                            <td> <button class="btn btn-lg btn-outline-info" title="Добавить строку снизу"><i class="bi bi-box-arrow-down"></i></button></td>
+                            <td>Добавить строку снизу</td></tr>
+
+                        <tr>
+                            <td> <button class="btn btn-lg btn-outline-info"  title="Добавить столбец в начале"><i class="bi bi-box-arrow-left"></i></button></td>
+                            <td>Добавить столбец в начале</td></tr>
+
+                        <tr>
+                            <td> <button class="btn btn-lg btn-outline-info"  title="Добавить столбец в конце"><i class="bi bi-box-arrow-right"></i></button></td>
+                            <td>Добавить столбец в конце</td></tr>
+
+                        <tr>
+                            <td> <input type="radio"  class="btn-check"  id="deleteElem-"  value="element" autocomplete="off"  >
+                                <label class="btn btn-lg btn-outline-danger" for="deleteElem-" >Удалить элемнт</label>
+                            </td>
+                            <td>Режим удаления одиночных элементов*</td></tr>
+
+                        <tr>
+                            <td> <input type="radio"  class="btn-check" id="deleteRow--"   value="row" autocomplete="off"   >
+                                <label class="btn btn-lg btn-outline-danger" for="deleteRow--"  >Удалить строку </label>
+                            </td>
+                            <td>Режим удаления строк**</td></tr>
+
+                        <tr>
+                            <td> <input type="radio" class="btn-check"  id="deleteColumn--" value="column" autocomplete="off"   >
+                                <label class="btn btn-lg btn-outline-danger" for="deleteColumn--">Удалить столбец</label>
+                            </td>
+                            <td>Режим удаления столбцов**</td></tr>
+                    </table>
+                    <hr>
+                    <p>*Для восстановления удалённого элемента необходимо отключить режим удаления (<kbd>Отмена</kbd>) и кликнуть на место удалённого элемента</p>
+                    <p>**Для удаления строк или столбцов необходимо сначала активировать соответствующий режим (<kbd>Удалить строку</kbd> или <kbd>Удалить столбец</kbd>).
+                        Выделить элементы содержащиеся в столбцах/строках И нажать кнопку <kbd>Применить</kbd>   </p>
+                    <p>Для снятия выделения со строки/столбца необходимо повторно нажать на соответствующий элемент при активном режиме удаления</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="bi bi-check-lg"></i> Oк</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{--Панель инструментов--}}
-    <h5>Инструменты</h5>
+    <h5>Инструменты
+        <button type="button" class="btn btn-link   btn-lg" data-bs-toggle="modal" data-bs-target="#HelpModal">
+            <i class="bi bi-question-circle"></i>
+        </button>
+    </h5>
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div id="div Tools" class="btn-group btn-group-lg" role="group">
             <button title="Увеличить схему" class="btn btn-outline-info" onclick="scale(1)"><i class="bi bi-zoom-in"></i></button>
