@@ -38,7 +38,7 @@
         <nav class="navbar navbar-expand-md  navbar-dark shadow-sm sticky-top"  style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.9) 50%);;filter: drop-shadow(0px -25px 30px #00FFFA);">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{asset('favicon.ico')}}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    <img src="{{asset('favicon.ico')}}" alt="" height="24" class="d-inline-block align-text-top">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
