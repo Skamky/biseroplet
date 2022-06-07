@@ -152,30 +152,39 @@
         <hr>
     @endauth
 
-    <div  id="divFullPalitra" class="animated rounted shadow bottom-0 end-0 mx-1 card position-fixed z-index-1 h-50" style="z-index: 100">
-        <h5 class="card-card-header  p-2 stroke" onclick="hideShowPalitra()" title="нажми что бы скрыть">Палитра</h5>
-
-        <div class="card-body overflow-auto " id="divPalitra">
+    <div  id="divFullPalitra" class="rounted shadow bottom-0 end-0 mx-1 card position-fixed" style="z-index: 100">
+        {{--<h5 class="card-card-header p-2 stroke"  title="Нажми что бы скрыть">Палитра</h5>--}}
+        <h2 class="m-0" id="headingOne">
+            <button class="card-card-header p-2 stroke accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#divPalitra" aria-expanded="true" aria-controls="collapseOne">
+                <h5 class="card-header p2 "> Палитра</h5>
+            </button>
+        </h2>
+        <div id="divPalitra" class="card-body collapse show overflow-auto" aria-labelledby="headingOne" style="max-height:50vh " >
+            {{--    <div class="card-body overflow-auto " id="divPalitra">--}}
             Добавить новый цвет <button onclick="addColor()">➕</button>
-            <br>
-            Удалить элемент <button id="btndelete" class="selectColor" >❌</button>
+            {{--        <br>--}}
+            {{--        Удалить элемент <button id="btndelete"  >❌</button>--}}
+
             @foreach($colors as $color)
-            <hr>
-{{--             Цвет {{$loop->iteration}}:<input type="color" id="color{{$loop->iteration}}" class="inputColor form-control form-control-color selectColor" value="#{{$color}}" onclick="selectPalitra({{$loop->iteration}})" onchange="changeColor({{$loop->iteration}})">--}}
+                <hr>
+                {{--             Цвет {{$loop->iteration}}:<input type="color" id="color{{$loop->iteration}}" class="inputColor form-control form-control-color selectColor" value="#{{$color}}" onclick="selectPalitra({{$loop->iteration}})" onchange="changeColor({{$loop->iteration}})">--}}
                 <article id="color{{$loop->iteration}}" class=" d-flex justify-content-between align-items-center">
                     Цвет {{$colorsCount=$loop->iteration}}:
                     <button type="button" onclick="selectPalitra({{$loop->iteration}})" class="btn btn-outline-secondary">Выбрать</button>
                     <input type="color"  class=" inputColor form-control form-control-color " value="#{{$color}}" title="Изменить этот цвет" onchange="changeColor({{$loop->iteration}})">
                 </article>
             @endforeach
-            <script>
-                CountColor={{$colorsCount}};
-                console.log('Количество цветов')
-                console.log(CountColor)
-            </script>
+            {{--    </div>--}}
         </div>
     </div>
+    <script>
+        CountColor={{$colorsCount}};
+        console.log('Количество цветов')
+        console.log(CountColor)
+    </script>
     {{--табличка--}}
+
+
     <div id="table_for_print">
         <div class="table-responsive">
             <table id="table_schema" class="table-borderless   table-responsive ">
