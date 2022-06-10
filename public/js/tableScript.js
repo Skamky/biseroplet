@@ -1,6 +1,5 @@
 function addRowToStart()
 {
-
     let maxCountRows =Number($('tr').last().prev().find('th').html());
 
     let lastRow =$('tr').last().prev()
@@ -34,8 +33,8 @@ function addRowToStart()
         row2+=html2;
     }
 
-    $('tbody').prepend('<tr>'+row1+'</tr>');
-    $('tbody').prepend('<tr>'+row2+'</tr>');
+    $('#table_schema tbody').prepend('<tr>'+row1+'</tr>');
+    $('#table_schema tbody').prepend('<tr>'+row2+'</tr>');
     console.log('строка добавлена')
 
     scale(0)
@@ -47,7 +46,7 @@ function addRowToEnd()
     let countRows = $('tr').last().prev().find('th').html();
     countRows=Number(countRows)+1
 
-    let countColumns =$('thead th').last().html();
+    let countColumns =$('#table_schema thead th').last().html();
 
     let color = $(".selectColor").prop("id");
     if (color=="btndelete")color=""
@@ -65,8 +64,8 @@ function addRowToEnd()
     // row1 = '<tr>+row1+</tr>'
     // row2 = '<tr>+row2+</tr>'
     console.log(row1)
-    $('tbody').append('<tr>'+row1+'</tr>');
-    $('tbody').append('<tr>'+row2+'</tr>');
+    $('#table_schema tbody').append('<tr>'+row1+'</tr>');
+    $('#table_schema tbody').append('<tr>'+row2+'</tr>');
     console.log('строка добавлена')
 
     scale(0)
@@ -85,7 +84,7 @@ function addColumnToStart()
     let html1 ='<td></td><td><div class="ovalVert '+color+'"></div></td>';
     let html2='<td><div class="ovalHoriz '+color+'"></div></td><td></td>'
 
-    let row = $("tbody tr").first();
+    let row = $("#table_schema tbody tr").first();
     for (let i=1;i<=countRows;i++) {
         row.find('th').after(html1);
         row.next().find('th').after(html2);
@@ -110,7 +109,7 @@ function addColumnToEnd()
     let html1 ='<td></td><td><div class="ovalVert '+color+'"></div></td>';
     let html2='<td></td><td><div class="ovalHoriz '+color+'"></div></td>'
 
-    let row = $("tbody tr").first();
+    let row = $("#table_schema tbody tr").first();
 
     for (let i=1;i<=countRows;i++) {
         row.append(html1);
