@@ -67,6 +67,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="https://forms.gle/HM8v4NR4kS5DLiWw5"  target="_blank">Оставить отзыв</a>
                         </li>
+                        <li>
+                            <br>{{-- разрыв для правого меню в мобильном режме--}}
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -113,14 +116,16 @@
         <div class="alertsContainer sticky-top">
             {{--генерация исключений--}}
             @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <ul>
+{{--                <div class="alert alert-danger alert-dismissible fade show" role="alert">--}}
+{{--                    <ul>--}}
+            <script defer>
                         @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                    console.log({{ $error }})
                         @endforeach
-                    </ul>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+{{--                    </ul>--}}
+            </script>
+{{--                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>--}}
+{{--                </div>--}}
             @endif
 
         @isset($alerts['message'])
