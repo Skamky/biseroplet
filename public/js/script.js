@@ -115,6 +115,11 @@ function selectDelete ( event )
 }
 function printSchema()
 {
+    if(!window.print){
+        console.log('функция недоступна');
+        alert('Данная функция недоступна на вашей платформе 😓');
+        return;
+    }
     console.log('начало печати');
     var printCSSbotrap ='<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">'   // var printTitle = document.getElementById('print-title').innerHTML;
     var printCSS2 = '<style media="print" type="text/css">.ovalHoriz{width: 100px;height: 50px; border-radius: 50%; border:3px solid black;color: red;} .ovalVert{width: 50px;height: 100px; border-radius: 50%; border:3px solid black;}</style>';
