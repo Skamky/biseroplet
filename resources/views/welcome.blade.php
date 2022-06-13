@@ -16,13 +16,13 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{asset('favicon.ico')}}" class="rounded mx-auto  d-block  img-thumbnail  img-fluid " alt="...">
+                <img src="{{asset('котик (3).jpg')}}" class="rounded mx-auto  d-block  img-thumbnail   " alt="..." style="max-height:75vh ">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('vino.jpg')}}" class="rounded mx-auto  d-block  img-thumbnail  img-fluid min-vh-100" alt="...">
+                <img src="{{asset('Карты игральные.jpg')}}" class="rounded mx-auto  d-block img-thumbnail " alt="..."  style="max-height:75vh ">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('favicon.ico')}}" class="rounded mx-auto  d-block img-thumbnail  img-fluid" alt="...">
+                <img src="{{asset('чокер малый.png')}}" class="rounded mx-auto  d-block img-thumbnail  " alt="..."  style="max-height:75vh ">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
